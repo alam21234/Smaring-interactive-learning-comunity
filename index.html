@@ -5,12 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Komunitas Belajar SMILE - SMA Negeri 1 Cluring</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
         
         body {
@@ -25,21 +26,52 @@
         .banner {
             width: 100%;
             max-width: 1100px;
-            background: linear-gradient(120deg, #1a2a6c, #b21f1f, #fdbb2d);
+            background: linear-gradient(135deg, #1a2a6c 0%, #b21f1f 50%, #fdbb2d 100%);
             color: white;
-            border-radius: 15px;
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3), 0 0 30px rgba(253, 187, 45, 0.2);
             overflow: hidden;
             position: relative;
+            animation: gradientShift 10s ease infinite;
+            transform: translateZ(0);
+            background-size: 200% 200%;
+        }
+        
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        .banner::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(253, 187, 45, 0.2) 0%, transparent 20%),
+                radial-gradient(circle at 80% 20%, rgba(178, 31, 31, 0.2) 0%, transparent 20%),
+                radial-gradient(circle at 40% 40%, rgba(26, 42, 108, 0.2) 0%, transparent 20%);
+            pointer-events: none;
+            z-index: 1;
+        }
+        
+        .banner-content-inner {
+            position: relative;
+            z-index: 2;
         }
         
         .banner-header {
-            padding: 20px 30px;
-            background: rgba(0, 0, 0, 0.2);
+            padding: 25px 30px;
+            background: rgba(0, 0, 0, 0.25);
             border-bottom: 2px solid rgba(255, 255, 255, 0.3);
             display: flex;
             align-items: center;
             justify-content: space-between;
+            backdrop-filter: blur(5px);
+            position: relative;
         }
         
         .logo-container {
@@ -54,7 +86,13 @@
             border-radius: 50%;
             object-fit: cover;
             border: 3px solid white;
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.3), 0 0 30px rgba(253, 187, 45, 0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .logo:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 25px rgba(255, 255, 255, 0.4), 0 0 40px rgba(253, 187, 45, 0.4);
         }
         
         .school-info {
@@ -64,12 +102,19 @@
         .school-name {
             font-size: 1.8rem;
             margin-bottom: 5px;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.6);
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            background: linear-gradient(to right, #ffffff, #FFD700);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
         
         .school-address {
             font-size: 1rem;
             opacity: 0.9;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
         }
         
         .principal-container {
@@ -85,34 +130,95 @@
             border-radius: 50%;
             object-fit: cover;
             border: 2px solid white;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+        
+        .principal-photo:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
         }
         
         .principal-name {
             font-size: 0.9rem;
             text-align: center;
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+            font-weight: 500;
         }
         
         .banner-title-container {
             text-align: center;
-            padding: 20px 0;
+            padding: 25px 0;
             background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(5px);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .banner-title-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(to right, transparent, #FFD700, transparent);
         }
         
         .banner-title {
             font-size: 2.8rem;
             margin-bottom: 10px;
             text-transform: uppercase;
-            letter-spacing: 2px;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-            color: #FFD700;
+            letter-spacing: 3px;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.6);
+            font-weight: 700;
+            background: linear-gradient(to right, #FFD700, #ffffff, #FFD700);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .banner-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 25%;
+            width: 50%;
+            height: 3px;
+            background: linear-gradient(to right, transparent, #FFD700, transparent);
+            border-radius: 3px;
         }
         
         .banner-date {
             font-size: 1.8rem;
             font-weight: 500;
             letter-spacing: 1px;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+            margin-top: 15px;
+            display: inline-block;
+            padding: 8px 20px;
+            border-radius: 30px;
+            background: rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(5px);
+        }
+        
+        .current-time {
+            font-size: 1.2rem;
+            margin-top: 10px;
+            display: inline-block;
+            padding: 6px 15px;
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(5px);
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(253, 187, 45, 0.4); }
+            70% { box-shadow: 0 0 0 10px rgba(253, 187, 45, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(253, 187, 45, 0); }
         }
         
         .banner-content {
@@ -128,49 +234,98 @@
         .agenda-title {
             font-size: 2.2rem;
             margin-bottom: 25px;
-            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
-            color: #FFD700;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+            font-weight: 600;
             text-align: center;
+            background: linear-gradient(to right, #FFD700, #ffffff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .agenda-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 30%;
+            width: 40%;
+            height: 2px;
+            background: linear-gradient(to right, transparent, #FFD700, transparent);
         }
         
         .agenda-detail {
             background: rgba(255, 255, 255, 0.15);
             backdrop-filter: blur(10px);
             padding: 25px;
-            border-radius: 12px;
+            border-radius: 15px;
             margin-bottom: 30px;
             border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .agenda-detail::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background: linear-gradient(to bottom, #1a2a6c, #fdbb2d);
+        }
+        
+        .agenda-detail:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            border-color: rgba(255, 255, 255, 0.3);
         }
         
         .agenda-detail h3 {
             font-size: 1.5rem;
             margin-bottom: 15px;
             color: #FFD700;
+            font-weight: 600;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
         }
         
         .agenda-detail p {
             font-size: 1.3rem;
             line-height: 1.6;
             margin-bottom: 10px;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
         }
         
         .principal-info {
             flex: 1;
             background: rgba(255, 255, 255, 0.15);
             backdrop-filter: blur(10px);
-            padding: 20px;
-            border-radius: 12px;
+            padding: 25px;
+            border-radius: 15px;
             border: 1px solid rgba(255, 255, 255, 0.2);
             display: flex;
             flex-direction: column;
             align-items: center;
             text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .principal-info:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            border-color: rgba(255, 255, 255, 0.3);
         }
         
         .principal-info h3 {
             font-size: 1.5rem;
             margin-bottom: 15px;
             color: #FFD700;
+            font-weight: 600;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
         }
         
         .principal-large {
@@ -180,18 +335,46 @@
             object-fit: cover;
             border: 3px solid white;
             margin-bottom: 15px;
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .principal-large:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 25px rgba(255, 255, 255, 0.4);
         }
         
         .principal-quote {
             font-style: italic;
             margin-top: 15px;
             font-size: 1.1rem;
+            padding: 10px;
+            border-radius: 10px;
+            background: rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+        
+        .principal-quote::before, .principal-quote::after {
+            content: '"';
+            font-size: 2rem;
+            color: #FFD700;
+            position: absolute;
+        }
+        
+        .principal-quote::before {
+            top: -5px;
+            left: -10px;
+        }
+        
+        .principal-quote::after {
+            bottom: -15px;
+            right: -10px;
         }
         
         .decoration {
             position: absolute;
             opacity: 0.1;
+            z-index: 1;
         }
         
         .decoration-1 {
@@ -211,12 +394,24 @@
         .footer {
             padding: 20px;
             text-align: center;
-            background: rgba(0, 0, 0, 0.25);
+            background: rgba(0, 0, 0, 0.3);
             font-size: 1.1rem;
             letter-spacing: 1px;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            backdrop-filter: blur(5px);
+            position: relative;
+        }
+        
+        .footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(to right, transparent, #FFD700, transparent);
         }
         
         .contact-info {
@@ -229,24 +424,39 @@
             font-size: 0.9rem;
         }
         
+        .motto {
+            font-weight: 500;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+            padding: 8px 15px;
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.1);
+        }
+        
         .smile-acronym {
             background: rgba(255, 255, 255, 0.1);
-            padding: 15px;
-            border-radius: 10px;
+            padding: 20px;
+            border-radius: 15px;
             margin-top: 20px;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
         }
         
         .smile-acronym h4 {
             color: #FFD700;
-            margin-bottom: 10px;
-            font-size: 1.3rem;
+            margin-bottom: 15px;
+            font-size: 1.5rem;
             text-align: center;
+            font-weight: 600;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
         }
         
         .smile-acronym p {
             font-size: 1.1rem;
             line-height: 1.5;
             text-align: center;
+            margin-bottom: 15px;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
         }
         
         .acronym-container {
@@ -255,32 +465,43 @@
             align-items: center;
             flex-wrap: nowrap;
             margin: 15px 0;
-            gap: 5px;
+            gap: 8px;
         }
         
         .acronym-item {
             text-align: center;
-            padding: 8px 5px;
+            padding: 12px 8px;
             background: rgba(255, 255, 255, 0.1);
-            border-radius: 8px;
+            border-radius: 12px;
             flex: 1;
             min-width: 0;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .acronym-item:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
         }
         
         .acronym-letter {
-            font-size: 1.5rem;
+            font-size: 1.8rem;
             font-weight: bold;
             color: #FFD700;
-            margin-bottom: 3px;
+            margin-bottom: 5px;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
         }
         
         .acronym-text {
-            font-size: 0.85rem;
+            font-size: 0.9rem;
             line-height: 1.2;
+            font-weight: 500;
         }
         
         @media (max-width: 900px) {
@@ -310,6 +531,10 @@
                 font-size: 1.5rem;
             }
             
+            .current-time {
+                font-size: 1rem;
+            }
+            
             .agenda-title {
                 font-size: 1.8rem;
             }
@@ -320,7 +545,7 @@
             
             .footer {
                 flex-direction: column;
-                gap: 10px;
+                gap: 15px;
             }
             
             .contact-info, .website {
@@ -335,8 +560,31 @@
             }
             
             .acronym-item {
-                min-width: 70px;
-                padding: 5px;
+                min-width: 80px;
+                padding: 10px 5px;
+            }
+            
+            .acronym-letter {
+                font-size: 1.5rem;
+            }
+            
+            .acronym-text {
+                font-size: 0.8rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .banner-title {
+                font-size: 1.8rem;
+                letter-spacing: 2px;
+            }
+            
+            .banner-date {
+                font-size: 1.3rem;
+            }
+            
+            .current-time {
+                font-size: 0.9rem;
             }
             
             .acronym-letter {
@@ -344,22 +592,16 @@
             }
             
             .acronym-text {
-                font-size: 0.75rem;
-            }
-        }
-        
-        @media (max-width: 480px) {
-            .acronym-letter {
-                font-size: 1.1rem;
-            }
-            
-            .acronym-text {
-                font-size: 0.65rem;
+                font-size: 0.7rem;
             }
             
             .acronym-item {
-                min-width: 60px;
-                padding: 3px;
+                min-width: 70px;
+                padding: 8px 3px;
+            }
+            
+            .school-name {
+                font-size: 1.5rem;
             }
         }
     </style>
@@ -369,94 +611,135 @@
         <div class="decoration decoration-1">📅</div>
         <div class="decoration decoration-2">🎯</div>
         
-        <div class="banner-header">
-            <div class="logo-container">
-                <img src="https://i.ibb.co.com/xKfZBy7w/SMAN1-Cluring-emblem.png" alt="Logo SMA Negeri 1 Cluring" class="logo">
-                <div class="school-info">
-                    <h2 class="school-name">SMA NEGERI 1 CLURING</h2>
-                    <p class="school-address">Jl. H. Huzaini, Benculuk, Cluring, Banyuwangi, Jawa Timur</p>
+        <div class="banner-content-inner">
+            <div class="banner-header">
+                <div class="logo-container">
+                    <img src="https://i.ibb.co.com/xKfZBy7w/SMAN1-Cluring-emblem.png" alt="Logo SMA Negeri 1 Cluring" class="logo">
+                    <div class="school-info">
+                        <h2 class="school-name">SMA NEGERI 1 CLURING</h2>
+                        <p class="school-address">Jl. H. Huzaini, Benculuk, Cluring, Banyuwangi, Jawa Timur</p>
+                    </div>
+                </div>
+                
+                <div class="principal-container">
+                    <img src="https://i.ibb.co.com/Fk8ZFSbw/Helmi-S-Pd-M-Si.jpg" alt="Kepala Sekolah" class="principal-photo">
+                    <p class="principal-name">Helmi, S.Pd., M.Si<br>Kepala Sekolah</p>
                 </div>
             </div>
             
-            <div class="principal-container">
-                <img src="https://i.ibb.co.com/Fk8ZFSbw/Helmi-S-Pd-M-Si.jpg" alt="Kepala Satuan Pendidikan" class="principal-photo">
-                <p class="principal-name">Helmi, S.Pd., M.Si<br>Kepala Satuan Pendidikan</p>
+            <div class="banner-title-container">
+                <h1 class="banner-title">Komunitas Belajar SMILE</h1>
+                <div class="banner-date">Jumat, 19 September 2025</div>
+                <div class="current-time" id="current-time">Loading waktu...</div>
             </div>
-        </div>
-        
-        <div class="banner-title-container">
-            <h1 class="banner-title">Komunitas Belajar SMILE</h1>
-            <div class="banner-date">Jumat, 19 September 2025</div>
-        </div>
-        
-        <div class="banner-content">
-            <div class="agenda-container">
-                <h2 class="agenda-title">Agenda Kegiatan</h2>
-                
-                <div class="agenda-detail">
-                    <h3>Sesi Utama</h3>
-                    <p>Implementasi SNP sebagai Acuan Peningkatan Mutu Satuan Pendidikan</p>
-                    <p>Jenjang SMA Tahun 2025</p>
-                </div>
-                
-                <div class="agenda-detail">
-                    <h3>Tujuan</h3>
-                    <p>Meningkatkan pemahaman tentang Standar Nasional Pendidikan dan implementasinya untuk peningkatan mutu pendidikan jenjang SMA</p>
-                </div>
-                
-                <div class="smile-acronym">
-                    <h4>Apa itu SMILE?</h4>
-                    <p><strong>S</strong>mart Interactive Learning Community</p>
-                    <p>Sebuah komunitas pembelajaran interaktif yang cerdas untuk meningkatkan kualitas pendidikan</p>
+            
+            <div class="banner-content">
+                <div class="agenda-container">
+                    <h2 class="agenda-title">Agenda Kegiatan</h2>
                     
-                    <div class="acronym-container">
-                        <div class="acronym-item">
-                            <div class="acronym-letter">S</div>
-                            <div class="acronym-text">Smart</div>
-                        </div>
-                        <div class="acronym-item">
-                            <div class="acronym-letter">M</div>
-                            <div class="acronym-text">Mandiri</div>
-                        </div>
-                        <div class="acronym-item">
-                            <div class="acronym-letter">I</div>
-                            <div class="acronym-text">Inovatif</div>
-                        </div>
-                        <div class="acronym-item">
-                            <div class="acronym-letter">L</div>
-                            <div class="acronym-text">Loyal</div>
-                        </div>
-                        <div class="acronym-item">
-                            <div class="acronym-letter">E</div>
-                            <div class="acronym-text">Efektif</div>
+                    <div class="agenda-detail">
+                        <h3>Sesi Utama</h3>
+                        <p>Implementasi SNP sebagai Acuan Peningkatan Mutu Satuan Pendidikan</p>
+                        <p>Jenjang SMA Tahun 2025</p>
+                    </div>
+                    
+                    <div class="agenda-detail">
+                        <h3>Tujuan</h3>
+                        <p>Meningkatkan pemahaman tentang Standar Nasional Pendidikan dan implementasinya untuk peningkatan mutu pendidikan jenjang SMA</p>
+                    </div>
+                    
+                    <div class="smile-acronym">
+                        <h4>Apa itu SMILE?</h4>
+                        <p><strong>S</strong>mart Interactive Learning Community</p>
+                        <p>Sebuah komunitas pembelajaran interaktif yang cerdas untuk meningkatkan kualitas pendidikan</p>
+                        
+                        <div class="acronym-container">
+                            <div class="acronym-item">
+                                <div class="acronym-letter">S</div>
+                                <div class="acronym-text">Smart</div>
+                            </div>
+                            <div class="acronym-item">
+                                <div class="acronym-letter">M</div>
+                                <div class="acronym-text">Mandiri</div>
+                            </div>
+                            <div class="acronym-item">
+                                <div class="acronym-letter">I</div>
+                                <div class="acronym-text">Inovatif</div>
+                            </div>
+                            <div class="acronym-item">
+                                <div class="acronym-letter">L</div>
+                                <div class="acronym-text">Loyal</div>
+                            </div>
+                            <div class="acronym-item">
+                                <div class="acronym-letter">E</div>
+                                <div class="acronym-text">Efektif</div>
+                            </div>
                         </div>
                     </div>
                 </div>
+                
+                <div class="principal-info">
+                    <h3>Kepala Satuan Pendidikan</h3>
+                    <img src="https://i.ibb.co.com/Fk8ZFSbw/Helmi-S-Pd-M-Si.jpg" alt="Kepala Sekolah" class="principal-large">
+                    <p><strong>Helmi, S.Pd., M.Si</strong></p>
+                    <p>Kepala SMA Negeri 1 Cluring</p>
+                    <p class="principal-quote">"Pendidikan adalah investasi terbaik untuk masa depan generasi bangsa."</p>
+                </div>
             </div>
             
-            <div class="principal-info">
-                <h3>Kepala Satuan Pendidikan</h3>
-                <img src="https://i.ibb.co.com/Fk8ZFSbw/Helmi-S-Pd-M-Si.jpg" alt="Kepala Sekolah" class="principal-large">
-                <p><strong>Helmi, S.Pd., M.Si</strong></p>
-                <p>Kepala SMA Negeri 1 Cluring</p>
-                <p class="principal-quote">"Pendidikan adalah investasi terbaik untuk masa depan generasi bangsa."</p>
-            </div>
-        </div>
-        
-        <div class="footer">
-            <div class="contact-info">
-                <p><i class="fas fa-phone"></i> 0852-3071-7917</p>
-                <p><i class="fas fa-envelope"></i> sman1cluring@school.ac.id</p>
-            </div>
-            
-            <div class="motto">
-                "Mewujudkan Pendidikan Bermutu untuk Generasi Emas Indonesia"
-            </div>
-            
-            <div class="website">
-                <p><i class="fas fa-globe"></i> www.sman1cluring.sch.id</p>
+            <div class="footer">
+                <div class="contact-info">
+                    <p><i class="fas fa-phone"></i> (0333) 123456</p>
+                    <p><i class="fas fa-envelope"></i> sman1cluring@school.ac.id</p>
+                </div>
+                
+                <div class="motto">
+                    "Mewujudkan Pendidikan Bermutu untuk Generasi Emas Indonesia"
+                </div>
+                
+                <div class="website">
+                    <p><i class="fas fa-globe"></i> www.sman1cluring.sch.id</p>
+                </div>
             </div>
         </div>
     </div>
+
+    <script>
+        // Fungsi untuk memperbarui waktu secara real-time
+        function updateCurrentTime() {
+            const now = new Date();
+            
+            // Format tanggal Indonesia
+            const days = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu'];
+            const months = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
+            
+            const day = days[now.getDay()];
+            const date = now.getDate();
+            const month = months[now.getMonth()];
+            const year = now.getFullYear();
+            
+            // Format waktu
+            let hours = now.getHours();
+            let minutes = now.getMinutes();
+            let seconds = now.getSeconds();
+            
+            // Tambahkan nol di depan angka jika kurang dari 10
+            hours = hours < 10 ? '0' + hours : hours;
+            minutes = minutes < 10 ? '0' + minutes : minutes;
+            seconds = seconds < 10 ? '0' + seconds : seconds;
+            
+            // Tampilkan waktu
+            const timeString = `${hours}:${minutes}:${seconds}`;
+            const dateString = `${day}, ${date} ${month} ${year}`;
+            
+            document.getElementById('current-time').innerHTML = `<i class="fas fa-clock"></i> ${timeString} - ${dateString}`;
+        }
+        
+        // Perbarui waktu setiap detik
+        setInterval(updateCurrentTime, 1000);
+        
+        // Panggil fungsi pertama kali saat halaman dimuat
+        window.onload = updateCurrentTime;
+    </script>
 </body>
 </html>
