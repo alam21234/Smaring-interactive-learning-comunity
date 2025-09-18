@@ -4,16 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SMILE — Smaring Interactive Learning Community</title>
-
-    <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-
-    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
     <style>
         :root {
             /* Light Mode */
@@ -133,19 +126,9 @@
             border: 1px solid rgba(255,255,255,0.1);
         }
 
-        .navbar.scrolled {
-            background: rgba(255,255,255,0.15);
-            box-shadow: var(--shadow);
-            padding: 0.8rem 0;
-        }
-
         .dark-mode .navbar {
             background: rgba(15, 23, 42, 0.8);
             border-bottom: 1px solid rgba(255,255,255,0.05);
-        }
-
-        .dark-mode .navbar.scrolled {
-            background: rgba(15, 23, 42, 0.95);
         }
 
         .navbar-brand {
@@ -158,8 +141,6 @@
             -webkit-text-fill-color: transparent;
             letter-spacing: -0.8px;
             position: relative;
-            display: flex;
-            align-items: center;
         }
 
         .navbar-brand img {
@@ -370,6 +351,7 @@
             border: 1px solid rgba(255,255,255,0.1);
         }
 
+        /* Gradient responsif & interaktif */
         .principal-gradient {
             position: absolute;
             top: 0;
@@ -648,8 +630,8 @@
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg">
         <div class="container">
-            <a class="navbar-brand" href="#">
-                <img src="https://i.ibb.co/xKfZBy7w/SMAN1-Cluring-emblem.png" alt="Logo SMILE">
+            <a class="navbar-brand d-flex align-items-center" href="#">
+                <img src="https://i.ibb.co.com/xKfZBy7w/SMAN1-Cluring-emblem.png" alt="Logo SMILE">
                 SMILE
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
@@ -687,7 +669,7 @@
             <div class="principal-section animate-in">
                 <div class="principal-gradient"></div>
                 <div class="principal-content">
-                    <img src="https://i.ibb.co/Fk8ZFSbw/Helmi-S-Pd-M-Si.jpg" alt="Helmi, S.Pd., M.Si" class="principal-avatar">
+                    <img src="https://i.ibb.co.com/Fk8ZFSbw/Helmi-S-Pd-M-Si.jpg" alt="Helmi, S.Pd., M.Si" class="principal-avatar">
                     <h3 class="principal-name">Helmi, S.Pd., M.Si</h3>
                     <p class="principal-position">Kepala SMAN 1 Cluring</p>
                     <p class="principal-contact"><i class="fas fa-phone-alt"></i> 0852-3071-7917</p>
@@ -706,7 +688,7 @@
             <h2 class="section-title">Tentang SMILE</h2>
             <div class="row align-items-center g-5">
                 <div class="col-lg-5">
-                    <img src="https://i.ibb.co/8DPfM63d/kordinasi.jpg" alt="Kegiatan Koordinasi SMILE" class="img-fluid coordination-img animate-in">
+                    <img src="https://i.ibb.co.com/8DPfM63d/kordinasi.jpg" alt="Kegiatan Koordinasi SMILE" class="img-fluid coordination-img animate-in">
                 </div>
                 <div class="col-lg-7">
                     <div class="about-section animate-in">
@@ -753,7 +735,7 @@
             <div class="row g-4">
                 <div class="col-md-6 col-lg-3">
                     <div class="card agenda-card animate-in">
-                        <img src="https://i.ibb.co/4Z4XWPyY/kordinasi.jpg" class="card-img-top" alt="Implementasi SNP 2025" style="height: 240px; object-fit: cover;">
+                        <img src="https://i.ibb.co.com/4Z4XWPyY/kordinasi.jpg" class="card-img-top" alt="Implementasi SNP 2025" style="height: 240px; object-fit: cover;">
                         <div class="card-body">
                             <h5 class="card-title">Implementasi SNP 2025</h5>
                             <span class="text-secondary">Jumat, 19 September 2025</span>
@@ -762,6 +744,7 @@
                         </div>
                     </div>
                 </div>
+                <!-- 3 agenda lainnya tetap sama... -->
                 <div class="col-md-6 col-lg-3">
                     <div class="card agenda-card animate-in">
                         <img src="https://images.unsplash.com/photo-1543269865-cbf427effbad?auto=format&fit=crop&q=80" class="card-img-top" alt="Workshop Kreativitas" style="height: 240px; object-fit: cover;">
@@ -865,44 +848,35 @@
         </div>
     </footer>
 
-    <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // ========== DARK MODE TOGGLE ==========
-            const darkModeToggle = document.getElementById('darkModeToggle');
-            const body = document.getElementById('smile-body');
-            const html = document.getElementById('smile-html');
+        // Dark Mode Toggle
+        const darkModeToggle = document.getElementById('darkModeToggle');
+        const body = document.getElementById('smile-body');
+        const html = document.getElementById('smile-html');
 
-            // Load saved preference
-            if (localStorage.getItem('darkMode') === 'enabled') {
-                enableDarkMode();
-            }
+        // Cek preferensi pengguna
+        if (localStorage.getItem('darkMode') === 'enabled') {
+            body.classList.add('dark-mode');
+            html.setAttribute('data-bs-theme', 'dark');
+            darkModeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+        }
 
-            darkModeToggle.addEventListener('click', () => {
-                if (body.classList.contains('dark-mode')) {
-                    disableDarkMode();
-                } else {
-                    enableDarkMode();
-                }
-            });
-
-            function enableDarkMode() {
-                body.classList.add('dark-mode');
+        darkModeToggle.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+            if (body.classList.contains('dark-mode')) {
                 html.setAttribute('data-bs-theme', 'dark');
                 darkModeToggle.innerHTML = '<i class="fas fa-sun"></i>';
                 localStorage.setItem('darkMode', 'enabled');
-            }
-
-            function disableDarkMode() {
-                body.classList.remove('dark-mode');
+            } else {
                 html.removeAttribute('data-bs-theme');
                 darkModeToggle.innerHTML = '<i class="fas fa-moon"></i>';
                 localStorage.setItem('darkMode', 'disabled');
             }
+        });
 
-            // ========== PARTICLES ==========
+        // Particles
+        document.addEventListener('DOMContentLoaded', function() {
             const particlesContainer = document.getElementById('particles');
             for (let i = 0; i < 30; i++) {
                 const particle = document.createElement('div');
@@ -913,9 +887,9 @@
                 particlesContainer.appendChild(particle);
             }
 
-            // ========== SCROLL EFFECT ==========
-            const navbar = document.querySelector('.navbar');
-            window.addEventListener('scroll', () => {
+            // Navbar scroll
+            window.addEventListener('scroll', function() {
+                const navbar = document.querySelector('.navbar');
                 if (window.scrollY > 50) {
                     navbar.classList.add('scrolled');
                 } else {
@@ -923,7 +897,7 @@
                 }
             });
 
-            // ========== INTERSECTION OBSERVER ==========
+            // Intersection Observer
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
@@ -934,8 +908,9 @@
 
             document.querySelectorAll('.animate-in').forEach(el => observer.observe(el));
 
-            // ========== COUNTDOWN TIMER ==========
+            // Countdown Timer (Menuju 19 September 2025)
             const countdownDate = new Date("Sep 19, 2025 00:00:00").getTime();
+
             const countdownTimer = setInterval(() => {
                 const now = new Date().getTime();
                 const distance = countdownDate - now;
@@ -956,7 +931,7 @@
                 }
             }, 1000);
 
-            // ========== CONTACT FORM ==========
+            // Form Submission (prevent default for demo)
             const contactForm = document.getElementById('contactForm');
             if (contactForm) {
                 contactForm.addEventListener('submit', function(e) {
