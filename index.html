@@ -3,463 +3,675 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SMILE - Smaring Interactive Learning Community</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>SMILE — Smaring Interactive Learning Community</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Raleway:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #6C63FF;
-            --secondary: #FF6B6B;
-            --accent: #4ECDC4;
-            --dark: #2C2C54;
-            --light: #F7F7F7;
-            --gradient: linear-gradient(135deg, #6C63FF 0%, #4ECDC4 100%);
+            --primary: #5E35B1;      /* Deep Purple */
+            --secondary: #FF5722;    /* Vibrant Orange */
+            --accent: #00BCD4;       /* Cyan Accent */
+            --dark: #121212;         /* Near Black */
+            --light: #FAFAFA;        /* Off-White */
+            --gradient-bg: linear-gradient(135deg, #5E35B1 0%, #00BCD4 100%);
+            --gradient-text: linear-gradient(135deg, #FF5722, #5E35B1);
+            --shadow: 0 10px 30px rgba(0,0,0,0.1);
+            --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
-        
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
-            font-family: 'Poppins', sans-serif;
-            color: #333;
+            font-family: 'Raleway', sans-serif;
+            color: var(--dark);
             background-color: var(--light);
             overflow-x: hidden;
+            line-height: 1.7;
+            scroll-behavior: smooth;
         }
-        
-        /* Navbar styling */
+
+        /* Navbar — Glassmorphism + Floating */
         .navbar {
-            background-color: rgba(255, 255, 255, 0.95);
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-            backdrop-filter: blur(10px);
-            padding: 15px 0;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+            box-shadow: var(--shadow);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+            transition: var(--transition);
         }
-        
+
+        .navbar.scrolled {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 0.75rem 0;
+        }
+
         .navbar-brand {
-            font-weight: 700;
-            color: var(--primary);
+            font-family: 'Playfair Display', serif;
+            font-weight: 900;
+            font-size: 1.8rem;
+            background: var(--gradient-text);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -0.5px;
         }
-        
+
+        .navbar-brand img {
+            height: 45px;
+            margin-right: 8px;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+        }
+
         .nav-link {
-            font-weight: 500;
+            font-weight: 600;
             color: var(--dark);
-            margin: 0 10px;
-            transition: all 0.3s;
+            margin: 0 0.75rem;
             position: relative;
+            transition: var(--transition);
+            font-size: 0.95rem;
+            letter-spacing: 0.5px;
         }
-        
+
         .nav-link:hover {
             color: var(--primary);
+            transform: translateY(-2px);
         }
-        
-        .nav-link:after {
+
+        .nav-link::after {
             content: '';
             position: absolute;
+            bottom: -5px;
+            left: 0;
             width: 0;
             height: 2px;
-            bottom: 0;
-            left: 0;
-            background-color: var(--primary);
-            transition: width 0.3s;
+            background: var(--gradient-text);
+            transition: var(--transition);
+            border-radius: 2px;
         }
-        
-        .nav-link:hover:after {
+
+        .nav-link:hover::after {
             width: 100%;
         }
-        
-        /* Hero section with YouTube video */
+
+        /* Hero Section — Cinematic Video + Floating Text */
         .hero-section {
-            position: relative;
             height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
+            position: relative;
+            overflow: hidden;
             color: white;
             text-align: center;
-            overflow: hidden;
         }
-        
+
         .video-background {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            z-index: -1;
+            z-index: -2;
             overflow: hidden;
         }
-        
-        .video-background iframe {
-            width: 100vw;
-            height: 56.25vw; /* Given a 16:9 aspect ratio, 9/16*100 = 56.25 */
-            min-height: 100vh;
-            min-width: 177.77vh; /* Given a 16:9 aspect ratio, 16/9*100 = 177.77 */
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-        }
-        
-        .overlay {
+
+        .video-background::before {
+            content: '';
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(44, 44, 84, 0.8);
+            background: rgba(0,0,0,0.4);
             z-index: -1;
         }
-        
+
+        .video-background iframe {
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
         .hero-content {
-            max-width: 800px;
-            padding: 20px;
+            max-width: 900px;
+            padding: 2rem;
+            z-index: 10;
+            text-shadow: 0 4px 20px rgba(0,0,0,0.3);
+        }
+
+        .hero-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 4.5rem;
+            font-weight: 900;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, #fff, #e0e0e0);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -1px;
+            line-height: 1.1;
+            animation: floatTitle 3s ease-in-out infinite;
+        }
+
+        @keyframes floatTitle {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .hero-subtitle {
+            font-size: 1.4rem;
+            font-weight: 300;
+            margin-bottom: 2.5rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            letter-spacing: 0.5px;
+            opacity: 0.9;
+        }
+
+        .btn-hero {
+            background: var(--gradient-bg);
+            border: none;
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            color: white;
+            font-weight: 700;
+            font-size: 1.1rem;
+            letter-spacing: 1px;
+            box-shadow: 0 8px 25px rgba(94, 53, 177, 0.4);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
             z-index: 1;
         }
-        
-        .hero-title {
-            font-size: 3.5rem;
-            font-weight: 800;
-            margin-bottom: 20px;
-            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
-        }
-        
-        .hero-subtitle {
-            font-size: 1.5rem;
-            margin-bottom: 30px;
-            font-weight: 300;
-        }
-        
-        .btn-hero {
-            background: var(--gradient);
-            border: none;
-            padding: 12px 30px;
-            border-radius: 50px;
-            color: white;
-            font-weight: 600;
-            box-shadow: 0 4px 15px rgba(108, 99, 255, 0.4);
-            transition: all 0.3s;
-        }
-        
-        .btn-hero:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(108, 99, 255, 0.6);
-            color: white;
-        }
-        
-        /* Section styling */
-        .section {
-            padding: 80px 0;
-        }
-        
-        .section-title {
-            font-weight: 700;
-            margin-bottom: 50px;
-            position: relative;
-            display: inline-block;
-            color: var(--dark);
-        }
-        
-        .section-title:after {
+
+        .btn-hero::before {
             content: '';
             position: absolute;
-            width: 60%;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: 0.5s;
+            z-index: -1;
+        }
+
+        .btn-hero:hover::before {
+            left: 100%;
+        }
+
+        .btn-hero:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 15px 35px rgba(94, 53, 177, 0.6);
+            letter-spacing: 1.5px;
+        }
+
+        /* Section Styling — Elegant Spacing & Typography */
+        .section {
+            padding: 100px 0;
+            position: relative;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.8rem;
+            font-weight: 900;
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+            display: inline-block;
+            background: var(--gradient-text);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -1px;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
             height: 4px;
-            background: var(--gradient);
-            bottom: -10px;
-            left: 0;
+            background: var(--gradient-text);
             border-radius: 2px;
         }
-        
-        /* About section */
+
+        /* About Section — Split Layout with Parallax */
         .about-content {
             font-size: 1.1rem;
-            line-height: 1.8;
+            padding-right: 2rem;
         }
-        
-        /* Principal section */
-        .principal-section {
-            background: var(--gradient);
-            color: white;
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 15px 30px rgba(108, 99, 255, 0.3);
-            margin: 40px 0;
-        }
-        
-        .principal-avatar {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 5px solid white;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-        }
-        
-        .principal-info {
-            padding: 30px;
-        }
-        
-        .principal-name {
-            font-weight: 700;
-            margin-bottom: 5px;
-        }
-        
-        .principal-position {
-            font-weight: 500;
-            opacity: 0.9;
-            margin-bottom: 20px;
-        }
-        
-        .principal-contact {
-            margin-bottom: 10px;
-        }
-        
-        .principal-quote {
-            font-style: italic;
-            margin-top: 20px;
-            padding: 15px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 10px;
+
+        .about-content p {
+            margin-bottom: 1.5rem;
             position: relative;
         }
-        
-        .principal-quote:before {
-            content: '"';
-            font-size: 60px;
-            position: absolute;
-            left: 10px;
-            top: -10px;
-            opacity: 0.2;
-        }
-        
-        /* Agenda section */
-        .agenda-card {
-            border: none;
-            border-radius: 15px;
-            overflow: hidden;
-            transition: all 0.3s;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-            height: 100%;
-        }
-        
-        .agenda-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
-        }
-        
-        .agenda-img {
-            height: 200px;
-            object-fit: cover;
-        }
-        
-        .agenda-card .card-body {
-            padding: 25px;
-        }
-        
-        .agenda-card .card-title {
-            font-weight: 700;
-            color: var(--dark);
-            margin-bottom: 15px;
-        }
-        
-        .agenda-card .btn {
-            background: var(--gradient);
-            border: none;
-            border-radius: 50px;
-            padding: 8px 20px;
-            font-weight: 500;
-        }
-        
-        /* Footer */
-        .footer {
-            background-color: var(--dark);
-            color: white;
-            padding: 60px 0 30px;
-        }
-        
-        .footer-title {
-            font-weight: 700;
-            margin-bottom: 25px;
-            position: relative;
-            display: inline-block;
-        }
-        
-        .footer-title:after {
+
+        .about-content p::before {
             content: '';
             position: absolute;
-            width: 50%;
-            height: 3px;
+            left: -20px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 3px;
+            height: 80%;
             background: var(--accent);
+            opacity: 0.3;
+        }
+
+        .coordination-img {
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            filter: saturate(1.1) contrast(1.05);
+        }
+
+        .coordination-img:hover {
+            transform: scale(1.03) rotate(1deg);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        /* Principal Section — Card with Floating Effect */
+        .principal-section {
+            background: white;
+            border-radius: 30px;
+            overflow: hidden;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.1);
+            margin: 50px 0;
+            transition: var(--transition);
+            transform: translateY(0);
+        }
+
+        .principal-section:hover {
+            transform: translateY(-10px);
+        }
+
+        .principal-avatar {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 8px solid white;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+            transition: var(--transition);
+        }
+
+        .principal-avatar:hover {
+            transform: scale(1.05);
+        }
+
+        .principal-info {
+            padding: 3rem;
+        }
+
+        .principal-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            font-weight: 900;
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+        }
+
+        .principal-position {
+            font-weight: 500;
+            color: var(--secondary);
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            letter-spacing: 0.5px;
+        }
+
+        .principal-contact, .principal-address {
+            margin-bottom: 0.8rem;
+            font-size: 0.95rem;
+            color: #555;
+        }
+
+        .principal-quote {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: 1.2rem;
+            margin-top: 2rem;
+            padding: 2rem;
+            background: linear-gradient(135deg, #f9f9f9, #f0f0f0);
+            border-left: 5px solid var(--accent);
+            border-radius: 15px;
+            position: relative;
+            color: var(--dark);
+        }
+
+        .principal-quote::before {
+            content: '\201C';
+            font-size: 5rem;
+            position: absolute;
+            left: 20px;
+            top: 10px;
+            color: rgba(0,188,212,0.1);
+            font-family: serif;
+        }
+
+        /* Agenda Cards — Glassmorphism + Hover Reveal */
+        .agenda-card {
+            background: rgba(255,255,255,0.8);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.5);
+            border-radius: 25px;
+            overflow: hidden;
+            transition: var(--transition);
+            height: 100%;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .agenda-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(94,53,177,0.05), rgba(0,188,212,0.05));
+            opacity: 0;
+            transition: var(--transition);
+            z-index: 0;
+        }
+
+        .agenda-card:hover::before {
+            opacity: 1;
+        }
+
+        .agenda-card:hover {
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.15);
+            border-color: rgba(94,53,177,0.3);
+        }
+
+        .agenda-img {
+            height: 220px;
+            object-fit: cover;
+            transition: var(--transition);
+            filter: brightness(0.95);
+        }
+
+        .agenda-card:hover .agenda-img {
+            transform: scale(1.1);
+            filter: brightness(1.05);
+        }
+
+        .card-body {
+            padding: 1.8rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .card-title {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            color: var(--dark);
+        }
+
+        .card-text {
+            color: #666;
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+        }
+
+        .btn-primary {
+            background: var(--gradient-bg);
+            border: none;
+            border-radius: 50px;
+            padding: 0.6rem 1.5rem;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(94,53,177,0.4);
+        }
+
+        /* Footer — Elegant Minimalism */
+        .footer {
+            background: var(--dark);
+            color: #ccc;
+            padding: 80px 0 40px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at top right, rgba(94,53,177,0.1), transparent 50%);
+            z-index: 0;
+        }
+
+        .footer-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            position: relative;
+            color: white;
+        }
+
+        .footer-title::after {
+            content: '';
+            position: absolute;
             bottom: -8px;
             left: 0;
+            width: 50px;
+            height: 3px;
+            background: var(--accent);
         }
-        
+
         .footer-links {
             list-style: none;
             padding: 0;
         }
-        
+
         .footer-links li {
-            margin-bottom: 12px;
+            margin-bottom: 0.8rem;
         }
-        
+
         .footer-links a {
-            color: rgba(255, 255, 255, 0.8);
+            color: #aaa;
             text-decoration: none;
-            transition: all 0.3s;
-            display: inline-block;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            font-size: 0.95rem;
         }
-        
+
         .footer-links a:hover {
             color: var(--accent);
-            transform: translateX(5px);
+            transform: translateX(8px);
         }
-        
+
         .footer-links i {
-            margin-right: 10px;
+            margin-right: 12px;
             width: 20px;
             text-align: center;
+            color: var(--accent);
         }
-        
+
         .social-icons {
-            margin-top: 20px;
+            margin-top: 1.5rem;
+            display: flex;
+            gap: 1rem;
         }
-        
+
         .social-icons a {
-            display: inline-flex;
+            display: flex;
             align-items: center;
             justify-content: center;
-            width: 40px;
-            height: 40px;
-            background: rgba(255, 255, 255, 0.1);
+            width: 45px;
+            height: 45px;
+            background: rgba(255,255,255,0.05);
             border-radius: 50%;
-            margin-right: 10px;
-            transition: all 0.3s;
+            transition: var(--transition);
             color: white;
             text-decoration: none;
+            border: 1px solid rgba(255,255,255,0.1);
         }
-        
+
         .social-icons a:hover {
             background: var(--primary);
-            transform: translateY(-5px);
+            transform: translateY(-5px) scale(1.1);
+            border-color: var(--primary);
         }
-        
+
         .copyright {
-            margin-top: 40px;
-            padding-top: 20px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            margin-top: 4rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.05);
             text-align: center;
-            color: rgba(255, 255, 255, 0.6);
+            color: #777;
+            font-size: 0.9rem;
+            letter-spacing: 0.5px;
         }
-        
-        /* Responsive adjustments */
+
+        /* Animations & Scroll Effects */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-in {
+            opacity: 0;
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        .animate-in.visible {
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+
+        /* Responsive Design */
         @media (max-width: 992px) {
-            .hero-title {
-                font-size: 2.8rem;
-            }
-            
-            .hero-subtitle {
-                font-size: 1.2rem;
-            }
+            .hero-title { font-size: 3.5rem; }
+            .section-title { font-size: 2.3rem; }
+            .about-content { padding-right: 0; }
         }
-        
+
         @media (max-width: 768px) {
-            .hero-title {
-                font-size: 2.2rem;
-            }
-            
-            .principal-info {
-                text-align: center;
-            }
-            
-            .principal-avatar {
-                margin-bottom: 20px;
-            }
+            .hero-title { font-size: 2.8rem; }
+            .hero-subtitle { font-size: 1.2rem; }
+            .principal-info { text-align: center; padding: 2rem; }
+            .principal-avatar { margin-bottom: 1.5rem; width: 150px; height: 150px; }
+            .section { padding: 70px 0; }
         }
-        
-        /* Animations */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+
+        @media (max-width: 576px) {
+            .hero-title { font-size: 2.3rem; }
+            .navbar-brand { font-size: 1.5rem; }
+            .btn-hero { padding: 0.8rem 2rem; font-size: 1rem; }
         }
-        
-        .animate {
-            animation: fadeIn 1s ease-out forwards;
+
+        /* Floating Particles (Optional Decoration) */
+        .floating-particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
         }
-        
-        .delay-1 { animation-delay: 0.2s; }
-        .delay-2 { animation-delay: 0.4s; }
-        .delay-3 { animation-delay: 0.6s; }
-        
-        /* Coordination image styling */
-        .coordination-img {
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-            transition: all 0.3s;
+
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.5);
+            animation: float 6s infinite ease-in-out;
         }
-        
-        .coordination-img:hover {
-            transform: scale(1.02);
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); opacity: 0; }
+            50% { transform: translateY(-20px) rotate(180deg); opacity: 0.8; }
         }
     </style>
 </head>
 <body>
+
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-light sticky-top">
+    <nav class="navbar navbar-expand-lg">
         <div class="container">
             <a class="navbar-brand d-flex align-items-center" href="#">
-                <img src="https://i.ibb.co.com/xKfZBy7w/SMAN1-Cluring-emblem.png" alt="Logo SMILE" height="50" class="me-2">
-                <span class="fw-bold">SMILE</span>
+                <img src="https://i.ibb.co.com/xKfZBy7w/SMAN1-Cluring-emblem.png" alt="Logo SMILE">
+                SMILE
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a class="nav-link active" href="#">Beranda</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Materi</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Tugas</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Galeri</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Link Penting</a>
-                    </li>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item"><a class="nav-link" href="#">Beranda</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Materi</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Tugas</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Galeri</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Link Penting</a></li>
                 </ul>
             </div>
         </div>
     </nav>
 
-    <!-- Hero Section with YouTube Video -->
+    <!-- Hero Section -->
     <section class="hero-section">
         <div class="video-background">
             <iframe src="https://www.youtube.com/embed/5ZgkVKZuFiM?autoplay=1&mute=1&loop=1&playlist=5ZgkVKZuFiM&controls=0&modestbranding=1&rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
         </div>
-        <div class="overlay"></div>
         <div class="hero-content">
-            <h1 class="hero-title animate">Smaring Interactive Learning Community</h1>
-            <p class="hero-subtitle animate delay-1">Wadah kolaborasi dan inovasi untuk proses belajar mengajar yang interaktif dan menyenangkan</p>
-            <a href="#agenda" class="btn btn-hero animate delay-2">Jelajahi Kegiatan <i class="fas fa-arrow-down ms-2"></i></a>
+            <h1 class="hero-title">Smaring Interactive Learning Community</h1>
+            <p class="hero-subtitle">Wadah kolaborasi dan inovasi untuk proses belajar mengajar yang interaktif, imersif, dan menyenangkan.</p>
+            <a href="#agenda" class="btn btn-hero">Jelajahi Kegiatan <i class="fas fa-arrow-down ms-2"></i></a>
         </div>
     </section>
 
     <!-- Tentang Kami -->
-    <section class="section">
+    <section class="section" id="about">
         <div class="container">
             <h2 class="section-title">Tentang SMILE</h2>
             <div class="row align-items-center">
-                <div class="col-lg-6">
-                    <div class="about-content">
+                <div class="col-lg-6 mb-5 mb-lg-0">
+                    <div class="about-content animate-in">
                         <p class="lead">SMILE (Smaring Interactive Learning Community) adalah komunitas belajar yang bertujuan untuk menciptakan lingkungan pembelajaran yang interaktif, kolaboratif, dan menyenangkan bagi seluruh siswa.</p>
                         <p>Kami percaya bahwa belajar haruslah menjadi pengalaman yang menginspirasi dan memotivasi, bukan sekadar kewajiban. Dengan pendekatan yang kreatif dan inovatif, kami berusaha membuat setiap sesi belajar menjadi lebih bermakna.</p>
-                        <p>Bergabunglah dengan kami dan rasakan pengalaman belajar yang berbeda dan menyenangkan!</p>
+                        <p>Bergabunglah dengan kami dan rasakan pengalaman belajar yang berbeda — di mana kreativitas dan kolaborasi adalah jantung dari setiap proses.</p>
                     </div>
                 </div>
                 <div class="col-lg-6">
-                    <img src="https://i.ibb.co.com/4Z4XWPyY/kordinasi.jpg" alt="Kegiatan Koordinasi SMILE" class="img-fluid coordination-img">
+                    <img src="https://i.ibb.co.com/4Z4XWPyY/kordinasi.jpg" alt="Kegiatan Koordinasi SMILE" class="img-fluid coordination-img animate-in">
                 </div>
             </div>
         </div>
@@ -468,18 +680,18 @@
     <!-- Kepala Sekolah -->
     <section class="section">
         <div class="container">
-            <div class="principal-section">
+            <div class="principal-section animate-in">
                 <div class="row align-items-center">
-                    <div class="col-md-4 text-center">
+                    <div class="col-md-4 text-center mb-4 mb-md-0">
                         <img src="https://i.ibb.co.com/Fk8ZFSbw/Helmi-S-Pd-M-Si.jpg" alt="Helmi, S.Pd., M.Si" class="principal-avatar">
                     </div>
                     <div class="col-md-8 principal-info">
                         <h3 class="principal-name">Helmi, S.Pd., M.Si</h3>
                         <p class="principal-position">Kepala SMAN 1 Cluring</p>
                         <p class="principal-contact"><i class="fas fa-phone-alt me-2"></i> 0852-3071-7917</p>
-                        <p class="principal-address"><i class="fas fa-map-marker-alt me-2"></i> Jl. H. Huzaini, Benculuk, Cluring, Banyuwangi, Jawa Timur</p>
+                        <p class="principal-address"><i class="fas fa-map-marker-alt me-2"></i> Jl. H. Huzaini, Benculuk, Cluring, Banyuwangi</p>
                         <blockquote class="principal-quote">
-                            "Pendidikan adalah proses memfasilitasi pembelajaran, pengetahuan, keterampilan, nilai, keyakinan, dan kebiasaan. Metode pembelajaran yang interaktif dan menyenangkan akan menciptakan generasi yang cerdas dan berkarakter."
+                            “Pendidikan adalah proses memfasilitasi pembelajaran, pengetahuan, keterampilan, nilai, keyakinan, dan kebiasaan. Metode pembelajaran yang interaktif dan menyenangkan akan menciptakan generasi yang cerdas dan berkarakter.”
                         </blockquote>
                     </div>
                 </div>
@@ -493,42 +705,42 @@
             <h2 class="section-title">Agenda Kegiatan</h2>
             <div class="row">
                 <div class="col-md-6 col-lg-3 mb-4">
-                    <div class="card agenda-card h-100">
-                        <img src="https://images.unsplash.com/photo-1523580494863-6f3031224c94?auto=format&fit=crop&q=80" class="card-img-top agenda-img" alt="Kegiatan 1">
+                    <div class="card agenda-card animate-in">
+                        <img src="https://images.unsplash.com/photo-1523580494863-6f3031224c94?auto=format&fit=crop&q=80" class="card-img-top agenda-img" alt="Diskusi Kelompok">
                         <div class="card-body">
                             <h5 class="card-title">Diskusi Kelompok Interaktif</h5>
                             <p class="card-text">Sesi diskusi kelompok dengan metode pembelajaran kolaboratif untuk meningkatkan pemahaman materi.</p>
-                            <a href="#" class="btn btn-sm btn-primary">Detail</a>
+                            <a href="#" class="btn btn-primary">Detail</a>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-6 col-lg-3 mb-4">
-                    <div class="card agenda-card h-100">
-                        <img src="https://images.unsplash.com/photo-1543269865-cbf427effbad?auto=format&fit=crop&q=80" class="card-img-top agenda-img" alt="Kegiatan 2">
+                    <div class="card agenda-card animate-in">
+                        <img src="https://images.unsplash.com/photo-1543269865-cbf427effbad?auto=format&fit=crop&q=80" class="card-img-top agenda-img" alt="Workshop Kreativitas">
                         <div class="card-body">
                             <h5 class="card-title">Workshop Kreativitas</h5>
                             <p class="card-text">Pelatihan pengembangan kreativitas dan inovasi dalam menyelesaikan masalah pembelajaran.</p>
-                            <a href="#" class="btn btn-sm btn-primary">Detail</a>
+                            <a href="#" class="btn btn-primary">Detail</a>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-6 col-lg-3 mb-4">
-                    <div class="card agenda-card h-100">
-                        <img src="https://images.unsplash.com/photo-1546410531-bb4caa6b424d?auto=format&fit=crop&q=80" class="card-img-top agenda-img" alt="Kegiatan 3">
+                    <div class="card agenda-card animate-in">
+                        <img src="https://images.unsplash.com/photo-1546410531-bb4caa6b424d?auto=format&fit=crop&q=80" class="card-img-top agenda-img" alt="Presentasi Projek">
                         <div class="card-body">
                             <h5 class="card-title">Presentasi Projek Siswa</h5>
                             <p class="card-text">Ajang presentasi hasil karya dan projek siswa sebagai implementasi dari materi yang telah dipelajari.</p>
-                            <a href="#" class="btn btn-sm btn-primary">Detail</a>
+                            <a href="#" class="btn btn-primary">Detail</a>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-6 col-lg-3 mb-4">
-                    <div class="card agenda-card h-100">
-                        <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&q=80" class="card-img-top agenda-img" alt="Kegiatan 4">
+                    <div class="card agenda-card animate-in">
+                        <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&q=80" class="card-img-top agenda-img" alt="Seminar Pendidikan">
                         <div class="card-body">
                             <h5 class="card-title">Seminar Pendidikan</h5>
                             <p class="card-text">Seminar dengan pembicara ahli di bidang pendidikan untuk pengembangan wawasan guru dan siswa.</p>
-                            <a href="#" class="btn btn-sm btn-primary">Detail</a>
+                            <a href="#" class="btn btn-primary">Detail</a>
                         </div>
                     </div>
                 </div>
@@ -571,26 +783,39 @@
                 </div>
             </div>
             <div class="copyright">
-                <p class="mb-0">&copy; 2023 SMILE - Smaring Interactive Learning Community. All rights reserved.</p>
+                <p class="mb-0">© 2025 SMILE — Smaring Interactive Learning Community. All rights reserved. Designed with ❤️ for the future of learning.</p>
             </div>
         </div>
     </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-        // Simple animation on scroll
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Intersection Observer for animations
         document.addEventListener('DOMContentLoaded', function() {
-            const animatedElements = document.querySelectorAll('.animate');
-            
-            animatedElements.forEach(element => {
-                element.style.opacity = 0;
-            });
-            
-            setTimeout(() => {
-                animatedElements.forEach(element => {
-                    element.style.opacity = 1;
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
                 });
-            }, 100);
+            }, {
+                threshold: 0.1,
+                rootMargin: "0px 0px -50px 0px"
+            });
+
+            document.querySelectorAll('.animate-in').forEach(el => {
+                observer.observe(el);
+            });
         });
     </script>
 </body>
