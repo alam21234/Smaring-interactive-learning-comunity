@@ -9,11 +9,11 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Raleway:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #5E35B1;      /* Deep Purple */
-            --secondary: #FF5722;    /* Vibrant Orange */
-            --accent: #00BCD4;       /* Cyan Accent */
-            --dark: #121212;         /* Near Black */
-            --light: #FAFAFA;        /* Off-White */
+            --primary: #5E35B1;
+            --secondary: #FF5722;
+            --accent: #00BCD4;
+            --dark: #121212;
+            --light: #FAFAFA;
             --gradient-bg: linear-gradient(135deg, #5E35B1 0%, #00BCD4 100%);
             --gradient-text: linear-gradient(135deg, #FF5722, #5E35B1);
             --shadow: 0 10px 30px rgba(0,0,0,0.1);
@@ -35,7 +35,7 @@
             scroll-behavior: smooth;
         }
 
-        /* Navbar — Glassmorphism + Floating */
+        /* Navbar — Glassmorphism */
         .navbar {
             background: rgba(255, 255, 255, 0.15);
             backdrop-filter: blur(15px);
@@ -50,7 +50,7 @@
         }
 
         .navbar.scrolled {
-            background: rgba(255, 255, 255, 0.9);
+            background: rgba(255, 255, 255, 0.95);
             padding: 0.75rem 0;
         }
 
@@ -102,7 +102,7 @@
             width: 100%;
         }
 
-        /* Hero Section — Cinematic Video + Floating Text */
+        /* Hero Section */
         .hero-section {
             height: 100vh;
             display: flex;
@@ -221,7 +221,7 @@
             letter-spacing: 1.5px;
         }
 
-        /* Section Styling — Elegant Spacing & Typography */
+        /* Section Global */
         .section {
             padding: 100px 0;
             position: relative;
@@ -254,7 +254,7 @@
             border-radius: 2px;
         }
 
-        /* About Section — Split Layout with Parallax */
+        /* About Section */
         .about-content {
             font-size: 1.1rem;
             padding-right: 2rem;
@@ -278,18 +278,22 @@
         }
 
         .coordination-img {
-            border-radius: 20px;
-            box-shadow: var(--shadow);
-            transition: var(--transition);
-            filter: saturate(1.1) contrast(1.05);
+            border-radius: 24px;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.12);
+            transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.5s ease;
+            width: 100%;
+            height: auto;
+            max-height: 520px;
+            object-fit: cover;
+            border: 3px solid rgba(255,255,255,0.4);
         }
 
         .coordination-img:hover {
-            transform: scale(1.03) rotate(1deg);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+            transform: scale(1.03) rotate(0.5deg);
+            box-shadow: 0 35px 70px rgba(94, 53, 177, 0.2);
         }
 
-        /* Principal Section — Card with Floating Effect */
+        /* Principal Section */
         .principal-section {
             background: white;
             border-radius: 30px;
@@ -367,9 +371,9 @@
             font-family: serif;
         }
 
-        /* Agenda Cards — Glassmorphism + Hover Reveal */
+        /* Agenda Cards — Glassmorphism */
         .agenda-card {
-            background: rgba(255,255,255,0.8);
+            background: rgba(255,255,255,0.85);
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255,255,255,0.5);
             border-radius: 25px;
@@ -378,23 +382,7 @@
             height: 100%;
             position: relative;
             cursor: pointer;
-        }
-
-        .agenda-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, rgba(94,53,177,0.05), rgba(0,188,212,0.05));
-            opacity: 0;
-            transition: var(--transition);
-            z-index: 0;
-        }
-
-        .agenda-card:hover::before {
-            opacity: 1;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
         }
 
         .agenda-card:hover {
@@ -425,8 +413,16 @@
             font-family: 'Playfair Display', serif;
             font-weight: 700;
             font-size: 1.4rem;
-            margin-bottom: 1rem;
+            margin-bottom: 0.8rem;
             color: var(--dark);
+        }
+
+        .card-date {
+            font-size: 0.9rem;
+            color: var(--secondary);
+            font-weight: 600;
+            margin-bottom: 1rem;
+            display: block;
         }
 
         .card-text {
@@ -449,7 +445,7 @@
             box-shadow: 0 10px 25px rgba(94,53,177,0.4);
         }
 
-        /* Footer — Elegant Minimalism */
+        /* Footer */
         .footer {
             background: var(--dark);
             color: #ccc;
@@ -554,16 +550,10 @@
             letter-spacing: 0.5px;
         }
 
-        /* Animations & Scroll Effects */
+        /* Animations */
         @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(40px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(40px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .animate-in {
@@ -575,11 +565,12 @@
             animation: fadeInUp 0.8s ease-out forwards;
         }
 
-        /* Responsive Design */
+        /* Responsive */
         @media (max-width: 992px) {
             .hero-title { font-size: 3.5rem; }
             .section-title { font-size: 2.3rem; }
             .about-content { padding-right: 0; }
+            .coordination-img { max-height: 420px; }
         }
 
         @media (max-width: 768px) {
@@ -588,37 +579,16 @@
             .principal-info { text-align: center; padding: 2rem; }
             .principal-avatar { margin-bottom: 1.5rem; width: 150px; height: 150px; }
             .section { padding: 70px 0; }
+            .coordination-img { max-height: 380px; border-radius: 20px; }
         }
 
         @media (max-width: 576px) {
             .hero-title { font-size: 2.3rem; }
             .navbar-brand { font-size: 1.5rem; }
             .btn-hero { padding: 0.8rem 2rem; font-size: 1rem; }
-        }
-
-        /* Floating Particles (Optional Decoration) */
-        .floating-particles {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: -1;
-        }
-
-        .particle {
-            position: absolute;
-            width: 4px;
-            height: 4px;
-            border-radius: 50%;
-            background: rgba(255,255,255,0.5);
-            animation: float 6s infinite ease-in-out;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0) rotate(0deg); opacity: 0; }
-            50% { transform: translateY(-20px) rotate(180deg); opacity: 0.8; }
+            .coordination-img { max-height: 320px; border-radius: 18px; }
+            .card-title { font-size: 1.2rem; }
+            .card-date { font-size: 0.85rem; }
         }
     </style>
 </head>
@@ -659,23 +629,34 @@
     </section>
 
     <!-- Tentang Kami -->
-<section class="section" id="about">
-    <div class="container">
-        <h2 class="section-title">Tentang SMILE</h2>
-        <div class="row align-items-center g-5">
-            <div class="col-lg-5">
-                <img src="https://i.ibb.co.com/4Z4XWPyY/kordinasi.jpg" alt="Kegiatan Koordinasi SMILE" class="img-fluid coordination-img animate-in" style="border-radius: 24px; box-shadow: 0 25px 50px rgba(0,0,0,0.12);">
-            </div>
-            <div class="col-lg-7">
-                <div class="about-content animate-in">
-                    <p class="lead" style="font-size: 1.2rem; font-weight: 500;">SMILE (Smaring Interactive Learning Community) adalah komunitas belajar yang bertujuan untuk menciptakan lingkungan pembelajaran yang interaktif, kolaboratif, dan menyenangkan bagi seluruh siswa.</p>
-                    <p style="font-size: 1.05rem; margin: 1.5rem 0;">Kami percaya bahwa belajar haruslah menjadi pengalaman yang menginspirasi dan memotivasi, bukan sekadar kewajiban. Dengan pendekatan yang kreatif dan inovatif, kami berusaha membuat setiap sesi belajar menjadi lebih bermakna dan berkesan.</p>
-                    <p style="font-size: 1.05rem;"><i class="fas fa-sparkles me-2" style="color: #FF5722;"></i> Bergabunglah dengan kami dan rasakan pengalaman belajar yang berbeda — di mana kreativitas dan kolaborasi adalah jantung dari setiap proses.</p>
+    <section class="section" id="about">
+        <div class="container">
+            <h2 class="section-title">Tentang SMILE</h2>
+            <div class="row align-items-center g-5">
+                <div class="col-lg-5">
+                    <img 
+                        src="https://i.ibb.co.com/8DPfM63d/kordinasi.jpg" 
+                        alt="Kegiatan Koordinasi SMILE" 
+                        class="img-fluid coordination-img animate-in"
+                    >
+                </div>
+                <div class="col-lg-7">
+                    <div class="about-content animate-in">
+                        <p class="lead" style="font-size: 1.2rem; font-weight: 500;">
+                            SMILE (Smaring Interactive Learning Community) adalah komunitas belajar yang bertujuan untuk menciptakan lingkungan pembelajaran yang interaktif, kolaboratif, dan menyenangkan bagi seluruh siswa.
+                        </p>
+                        <p style="font-size: 1.05rem; margin: 1.5rem 0;">
+                            Kami percaya bahwa belajar haruslah menjadi pengalaman yang menginspirasi dan memotivasi, bukan sekadar kewajiban. Dengan pendekatan yang kreatif dan inovatif, kami berusaha membuat setiap sesi belajar menjadi lebih bermakna dan berkesan.
+                        </p>
+                        <p style="font-size: 1.05rem;">
+                            <i class="fas fa-sparkles me-2" style="color: #FF5722;"></i> 
+                            Bergabunglah dengan kami dan rasakan pengalaman belajar yang berbeda — di mana kreativitas dan kolaborasi adalah jantung dari setiap proses.
+                        </p>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
     <!-- Kepala Sekolah -->
     <section class="section">
@@ -704,42 +685,50 @@
         <div class="container">
             <h2 class="section-title">Agenda Kegiatan</h2>
             <div class="row">
+                <!-- AGENDA 1 — SNP 2025 -->
                 <div class="col-md-6 col-lg-3 mb-4">
                     <div class="card agenda-card animate-in">
-                        <img src="https://images.unsplash.com/photo-1523580494863-6f3031224c94?auto=format&fit=crop&q=80" class="card-img-top agenda-img" alt="Diskusi Kelompok">
+                        <img src="https://i.ibb.co.com/4Z4XWPyY/kordinasi.jpg" class="card-img-top agenda-img" alt="Implementasi SNP 2025">
                         <div class="card-body">
-                            <h5 class="card-title">Diskusi Kelompok Interaktif</h5>
-                            <p class="card-text">Sesi diskusi kelompok dengan metode pembelajaran kolaboratif untuk meningkatkan pemahaman materi.</p>
-                            <a href="#" class="btn btn-primary">Detail</a>
+                            <h5 class="card-title">Implementasi SNP 2025</h5>
+                            <span class="card-date">Jumat, 19 September 2025</span>
+                            <p class="card-text">Acuan peningkatan mutu satuan pendidikan jenjang SMA Tahun 2025.</p>
+                            <a href="snp.html" class="btn btn-primary">Detail</a>
                         </div>
                     </div>
                 </div>
+                <!-- AGENDA 2 -->
                 <div class="col-md-6 col-lg-3 mb-4">
                     <div class="card agenda-card animate-in">
                         <img src="https://images.unsplash.com/photo-1543269865-cbf427effbad?auto=format&fit=crop&q=80" class="card-img-top agenda-img" alt="Workshop Kreativitas">
                         <div class="card-body">
                             <h5 class="card-title">Workshop Kreativitas</h5>
-                            <p class="card-text">Pelatihan pengembangan kreativitas dan inovasi dalam menyelesaikan masalah pembelajaran.</p>
+                            <span class="card-date">Rabu, 24 September 2025</span>
+                            <p class="card-text">Pelatihan pengembangan kreativitas dan inovasi dalam pembelajaran.</p>
                             <a href="#" class="btn btn-primary">Detail</a>
                         </div>
                     </div>
                 </div>
+                <!-- AGENDA 3 -->
                 <div class="col-md-6 col-lg-3 mb-4">
                     <div class="card agenda-card animate-in">
                         <img src="https://images.unsplash.com/photo-1546410531-bb4caa6b424d?auto=format&fit=crop&q=80" class="card-img-top agenda-img" alt="Presentasi Projek">
                         <div class="card-body">
                             <h5 class="card-title">Presentasi Projek Siswa</h5>
-                            <p class="card-text">Ajang presentasi hasil karya dan projek siswa sebagai implementasi dari materi yang telah dipelajari.</p>
+                            <span class="card-date">Senin, 30 September 2025</span>
+                            <p class="card-text">Ajang presentasi hasil karya dan projek siswa sebagai implementasi materi.</p>
                             <a href="#" class="btn btn-primary">Detail</a>
                         </div>
                     </div>
                 </div>
+                <!-- AGENDA 4 -->
                 <div class="col-md-6 col-lg-3 mb-4">
                     <div class="card agenda-card animate-in">
                         <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&q=80" class="card-img-top agenda-img" alt="Seminar Pendidikan">
                         <div class="card-body">
                             <h5 class="card-title">Seminar Pendidikan</h5>
-                            <p class="card-text">Seminar dengan pembicara ahli di bidang pendidikan untuk pengembangan wawasan guru dan siswa.</p>
+                            <span class="card-date">Jumat, 10 Oktober 2025</span>
+                            <p class="card-text">Seminar dengan pembicara ahli untuk pengembangan wawasan guru dan siswa.</p>
                             <a href="#" class="btn btn-primary">Detail</a>
                         </div>
                     </div>
