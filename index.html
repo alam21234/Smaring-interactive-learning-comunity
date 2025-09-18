@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="id" id="smile-html">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,22 +9,43 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #4f46e5;       /* Indigo 600 */
-            --primary-dark: #4338ca;  /* Indigo 700 */
-            --secondary: #ec4899;     /* Pink 500 */
-            --accent: #06b6d4;        /* Cyan 500 */
-            --dark: #0f172a;          /* Slate 900 */
-            --light: #f8fafc;         /* Slate 50 */
-            --gray: #64748b;          /* Slate 500 */
+            /* Light Mode */
+            --primary: #4f46e5;
+            --primary-dark: #4338ca;
+            --secondary: #ec4899;
+            --accent: #06b6d4;
+            --dark: #0f172a;
+            --light: #f8fafc;
+            --gray: #64748b;
+            --body-bg: var(--light);
+            --text-color: var(--dark);
+            --card-bg: #ffffff;
+            --section-bg: #f1f5f9;
+
+            /* Gradient & Shadow */
             --gradient-text: linear-gradient(120deg, var(--primary), var(--secondary));
             --gradient-bg: linear-gradient(135deg, rgba(79, 70, 229, 0.1), rgba(236, 72, 153, 0.1));
             --shadow-sm: 0 2px 8px rgba(0,0,0,0.04);
             --shadow: 0 10px 30px rgba(0,0,0,0.06);
             --shadow-lg: 0 20px 50px rgba(0,0,0,0.08);
+
+            /* Transition & Radius */
             --transition-fast: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
             --transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
             --border-radius: 24px;
             --border-radius-lg: 32px;
+        }
+
+        /* Dark Mode */
+        .dark-mode {
+            --body-bg: #0f172a;
+            --text-color: #e2e8f0;
+            --card-bg: #1e293b;
+            --section-bg: #1e293b;
+            --gray: #94a3b8;
+            --shadow-sm: 0 2px 8px rgba(0,0,0,0.2);
+            --shadow: 0 10px 30px rgba(0,0,0,0.3);
+            --shadow-lg: 0 20px 50px rgba(0,0,0,0.4);
         }
 
         * {
@@ -35,15 +56,34 @@
 
         body {
             font-family: 'Inter', sans-serif;
-            color: var(--dark);
-            background-color: var(--light);
+            color: var(--text-color);
+            background-color: var(--body-bg);
             overflow-x: hidden;
             line-height: 1.7;
             scroll-behavior: smooth;
-            position: relative;
+            transition: background-color 0.5s ease;
         }
 
-        /* Floating Particles Background (Subtle Decoration) */
+        h1, h2, h3, h4, h5, h6 {
+            color: var(--text-color);
+            transition: color 0.3s ease;
+        }
+
+        p, a, li, span {
+            color: var(--text-color);
+            transition: color 0.3s ease;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        /* Floating Particles */
         .particles-container {
             position: fixed;
             top: 0;
@@ -70,12 +110,12 @@
             50% { transform: translateY(-20px) translateX(10px); opacity: 0.7; }
         }
 
-        /* Navbar — Premium Glass + Border Glow */
+        /* Navbar */
         .navbar {
-            background: rgba(255, 255, 255, 0.6);
+            background: rgba(255, 255, 255, 0.08);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
-            border-bottom: 1px solid rgba(255,255,255,0.5);
+            border-bottom: 1px solid rgba(255,255,255,0.1);
             box-shadow: var(--shadow-sm);
             padding: 1.2rem 0;
             position: fixed;
@@ -83,15 +123,12 @@
             z-index: 1000;
             transition: var(--transition-fast);
             border-radius: 0 0 var(--border-radius) var(--border-radius);
-            border: 1px solid rgba(255,255,255,0.7);
-            box-shadow: 0 4px 20px rgba(79,70,229,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
         }
 
-        .navbar.scrolled {
-            background: rgba(255, 255, 255, 0.9);
-            padding: 0.8rem 0;
-            backdrop-filter: blur(15px);
-            box-shadow: 0 5px 25px rgba(0,0,0,0.08);
+        .dark-mode .navbar {
+            background: rgba(15, 23, 42, 0.8);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
         }
 
         .navbar-brand {
@@ -106,43 +143,28 @@
             position: relative;
         }
 
-        .navbar-brand::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 100%;
-            height: 2px;
-            background: var(--gradient-text);
-            border-radius: 2px;
-            opacity: 0.6;
-        }
-
         .navbar-brand img {
             height: 48px;
             margin-right: 10px;
-            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.08));
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
             transition: var(--transition-fast);
         }
 
-        .navbar-brand:hover img {
-            transform: scale(1.05);
+        .dark-mode .navbar-brand img {
+            filter: brightness(1.2);
         }
 
         .nav-link {
             font-weight: 600;
-            color: var(--dark);
+            color: var(--text-color);
             margin: 0 0.8rem;
             position: relative;
             transition: var(--transition-fast);
             font-size: 0.95rem;
-            letter-spacing: 0.5px;
-            padding: 0.5rem 0;
         }
 
         .nav-link:hover {
             color: var(--primary);
-            transform: translateY(-2px);
         }
 
         .nav-link::after {
@@ -161,7 +183,24 @@
             width: 100%;
         }
 
-        /* Hero Section — Cinematic & Immersive */
+        /* Dark Mode Toggle */
+        .dark-mode-toggle {
+            background: none;
+            border: none;
+            font-size: 1.3rem;
+            color: var(--text-color);
+            cursor: pointer;
+            margin-left: 1.5rem;
+            transition: var(--transition);
+            padding: 0.5rem;
+            border-radius: 50%;
+        }
+
+        .dark-mode-toggle:hover {
+            background: rgba(255,255,255,0.1);
+        }
+
+        /* Hero Section */
         .hero-section {
             height: 100vh;
             display: flex;
@@ -191,8 +230,12 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(15, 23, 42, 0.55);
+            background: rgba(15, 23, 42, 0.6);
             z-index: -1;
+        }
+
+        .dark-mode .video-background::before {
+            background: rgba(15, 23, 42, 0.8);
         }
 
         .video-background iframe {
@@ -229,23 +272,6 @@
             position: relative;
         }
 
-        .hero-title::after {
-            content: '';
-            position: absolute;
-            bottom: -15px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 120px;
-            height: 3px;
-            background: var(--gradient-text);
-            border-radius: 2px;
-        }
-
-        @keyframes floatTitle {
-            0%, 100% { transform: translateY(0) rotate(0deg); }
-            50% { transform: translateY(-15px) rotate(0.5deg); }
-        }
-
         .hero-subtitle {
             font-size: 1.3rem;
             font-weight: 300;
@@ -277,29 +303,7 @@
             font-family: 'Inter', sans-serif;
         }
 
-        .btn-hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-            transition: 0.8s;
-            z-index: -1;
-        }
-
-        .btn-hero:hover::before {
-            left: 100%;
-        }
-
-        .btn-hero:hover {
-            transform: translateY(-6px) scale(1.06);
-            box-shadow: 0 15px 40px rgba(79, 70, 229, 0.5);
-            letter-spacing: 1.8px;
-        }
-
-        /* Section Styling — Elegant Spacing */
+        /* Section Styling */
         .section {
             padding: 120px 0;
             position: relative;
@@ -333,38 +337,44 @@
             border-radius: 2px;
         }
 
-        /* Principal Section — Floating Card with Depth */
+        /* ✨ REDESAIN PROFIL KEPALA SEKOLAH — GRADIENT INTERAKTIF & RESPONSIF */
         .principal-section {
-            background: white;
+            background: var(--card-bg);
             border-radius: var(--border-radius-lg);
             overflow: hidden;
             box-shadow: var(--shadow-lg);
             margin: 60px 0;
             transition: var(--transition);
             transform: translateY(0);
-            border: 1px solid rgba(255,255,255,0.8);
-            background: linear-gradient(135deg, #ffffff, #f8fafc);
             position: relative;
             overflow: visible;
+            border: 1px solid rgba(255,255,255,0.1);
         }
 
-        .principal-section::before {
-            content: '';
+        /* Gradient responsif & interaktif */
+        .principal-gradient {
             position: absolute;
-            top: -2px;
-            left: -2px;
-            right: -2px;
-            bottom: -2px;
-            background: linear-gradient(45deg, var(--primary), var(--secondary));
-            z-index: -1;
-            border-radius: 34px;
-            opacity: 0.6;
-            filter: blur(10px);
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            opacity: 0.05;
+            z-index: 0;
+            transition: opacity 0.5s ease, transform 0.5s ease;
+            pointer-events: none;
         }
 
-        .principal-section:hover {
-            transform: translateY(-12px);
-            box-shadow: 0 30px 70px rgba(0,0,0,0.12);
+        .principal-section:hover .principal-gradient {
+            opacity: 0.12;
+            transform: scale(1.05);
+        }
+
+        .principal-content {
+            position: relative;
+            z-index: 2;
+            padding: 4rem 3rem 3rem;
+            text-align: center;
         }
 
         .principal-avatar {
@@ -372,23 +382,12 @@
             height: 200px;
             border-radius: 50%;
             object-fit: cover;
-            border: 6px solid white;
+            border: 6px solid var(--card-bg);
             box-shadow: 0 15px 40px rgba(0,0,0,0.15);
             transition: var(--transition);
             position: relative;
             margin: -40px auto 0;
-            background: white;
-            z-index: 2;
-        }
-
-        .principal-avatar:hover {
-            transform: scale(1.06);
-            box-shadow: 0 20px 50px rgba(236, 72, 153, 0.3);
-        }
-
-        .principal-info {
-            padding: 4rem 3rem 3rem;
-            text-align: center;
+            z-index: 3;
         }
 
         .principal-name {
@@ -396,7 +395,10 @@
             font-size: 2.2rem;
             font-weight: 800;
             margin-bottom: 0.5rem;
-            color: var(--primary-dark);
+            background: var(--gradient-text);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
             letter-spacing: -0.5px;
         }
 
@@ -405,13 +407,11 @@
             color: var(--secondary);
             font-size: 1.2rem;
             margin-bottom: 1.8rem;
-            letter-spacing: 0.8px;
         }
 
         .principal-contact, .principal-address {
             margin-bottom: 1rem;
             font-size: 1rem;
-            color: var(--gray);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -424,77 +424,22 @@
             font-size: 1.3rem;
             margin-top: 2.5rem;
             padding: 2.5rem;
-            background: linear-gradient(135deg, #f1f5f9, #e2e8f0);
+            background: rgba(255,255,255,0.05);
             border-radius: 20px;
             position: relative;
-            color: var(--dark);
             border-left: 4px solid var(--accent);
             box-shadow: var(--shadow-sm);
             line-height: 1.8;
         }
 
-        .principal-quote::before {
-            content: '\201C';
-            font-size: 6rem;
-            position: absolute;
-            left: 25px;
-            top: 15px;
-            color: rgba(6, 182, 212, 0.08);
-            font-family: serif;
-            line-height: 1;
-        }
-
-        /* About Section — Split Layout with Decorative Line */
+        /* About Section */
         .about-section {
-            background: linear-gradient(135deg, rgba(248, 250, 252, 0.6), rgba(241, 245, 249, 0.8));
+            background: var(--section-bg);
             border-radius: var(--border-radius-lg);
             padding: 3rem;
             box-shadow: var(--shadow);
             position: relative;
             overflow: hidden;
-        }
-
-        .about-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 200px;
-            height: 200px;
-            background: radial-gradient(circle, var(--primary) 0%, transparent 70%);
-            opacity: 0.03;
-            z-index: 0;
-        }
-
-        .about-content {
-            font-size: 1.05rem;
-            position: relative;
-            z-index: 1;
-        }
-
-        .about-content p {
-            margin-bottom: 1.6rem;
-            position: relative;
-            font-weight: 400;
-        }
-
-        .about-content p:first-child {
-            font-weight: 500;
-            font-size: 1.15rem;
-            color: var(--primary-dark);
-        }
-
-        .about-content p::before {
-            content: '';
-            position: absolute;
-            left: -25px;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 3px;
-            height: 70%;
-            background: var(--accent);
-            opacity: 0.4;
-            border-radius: 2px;
         }
 
         .coordination-img {
@@ -505,22 +450,14 @@
             height: auto;
             max-height: 550px;
             object-fit: cover;
-            border: 3px solid rgba(255,255,255,0.6);
-            filter: saturate(1.05) contrast(1.05);
+            border: 3px solid rgba(255,255,255,0.1);
         }
 
-        .coordination-img:hover {
-            transform: scale(1.04) rotate(0.8deg);
-            box-shadow: 0 30px 60px rgba(79, 70, 229, 0.2);
-            filter: saturate(1.1) contrast(1.1);
-        }
-
-        /* Agenda Cards — Glassmorphism + Inner Glow */
+        /* Agenda Cards */
         .agenda-card {
-            background: rgba(255,255,255,0.7);
+            background: var(--card-bg);
             backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(255,255,255,0.6);
+            border: 1px solid rgba(255,255,255,0.1);
             border-radius: 28px;
             overflow: hidden;
             transition: var(--transition);
@@ -528,25 +465,6 @@
             position: relative;
             cursor: pointer;
             box-shadow: var(--shadow);
-            padding: 0;
-        }
-
-        .agenda-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: var(--gradient-bg);
-            opacity: 0;
-            transition: var(--transition);
-            z-index: 0;
-            border-radius: 28px;
-        }
-
-        .agenda-card:hover::before {
-            opacity: 1;
         }
 
         .agenda-card:hover {
@@ -555,69 +473,100 @@
             border-color: rgba(79,70,229,0.4);
         }
 
-        .agenda-img {
-            height: 240px;
-            object-fit: cover;
-            transition: var(--transition);
-            filter: brightness(0.9) contrast(1.05);
-            width: 100%;
-        }
-
-        .agenda-card:hover .agenda-img {
-            transform: scale(1.12);
-            filter: brightness(1.05) contrast(1.1);
-        }
-
         .card-body {
             padding: 2rem;
             position: relative;
             z-index: 1;
         }
 
-        .card-title {
+        /* Countdown Timer */
+        .countdown-container {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            margin: 3rem 0;
+            box-shadow: var(--shadow-lg);
+            color: white;
+        }
+
+        .countdown-title {
             font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
             font-weight: 700;
-            font-size: 1.5rem;
-            margin-bottom: 0.8rem;
-            color: var(--dark);
-            letter-spacing: -0.5px;
+            margin-bottom: 1.5rem;
         }
 
-        .card-date {
-            font-size: 0.95rem;
-            color: var(--secondary);
-            font-weight: 600;
-            margin-bottom: 1.2rem;
-            display: block;
-            letter-spacing: 0.5px;
+        .countdown {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
         }
 
-        .card-text {
-            color: var(--gray);
-            margin-bottom: 1.8rem;
-            font-size: 0.98rem;
-            line-height: 1.7;
+        .countdown-box {
+            background: rgba(255,255,255,0.2);
+            padding: 1.2rem;
+            border-radius: 15px;
+            min-width: 80px;
         }
 
-        .btn-primary {
+        .countdown-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .countdown-label {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Contact Form */
+        .contact-section {
+            background: var(--section-bg);
+            border-radius: var(--border-radius-lg);
+            padding: 4rem 3rem;
+            box-shadow: var(--shadow);
+        }
+
+        .form-control {
+            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.2);
+            color: var(--text-color);
+            border-radius: 12px;
+            padding: 1rem;
+            font-family: 'Inter', sans-serif;
+            transition: var(--transition);
+        }
+
+        .form-control:focus {
+            background: rgba(255,255,255,0.12);
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(79,70,229,0.2);
+        }
+
+        .btn-submit {
             background: var(--gradient-text);
             border: none;
+            padding: 1rem 2.5rem;
             border-radius: 50px;
-            padding: 0.75rem 2rem;
+            color: white;
             font-weight: 600;
+            font-size: 1.1rem;
             transition: var(--transition);
-            font-family: 'Inter', sans-serif;
-            letter-spacing: 0.8px;
-            box-shadow: 0 4px 15px rgba(79,70,229,0.2);
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
-        .btn-primary:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 10px 25px rgba(79,70,229,0.4);
-            letter-spacing: 1.2px;
+        .btn-submit:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(79,70,229,0.4);
         }
 
-        /* Footer — Elegant Minimalism with Gradient Accents */
+        /* Footer */
         .footer {
             background: var(--dark);
             color: #cbd5e1;
@@ -626,109 +575,11 @@
             overflow: hidden;
         }
 
-        .footer::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle at top right, rgba(79,70,229,0.1), transparent 50%);
-            z-index: 0;
+        .dark-mode .footer {
+            background: #020617;
         }
 
-        .footer-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.6rem;
-            font-weight: 800;
-            margin-bottom: 1.8rem;
-            position: relative;
-            color: white;
-            letter-spacing: -0.5px;
-        }
-
-        .footer-title::after {
-            content: '';
-            position: absolute;
-            bottom: -8px;
-            left: 0;
-            width: 60px;
-            height: 3px;
-            background: var(--accent);
-            border-radius: 2px;
-        }
-
-        .footer-links {
-            list-style: none;
-            padding: 0;
-        }
-
-        .footer-links li {
-            margin-bottom: 1rem;
-        }
-
-        .footer-links a {
-            color: #94a3b8;
-            text-decoration: none;
-            transition: var(--transition);
-            display: flex;
-            align-items: center;
-            font-size: 1rem;
-            gap: 12px;
-        }
-
-        .footer-links a:hover {
-            color: var(--accent);
-            transform: translateX(10px);
-        }
-
-        .footer-links i {
-            width: 22px;
-            text-align: center;
-            color: var(--accent);
-            font-size: 1.1rem;
-        }
-
-        .social-icons {
-            margin-top: 2rem;
-            display: flex;
-            gap: 1.2rem;
-        }
-
-        .social-icons a {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 50px;
-            height: 50px;
-            background: rgba(255,255,255,0.06);
-            border-radius: 50%;
-            transition: var(--transition);
-            color: white;
-            text-decoration: none;
-            border: 1px solid rgba(255,255,255,0.1);
-            font-size: 1.2rem;
-        }
-
-        .social-icons a:hover {
-            background: var(--primary);
-            transform: translateY(-6px) scale(1.12);
-            border-color: var(--primary);
-            box-shadow: 0 8px 25px rgba(79,70,229,0.4);
-        }
-
-        .copyright {
-            margin-top: 5rem;
-            padding-top: 2.5rem;
-            border-top: 1px solid rgba(255,255,255,0.08);
-            text-align: center;
-            color: #64748b;
-            font-size: 0.95rem;
-            letter-spacing: 0.8px;
-            font-family: 'Inter', sans-serif;
-        }
-
-        /* Animations & Scroll Effects */
+        /* Animations */
         @keyframes fadeInUp {
             from { opacity: 0; transform: translateY(50px); }
             to { opacity: 1; transform: translateY(0); }
@@ -743,39 +594,37 @@
             animation: fadeInUp 1s ease-out forwards;
         }
 
-        /* Responsive Design — Mobile First */
+        @keyframes floatTitle {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-15px) rotate(0.5deg); }
+        }
+
+        /* Responsive */
         @media (max-width: 992px) {
             .hero-title { font-size: 3.8rem; }
             .section-title { font-size: 2.5rem; }
             .principal-name { font-size: 1.8rem; }
-            .coordination-img { max-height: 450px; }
         }
 
         @media (max-width: 768px) {
             .hero-title { font-size: 3rem; }
-            .hero-subtitle { font-size: 1.15rem; }
-            .principal-info { padding: 3rem 2rem; }
+            .principal-content { padding: 3rem 2rem; }
             .principal-avatar { width: 160px; height: 160px; margin-top: -30px; }
             .section { padding: 80px 0; }
-            .coordination-img { max-height: 400px; border-radius: 20px; }
-            .about-section { padding: 2rem; }
         }
 
         @media (max-width: 576px) {
             .hero-title { font-size: 2.4rem; }
             .navbar-brand { font-size: 1.6rem; }
-            .btn-hero { padding: 0.9rem 2.2rem; font-size: 1.05rem; }
-            .coordination-img { max-height: 320px; border-radius: 18px; }
-            .card-title { font-size: 1.3rem; }
-            .card-date { font-size: 0.9rem; }
-            .section-title { font-size: 2.2rem; }
-            .principal-name { font-size: 1.6rem; }
+            .countdown { gap: 0.5rem; }
+            .countdown-box { min-width: 60px; padding: 0.8rem; }
+            .countdown-number { font-size: 1.8rem; }
         }
     </style>
 </head>
-<body>
+<body id="smile-body">
 
-    <!-- Floating Particles Background -->
+    <!-- Particles -->
     <div class="particles-container" id="particles"></div>
 
     <!-- Navbar -->
@@ -791,16 +640,18 @@
             <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item"><a class="nav-link" href="#">Beranda</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Materi</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Tugas</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Galeri</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Link Penting</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#about">Tentang</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#agenda">Agenda</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contact">Kontak</a></li>
                 </ul>
+                <button class="dark-mode-toggle" id="darkModeToggle">
+                    <i class="fas fa-moon"></i>
+                </button>
             </div>
         </div>
     </nav>
 
-    <!-- Hero Section -->
+    <!-- Hero -->
     <section class="hero-section">
         <div class="video-background">
             <iframe src="https://www.youtube.com/embed/5ZgkVKZuFiM?autoplay=1&mute=1&loop=1&playlist=5ZgkVKZuFiM&controls=0&modestbranding=1&rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
@@ -812,14 +663,13 @@
         </div>
     </section>
 
-    <!-- Kepala Sekolah — DITAMPILKAN PERTAMA (Etika & Hierarki) -->
+    <!-- Kepala Sekolah — Gradient Interaktif & Responsif -->
     <section class="section">
         <div class="container">
             <div class="principal-section animate-in">
-                <div class="text-center">
+                <div class="principal-gradient"></div>
+                <div class="principal-content">
                     <img src="https://i.ibb.co.com/Fk8ZFSbw/Helmi-S-Pd-M-Si.jpg" alt="Helmi, S.Pd., M.Si" class="principal-avatar">
-                </div>
-                <div class="principal-info">
                     <h3 class="principal-name">Helmi, S.Pd., M.Si</h3>
                     <p class="principal-position">Kepala SMAN 1 Cluring</p>
                     <p class="principal-contact"><i class="fas fa-phone-alt"></i> 0852-3071-7917</p>
@@ -832,24 +682,99 @@
         </div>
     </section>
 
-    <!-- Tentang SMILE — Setelah Kepala Sekolah -->
+    <!-- Tentang SMILE -->
     <section class="section" id="about">
         <div class="container">
             <h2 class="section-title">Tentang SMILE</h2>
             <div class="row align-items-center g-5">
                 <div class="col-lg-5">
-                    <img 
-                        src="https://i.ibb.co.com/8DPfM63d/kordinasi.jpg" 
-                        alt="Kegiatan Koordinasi SMILE" 
-                        class="img-fluid coordination-img animate-in"
-                    >
+                    <img src="https://i.ibb.co.com/8DPfM63d/kordinasi.jpg" alt="Kegiatan Koordinasi SMILE" class="img-fluid coordination-img animate-in">
                 </div>
                 <div class="col-lg-7">
                     <div class="about-section animate-in">
-                        <div class="about-content">
-                            <p>SMILE (Smaring Interactive Learning Community) adalah komunitas belajar inovatif yang dirancang untuk menciptakan ekosistem pembelajaran kolaboratif, interaktif, dan menyenangkan bagi seluruh siswa.</p>
-                            <p>Kami percaya bahwa pendidikan masa depan harus membebaskan kreativitas, mendorong eksplorasi, dan membangun karakter melalui pengalaman belajar yang bermakna — bukan hanya transfer informasi.</p>
-                            <p>Bergabunglah dengan kami, dan jadilah bagian dari gerakan pendidikan yang menginspirasi, membebaskan, dan mentransformasi.</p>
+                        <p class="lead">SMILE (Smaring Interactive Learning Community) adalah komunitas belajar inovatif yang dirancang untuk menciptakan ekosistem pembelajaran kolaboratif, interaktif, dan menyenangkan bagi seluruh siswa.</p>
+                        <p>Kami percaya bahwa pendidikan masa depan harus membebaskan kreativitas, mendorong eksplorasi, dan membangun karakter melalui pengalaman belajar yang bermakna — bukan hanya transfer informasi.</p>
+                        <p>Bergabunglah dengan kami, dan jadilah bagian dari gerakan pendidikan yang menginspirasi, membebaskan, dan mentransformasi.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Countdown Timer -->
+    <section class="section bg-transparent">
+        <div class="container">
+            <div class="countdown-container animate-in">
+                <h3 class="countdown-title">Segera Hadir: Implementasi SNP 2025</h3>
+                <div class="countdown" id="countdown-timer">
+                    <div class="countdown-box">
+                        <div class="countdown-number" id="days">00</div>
+                        <div class="countdown-label">Hari</div>
+                    </div>
+                    <div class="countdown-box">
+                        <div class="countdown-number" id="hours">00</div>
+                        <div class="countdown-label">Jam</div>
+                    </div>
+                    <div class="countdown-box">
+                        <div class="countdown-number" id="minutes">00</div>
+                        <div class="countdown-label">Menit</div>
+                    </div>
+                    <div class="countdown-box">
+                        <div class="countdown-number" id="seconds">00</div>
+                        <div class="countdown-label">Detik</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Agenda -->
+    <section id="agenda" class="section">
+        <div class="container">
+            <h2 class="section-title">Agenda Kegiatan</h2>
+            <div class="row g-4">
+                <div class="col-md-6 col-lg-3">
+                    <div class="card agenda-card animate-in">
+                        <img src="https://i.ibb.co.com/4Z4XWPyY/kordinasi.jpg" class="card-img-top" alt="Implementasi SNP 2025" style="height: 240px; object-fit: cover;">
+                        <div class="card-body">
+                            <h5 class="card-title">Implementasi SNP 2025</h5>
+                            <span class="text-secondary">Jumat, 19 September 2025</span>
+                            <p class="mt-2">Acuan strategis peningkatan mutu satuan pendidikan jenjang SMA Tahun 2025.</p>
+                            <a href="snp.html" class="btn btn-primary mt-3">Detail</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- 3 agenda lainnya tetap sama... -->
+                <div class="col-md-6 col-lg-3">
+                    <div class="card agenda-card animate-in">
+                        <img src="https://images.unsplash.com/photo-1543269865-cbf427effbad?auto=format&fit=crop&q=80" class="card-img-top" alt="Workshop Kreativitas" style="height: 240px; object-fit: cover;">
+                        <div class="card-body">
+                            <h5 class="card-title">Workshop Kreativitas</h5>
+                            <span class="text-secondary">Rabu, 24 September 2025</span>
+                            <p class="mt-2">Pelatihan intensif pengembangan kreativitas dan inovasi.</p>
+                            <a href="#" class="btn btn-primary mt-3">Detail</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="card agenda-card animate-in">
+                        <img src="https://images.unsplash.com/photo-1546410531-bb4caa6b424d?auto=format&fit=crop&q=80" class="card-img-top" alt="Presentasi Projek" style="height: 240px; object-fit: cover;">
+                        <div class="card-body">
+                            <h5 class="card-title">Presentasi Projek Siswa</h5>
+                            <span class="text-secondary">Senin, 30 September 2025</span>
+                            <p class="mt-2">Pentas karya inovatif siswa sebagai wujud implementasi pembelajaran.</p>
+                            <a href="#" class="btn btn-primary mt-3">Detail</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="card agenda-card animate-in">
+                        <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&q=80" class="card-img-top" alt="Seminar Pendidikan" style="height: 240px; object-fit: cover;">
+                        <div class="card-body">
+                            <h5 class="card-title">Seminar Pendidikan</h5>
+                            <span class="text-secondary">Jumat, 10 Oktober 2025</span>
+                            <p class="mt-2">Dialog inspiratif bersama pakar pendidikan nasional.</p>
+                            <a href="#" class="btn btn-primary mt-3">Detail</a>
                         </div>
                     </div>
                 </div>
@@ -857,57 +782,28 @@
         </div>
     </section>
 
-    <!-- Agenda Kegiatan -->
-    <section id="agenda" class="section bg-light">
+    <!-- Form Kontak -->
+    <section id="contact" class="section">
         <div class="container">
-            <h2 class="section-title">Agenda Kegiatan</h2>
-            <div class="row g-4">
-                <!-- AGENDA 1 — SNP 2025 -->
-                <div class="col-md-6 col-lg-3">
-                    <div class="card agenda-card animate-in">
-                        <img src="https://i.ibb.co.com/4Z4XWPyY/kordinasi.jpg" class="agenda-img" alt="Implementasi SNP 2025">
-                        <div class="card-body">
-                            <h5 class="card-title">Implementasi SNP 2025</h5>
-                            <span class="card-date">Jumat, 19 September 2025</span>
-                            <p class="card-text">Acuan strategis peningkatan mutu satuan pendidikan jenjang SMA Tahun 2025.</p>
-                            <a href="snp.html" class="btn btn-primary">Detail</a>
-                        </div>
-                    </div>
-                </div>
-                <!-- AGENDA 2 -->
-                <div class="col-md-6 col-lg-3">
-                    <div class="card agenda-card animate-in">
-                        <img src="https://images.unsplash.com/photo-1543269865-cbf427effbad?auto=format&fit=crop&q=80" class="agenda-img" alt="Workshop Kreativitas">
-                        <div class="card-body">
-                            <h5 class="card-title">Workshop Kreativitas</h5>
-                            <span class="card-date">Rabu, 24 September 2025</span>
-                            <p class="card-text">Pelatihan intensif pengembangan kreativitas dan inovasi dalam pembelajaran abad 21.</p>
-                            <a href="#" class="btn btn-primary">Detail</a>
-                        </div>
-                    </div>
-                </div>
-                <!-- AGENDA 3 -->
-                <div class="col-md-6 col-lg-3">
-                    <div class="card agenda-card animate-in">
-                        <img src="https://images.unsplash.com/photo-1546410531-bb4caa6b424d?auto=format&fit=crop&q=80" class="agenda-img" alt="Presentasi Projek">
-                        <div class="card-body">
-                            <h5 class="card-title">Presentasi Projek Siswa</h5>
-                            <span class="card-date">Senin, 30 September 2025</span>
-                            <p class="card-text">Pentas karya inovatif siswa sebagai wujud implementasi pembelajaran berbasis projek.</p>
-                            <a href="#" class="btn btn-primary">Detail</a>
-                        </div>
-                    </div>
-                </div>
-                <!-- AGENDA 4 -->
-                <div class="col-md-6 col-lg-3">
-                    <div class="card agenda-card animate-in">
-                        <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&q=80" class="agenda-img" alt="Seminar Pendidikan">
-                        <div class="card-body">
-                            <h5 class="card-title">Seminar Pendidikan</h5>
-                            <span class="card-date">Jumat, 10 Oktober 2025</span>
-                            <p class="card-text">Dialog inspiratif bersama pakar pendidikan nasional untuk penguatan ekosistem belajar.</p>
-                            <a href="#" class="btn btn-primary">Detail</a>
-                        </div>
+            <h2 class="section-title text-center mb-5">Hubungi Kami</h2>
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="contact-section animate-in">
+                        <form id="contactForm">
+                            <div class="mb-4">
+                                <input type="text" class="form-control" placeholder="Nama Lengkap" required>
+                            </div>
+                            <div class="mb-4">
+                                <input type="email" class="form-control" placeholder="Email" required>
+                            </div>
+                            <div class="mb-4">
+                                <input type="tel" class="form-control" placeholder="Nomor Telepon (Opsional)">
+                            </div>
+                            <div class="mb-4">
+                                <textarea class="form-control" rows="5" placeholder="Pesan Anda" required></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-submit w-100">Kirim Pesan</button>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -921,7 +817,7 @@
                 <div class="col-md-4 mb-5">
                     <h5 class="footer-title">Tentang SMILE</h5>
                     <p>Smaring Interactive Learning Community adalah wadah kolaborasi dan inovasi untuk proses belajar mengajar yang interaktif, imersif, dan manusiawi.</p>
-                    <div class="social-icons">
+                    <div class="social-icons d-flex gap-3 mt-3">
                         <a href="#"><i class="fab fa-instagram"></i></a>
                         <a href="#"><i class="fab fa-tiktok"></i></a>
                         <a href="#"><i class="fab fa-youtube"></i></a>
@@ -929,34 +825,57 @@
                     </div>
                 </div>
                 <div class="col-md-4 mb-5">
-                    <h5 class="footer-title">Menu Navigasi</h5>
-                    <ul class="footer-links">
-                        <li><a href="#"><i class="fas fa-home"></i> Beranda</a></li>
-                        <li><a href="#"><i class="fas fa-book"></i> Materi</a></li>
-                        <li><a href="#"><i class="fas fa-tasks"></i> Tugas</a></li>
-                        <li><a href="#"><i class="fas fa-images"></i> Galeri</a></li>
-                        <li><a href="#"><i class="fas fa-link"></i> Link Penting</a></li>
+                    <h5 class="footer-title">Navigasi</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="#"><i class="fas fa-home me-2"></i> Beranda</a></li>
+                        <li class="mb-2"><a href="#about"><i class="fas fa-book me-2"></i> Tentang</a></li>
+                        <li class="mb-2"><a href="#agenda"><i class="fas fa-calendar me-2"></i> Agenda</a></li>
+                        <li class="mb-2"><a href="#contact"><i class="fas fa-envelope me-2"></i> Kontak</a></li>
                     </ul>
                 </div>
                 <div class="col-md-4 mb-5">
                     <h5 class="footer-title">Link Penting</h5>
-                    <ul class="footer-links">
-                        <li><a href="https://quran.nu.or.id/" target="_blank"><i class="fas fa-book-quran"></i> Al-Qur'an NU Online</a></li>
-                        <li><a href="https://sma.kemendikdasmen.go.id/" target="_blank"><i class="fas fa-school"></i> SMA Kemendikdasmen</a></li>
-                        <li><a href="https://dindik.jatimprov.go.id/" target="_blank"><i class="fas fa-graduation-cap"></i> Dindik Jatim</a></li>
-                        <li><a href="https://banyuwangicab.dindikjatim.id/" target="_blank"><i class="fas fa-university"></i> Dindik Banyuwangi</a></li>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="https://quran.nu.or.id/" target="_blank"><i class="fas fa-book-quran me-2"></i> Al-Qur'an NU</a></li>
+                        <li class="mb-2"><a href="https://sma.kemendikdasmen.go.id/" target="_blank"><i class="fas fa-school me-2"></i> Kemendikbud</a></li>
+                        <li class="mb-2"><a href="https://dindik.jatimprov.go.id/" target="_blank"><i class="fas fa-graduation-cap me-2"></i> Dindik Jatim</a></li>
                     </ul>
                 </div>
             </div>
-            <div class="copyright">
-                <p class="mb-0">© 2025 SMILE — Smaring Interactive Learning Community. All rights reserved. Designed with intention for the future of Indonesian education.</p>
+            <div class="text-center mt-5 pt-4 border-top border-secondary">
+                <p class="text-muted mb-0">© 2025 SMILE — Smaring Interactive Learning Community. All rights reserved.</p>
             </div>
         </div>
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-        // Generate floating particles
+        // Dark Mode Toggle
+        const darkModeToggle = document.getElementById('darkModeToggle');
+        const body = document.getElementById('smile-body');
+        const html = document.getElementById('smile-html');
+
+        // Cek preferensi pengguna
+        if (localStorage.getItem('darkMode') === 'enabled') {
+            body.classList.add('dark-mode');
+            html.setAttribute('data-bs-theme', 'dark');
+            darkModeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+        }
+
+        darkModeToggle.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+            if (body.classList.contains('dark-mode')) {
+                html.setAttribute('data-bs-theme', 'dark');
+                darkModeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+                localStorage.setItem('darkMode', 'enabled');
+            } else {
+                html.removeAttribute('data-bs-theme');
+                darkModeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+                localStorage.setItem('darkMode', 'disabled');
+            }
+        });
+
+        // Particles
         document.addEventListener('DOMContentLoaded', function() {
             const particlesContainer = document.getElementById('particles');
             for (let i = 0; i < 30; i++) {
@@ -968,7 +887,7 @@
                 particlesContainer.appendChild(particle);
             }
 
-            // Navbar scroll effect
+            // Navbar scroll
             window.addEventListener('scroll', function() {
                 const navbar = document.querySelector('.navbar');
                 if (window.scrollY > 50) {
@@ -978,21 +897,49 @@
                 }
             });
 
-            // Intersection Observer for animations
+            // Intersection Observer
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         entry.target.classList.add('visible');
                     }
                 });
-            }, {
-                threshold: 0.15,
-                rootMargin: "0px 0px -100px 0px"
-            });
+            }, { threshold: 0.15 });
 
-            document.querySelectorAll('.animate-in').forEach(el => {
-                observer.observe(el);
-            });
+            document.querySelectorAll('.animate-in').forEach(el => observer.observe(el));
+
+            // Countdown Timer (Menuju 19 September 2025)
+            const countdownDate = new Date("Sep 19, 2025 00:00:00").getTime();
+
+            const countdownTimer = setInterval(() => {
+                const now = new Date().getTime();
+                const distance = countdownDate - now;
+
+                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                document.getElementById("days").innerHTML = days.toString().padStart(2, '0');
+                document.getElementById("hours").innerHTML = hours.toString().padStart(2, '0');
+                document.getElementById("minutes").innerHTML = minutes.toString().padStart(2, '0');
+                document.getElementById("seconds").innerHTML = seconds.toString().padStart(2, '0');
+
+                if (distance < 0) {
+                    clearInterval(countdownTimer);
+                    document.getElementById("countdown-timer").innerHTML = "<h4>Acara Sedang Berlangsung!</h4>";
+                }
+            }, 1000);
+
+            // Form Submission (prevent default for demo)
+            const contactForm = document.getElementById('contactForm');
+            if (contactForm) {
+                contactForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    alert('Terima kasih! Pesan Anda telah terkirim. Kami akan segera merespons.');
+                    this.reset();
+                });
+            }
         });
     </script>
 </body>
