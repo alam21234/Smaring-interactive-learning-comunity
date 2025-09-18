@@ -254,46 +254,7 @@
             border-radius: 2px;
         }
 
-        /* About Section */
-        .about-content {
-            font-size: 1.1rem;
-            padding-right: 2rem;
-        }
-
-        .about-content p {
-            margin-bottom: 1.5rem;
-            position: relative;
-        }
-
-        .about-content p::before {
-            content: '';
-            position: absolute;
-            left: -20px;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 3px;
-            height: 80%;
-            background: var(--accent);
-            opacity: 0.3;
-        }
-
-        .coordination-img {
-            border-radius: 24px;
-            box-shadow: 0 25px 50px rgba(0,0,0,0.12);
-            transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.5s ease;
-            width: 100%;
-            height: auto;
-            max-height: 520px;
-            object-fit: cover;
-            border: 3px solid rgba(255,255,255,0.4);
-        }
-
-        .coordination-img:hover {
-            transform: scale(1.03) rotate(0.5deg);
-            box-shadow: 0 35px 70px rgba(94, 53, 177, 0.2);
-        }
-
-        /* Principal Section */
+        /* Principal Section — DIPINDAHKAN KE ATAS “Tentang SMILE” */
         .principal-section {
             background: white;
             border-radius: 30px;
@@ -371,7 +332,46 @@
             font-family: serif;
         }
 
-        /* Agenda Cards — Glassmorphism */
+        /* About Section — DIPINDAHKAN KE BAWAH Profil Kepala Sekolah */
+        .about-content {
+            font-size: 1.1rem;
+            padding-right: 2rem;
+        }
+
+        .about-content p {
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+
+        .about-content p::before {
+            content: '';
+            position: absolute;
+            left: -20px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 3px;
+            height: 80%;
+            background: var(--accent);
+            opacity: 0.3;
+        }
+
+        .coordination-img {
+            border-radius: 24px;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.12);
+            transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.5s ease;
+            width: 100%;
+            height: auto;
+            max-height: 520px;
+            object-fit: cover;
+            border: 3px solid rgba(255,255,255,0.4);
+        }
+
+        .coordination-img:hover {
+            transform: scale(1.03) rotate(0.5deg);
+            box-shadow: 0 35px 70px rgba(94, 53, 177, 0.2);
+        }
+
+        /* Agenda Cards */
         .agenda-card {
             background: rgba(255,255,255,0.85);
             backdrop-filter: blur(10px);
@@ -628,7 +628,29 @@
         </div>
     </section>
 
-    <!-- Tentang Kami -->
+    <!-- ✅ KEPALA SEKOLAH — DITAMPILKAN PERTAMA SETELAH HERO -->
+    <section class="section">
+        <div class="container">
+            <div class="principal-section animate-in">
+                <div class="row align-items-center">
+                    <div class="col-md-4 text-center mb-4 mb-md-0">
+                        <img src="https://i.ibb.co.com/Fk8ZFSbw/Helmi-S-Pd-M-Si.jpg" alt="Helmi, S.Pd., M.Si" class="principal-avatar">
+                    </div>
+                    <div class="col-md-8 principal-info">
+                        <h3 class="principal-name">Helmi, S.Pd., M.Si</h3>
+                        <p class="principal-position">Kepala SMAN 1 Cluring</p>
+                        <p class="principal-contact"><i class="fas fa-phone-alt me-2"></i> 0852-3071-7917</p>
+                        <p class="principal-address"><i class="fas fa-map-marker-alt me-2"></i> Jl. H. Huzaini, Benculuk, Cluring, Banyuwangi</p>
+                        <blockquote class="principal-quote">
+                            “Pendidikan adalah proses memfasilitasi pembelajaran, pengetahuan, keterampilan, nilai, keyakinan, dan kebiasaan. Metode pembelajaran yang interaktif dan menyenangkan akan menciptakan generasi yang cerdas dan berkarakter.”
+                        </blockquote>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ✅ TENTANG SMILE — DITAMPILKAN SETELAH PROFIL KEPALA SEKOLAH -->
     <section class="section" id="about">
         <div class="container">
             <h2 class="section-title">Tentang SMILE</h2>
@@ -652,28 +674,6 @@
                             <i class="fas fa-sparkles me-2" style="color: #FF5722;"></i> 
                             Bergabunglah dengan kami dan rasakan pengalaman belajar yang berbeda — di mana kreativitas dan kolaborasi adalah jantung dari setiap proses.
                         </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Kepala Sekolah -->
-    <section class="section">
-        <div class="container">
-            <div class="principal-section animate-in">
-                <div class="row align-items-center">
-                    <div class="col-md-4 text-center mb-4 mb-md-0">
-                        <img src="https://i.ibb.co.com/Fk8ZFSbw/Helmi-S-Pd-M-Si.jpg" alt="Helmi, S.Pd., M.Si" class="principal-avatar">
-                    </div>
-                    <div class="col-md-8 principal-info">
-                        <h3 class="principal-name">Helmi, S.Pd., M.Si</h3>
-                        <p class="principal-position">Kepala SMAN 1 Cluring</p>
-                        <p class="principal-contact"><i class="fas fa-phone-alt me-2"></i> 0852-3071-7917</p>
-                        <p class="principal-address"><i class="fas fa-map-marker-alt me-2"></i> Jl. H. Huzaini, Benculuk, Cluring, Banyuwangi</p>
-                        <blockquote class="principal-quote">
-                            “Pendidikan adalah proses memfasilitasi pembelajaran, pengetahuan, keterampilan, nilai, keyakinan, dan kebiasaan. Metode pembelajaran yang interaktif dan menyenangkan akan menciptakan generasi yang cerdas dan berkarakter.”
-                        </blockquote>
                     </div>
                 </div>
             </div>
