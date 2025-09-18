@@ -3,743 +3,595 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Komunitas Belajar SMILE - SMA Negeri 1 Cluring</title>
+    <title>SMILE - Smaring Interactive Learning Community</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        :root {
+            --primary: #6C63FF;
+            --secondary: #FF6B6B;
+            --accent: #4ECDC4;
+            --dark: #2C2C54;
+            --light: #F7F7F7;
+            --gradient: linear-gradient(135deg, #6C63FF 0%, #4ECDC4 100%);
         }
         
         body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-            padding: 20px;
+            font-family: 'Poppins', sans-serif;
+            color: #333;
+            background-color: var(--light);
+            overflow-x: hidden;
         }
         
-        .banner {
-            width: 100%;
-            max-width: 1100px;
-            background: linear-gradient(135deg, #1a2a6c 0%, #b21f1f 50%, #fdbb2d 100%);
-            color: white;
-            border-radius: 20px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3), 0 0 30px rgba(253, 187, 45, 0.2);
-            overflow: hidden;
+        /* Navbar styling */
+        .navbar {
+            background-color: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 15px 0;
+        }
+        
+        .navbar-brand {
+            font-weight: 700;
+            color: var(--primary);
+        }
+        
+        .nav-link {
+            font-weight: 500;
+            color: var(--dark);
+            margin: 0 10px;
+            transition: all 0.3s;
             position: relative;
-            animation: gradientShift 10s ease infinite;
-            transform: translateZ(0);
-            background-size: 200% 200%;
         }
         
-        @keyframes gradientShift {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
+        .nav-link:hover {
+            color: var(--primary);
         }
         
-        .banner::before {
+        .nav-link:after {
             content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--primary);
+            transition: width 0.3s;
+        }
+        
+        .nav-link:hover:after {
+            width: 100%;
+        }
+        
+        /* Hero section with YouTube video */
+        .hero-section {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+            overflow: hidden;
+        }
+        
+        .video-background {
             position: absolute;
             top: 0;
             left: 0;
-            right: 0;
-            bottom: 0;
-            background: 
-                radial-gradient(circle at 20% 80%, rgba(253, 187, 45, 0.2) 0%, transparent 20%),
-                radial-gradient(circle at 80% 20%, rgba(178, 31, 31, 0.2) 0%, transparent 20%),
-                radial-gradient(circle at 40% 40%, rgba(26, 42, 108, 0.2) 0%, transparent 20%);
-            pointer-events: none;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+        
+        .video-background iframe {
+            width: 100vw;
+            height: 56.25vw; /* Given a 16:9 aspect ratio, 9/16*100 = 56.25 */
+            min-height: 100vh;
+            min-width: 177.77vh; /* Given a 16:9 aspect ratio, 16/9*100 = 177.77 */
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(44, 44, 84, 0.8);
+            z-index: -1;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            padding: 20px;
             z-index: 1;
         }
         
-        .banner-content-inner {
-            position: relative;
-            z-index: 2;
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
         }
         
-        .banner-header {
-            padding: 25px 30px;
-            background: rgba(0, 0, 0, 0.25);
-            border-bottom: 2px solid rgba(255, 255, 255, 0.3);
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            backdrop-filter: blur(5px);
-            position: relative;
-        }
-        
-        .logo-container {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-        }
-        
-        .logo {
-            width: 100px;
-            height: 100px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 3px solid white;
-            box-shadow: 0 0 20px rgba(255, 255, 255, 0.3), 0 0 30px rgba(253, 187, 45, 0.3);
-            transition: all 0.3s ease;
-        }
-        
-        .logo:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 25px rgba(255, 255, 255, 0.4), 0 0 40px rgba(253, 187, 45, 0.4);
-        }
-        
-        .school-info {
-            flex-grow: 1;
-        }
-        
-        .school-name {
-            font-size: 1.8rem;
-            margin-bottom: 5px;
-            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.6);
-            font-weight: 700;
-            letter-spacing: 0.5px;
-            background: linear-gradient(to right, #ffffff, #FFD700);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        
-        .school-address {
-            font-size: 1rem;
-            opacity: 0.9;
-            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
-        }
-        
-        .principal-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 8px;
-        }
-        
-        .principal-photo {
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 2px solid white;
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
-            transition: all 0.3s ease;
-        }
-        
-        .principal-photo:hover {
-            transform: scale(1.1);
-            box-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
-        }
-        
-        .principal-name {
-            font-size: 0.9rem;
-            text-align: center;
-            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
-            font-weight: 500;
-        }
-        
-        .banner-title-container {
-            text-align: center;
-            padding: 25px 0;
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(5px);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .banner-title-container::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 2px;
-            background: linear-gradient(to right, transparent, #FFD700, transparent);
-        }
-        
-        .banner-title {
-            font-size: 2.8rem;
-            margin-bottom: 10px;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.6);
-            font-weight: 700;
-            background: linear-gradient(to right, #FFD700, #ffffff, #FFD700);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            position: relative;
-            display: inline-block;
-        }
-        
-        .banner-title::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 25%;
-            width: 50%;
-            height: 3px;
-            background: linear-gradient(to right, transparent, #FFD700, transparent);
-            border-radius: 3px;
-        }
-        
-        .banner-date {
-            font-size: 1.8rem;
-            font-weight: 500;
-            letter-spacing: 1px;
-            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
-            margin-top: 15px;
-            display: inline-block;
-            padding: 8px 20px;
-            border-radius: 30px;
-            background: rgba(0, 0, 0, 0.2);
-            backdrop-filter: blur(5px);
-        }
-        
-        .current-time {
-            font-size: 1.2rem;
-            margin-top: 10px;
-            display: inline-block;
-            padding: 6px 15px;
-            border-radius: 20px;
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(5px);
-            animation: pulse 2s infinite;
-        }
-        
-        @keyframes pulse {
-            0% { box-shadow: 0 0 0 0 rgba(253, 187, 45, 0.4); }
-            70% { box-shadow: 0 0 0 10px rgba(253, 187, 45, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(253, 187, 45, 0); }
-        }
-        
-        .banner-content {
-            padding: 30px;
-            display: flex;
-            gap: 30px;
-        }
-        
-        .agenda-container {
-            flex: 3;
-        }
-        
-        .agenda-title {
-            font-size: 2.2rem;
-            margin-bottom: 25px;
-            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
-            font-weight: 600;
-            text-align: center;
-            background: linear-gradient(to right, #FFD700, #ffffff);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            position: relative;
-            padding-bottom: 10px;
-        }
-        
-        .agenda-title::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 30%;
-            width: 40%;
-            height: 2px;
-            background: linear-gradient(to right, transparent, #FFD700, transparent);
-        }
-        
-        .agenda-detail {
-            background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(10px);
-            padding: 25px;
-            border-radius: 15px;
+        .hero-subtitle {
+            font-size: 1.5rem;
             margin-bottom: 30px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
+            font-weight: 300;
         }
         
-        .agenda-detail::before {
+        .btn-hero {
+            background: var(--gradient);
+            border: none;
+            padding: 12px 30px;
+            border-radius: 50px;
+            color: white;
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(108, 99, 255, 0.4);
+            transition: all 0.3s;
+        }
+        
+        .btn-hero:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(108, 99, 255, 0.6);
+            color: white;
+        }
+        
+        /* Section styling */
+        .section {
+            padding: 80px 0;
+        }
+        
+        .section-title {
+            font-weight: 700;
+            margin-bottom: 50px;
+            position: relative;
+            display: inline-block;
+            color: var(--dark);
+        }
+        
+        .section-title:after {
             content: '';
             position: absolute;
-            top: 0;
+            width: 60%;
+            height: 4px;
+            background: var(--gradient);
+            bottom: -10px;
             left: 0;
-            width: 5px;
-            height: 100%;
-            background: linear-gradient(to bottom, #1a2a6c, #fdbb2d);
+            border-radius: 2px;
         }
         
-        .agenda-detail:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-            border-color: rgba(255, 255, 255, 0.3);
+        /* About section */
+        .about-content {
+            font-size: 1.1rem;
+            line-height: 1.8;
         }
         
-        .agenda-detail h3 {
-            font-size: 1.5rem;
-            margin-bottom: 15px;
-            color: #FFD700;
-            font-weight: 600;
-            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+        /* Principal section */
+        .principal-section {
+            background: var(--gradient);
+            color: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 30px rgba(108, 99, 255, 0.3);
+            margin: 40px 0;
         }
         
-        .agenda-detail p {
-            font-size: 1.3rem;
-            line-height: 1.6;
-            margin-bottom: 10px;
-            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
-        }
-        
-        .principal-info {
-            flex: 1;
-            background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(10px);
-            padding: 25px;
-            border-radius: 15px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s ease;
-        }
-        
-        .principal-info:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-            border-color: rgba(255, 255, 255, 0.3);
-        }
-        
-        .principal-info h3 {
-            font-size: 1.5rem;
-            margin-bottom: 15px;
-            color: #FFD700;
-            font-weight: 600;
-            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
-        }
-        
-        .principal-large {
+        .principal-avatar {
             width: 150px;
             height: 150px;
             border-radius: 50%;
             object-fit: cover;
-            border: 3px solid white;
-            margin-bottom: 15px;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
-            transition: all 0.3s ease;
+            border: 5px solid white;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
         }
         
-        .principal-large:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 25px rgba(255, 255, 255, 0.4);
+        .principal-info {
+            padding: 30px;
+        }
+        
+        .principal-name {
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+        
+        .principal-position {
+            font-weight: 500;
+            opacity: 0.9;
+            margin-bottom: 20px;
+        }
+        
+        .principal-contact {
+            margin-bottom: 10px;
         }
         
         .principal-quote {
             font-style: italic;
-            margin-top: 15px;
-            font-size: 1.1rem;
-            padding: 10px;
+            margin-top: 20px;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.1);
             border-radius: 10px;
-            background: rgba(0, 0, 0, 0.1);
             position: relative;
         }
         
-        .principal-quote::before, .principal-quote::after {
+        .principal-quote:before {
             content: '"';
-            font-size: 2rem;
-            color: #FFD700;
+            font-size: 60px;
             position: absolute;
+            left: 10px;
+            top: -10px;
+            opacity: 0.2;
         }
         
-        .principal-quote::before {
-            top: -5px;
-            left: -10px;
+        /* Agenda section */
+        .agenda-card {
+            border: none;
+            border-radius: 15px;
+            overflow: hidden;
+            transition: all 0.3s;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            height: 100%;
         }
         
-        .principal-quote::after {
-            bottom: -15px;
-            right: -10px;
+        .agenda-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
         }
         
-        .decoration {
-            position: absolute;
-            opacity: 0.1;
-            z-index: 1;
+        .agenda-img {
+            height: 200px;
+            object-fit: cover;
         }
         
-        .decoration-1 {
-            top: -50px;
-            right: -50px;
-            font-size: 250px;
-            transform: rotate(15deg);
+        .agenda-card .card-body {
+            padding: 25px;
         }
         
-        .decoration-2 {
-            bottom: -60px;
-            left: -50px;
-            font-size: 200px;
-            transform: rotate(-10deg);
+        .agenda-card .card-title {
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 15px;
         }
         
+        .agenda-card .btn {
+            background: var(--gradient);
+            border: none;
+            border-radius: 50px;
+            padding: 8px 20px;
+            font-weight: 500;
+        }
+        
+        /* Footer */
         .footer {
-            padding: 20px;
-            text-align: center;
-            background: rgba(0, 0, 0, 0.3);
-            font-size: 1.1rem;
-            letter-spacing: 1px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            backdrop-filter: blur(5px);
-            position: relative;
+            background-color: var(--dark);
+            color: white;
+            padding: 60px 0 30px;
         }
         
-        .footer::before {
+        .footer-title {
+            font-weight: 700;
+            margin-bottom: 25px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .footer-title:after {
             content: '';
             position: absolute;
-            top: 0;
+            width: 50%;
+            height: 3px;
+            background: var(--accent);
+            bottom: -8px;
             left: 0;
-            right: 0;
-            height: 2px;
-            background: linear-gradient(to right, transparent, #FFD700, transparent);
         }
         
-        .contact-info {
-            text-align: left;
-            font-size: 0.9rem;
+        .footer-links {
+            list-style: none;
+            padding: 0;
         }
         
-        .website {
-            text-align: right;
-            font-size: 0.9rem;
+        .footer-links li {
+            margin-bottom: 12px;
         }
         
-        .motto {
-            font-weight: 500;
-            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
-            padding: 8px 15px;
-            border-radius: 20px;
-            background: rgba(255, 255, 255, 0.1);
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: all 0.3s;
+            display: inline-block;
         }
         
-        .smile-acronym {
-            background: rgba(255, 255, 255, 0.1);
-            padding: 20px;
-            border-radius: 15px;
+        .footer-links a:hover {
+            color: var(--accent);
+            transform: translateX(5px);
+        }
+        
+        .footer-links i {
+            margin-right: 10px;
+            width: 20px;
+            text-align: center;
+        }
+        
+        .social-icons {
             margin-top: 20px;
-            backdrop-filter: blur(5px);
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
         }
         
-        .smile-acronym h4 {
-            color: #FFD700;
-            margin-bottom: 15px;
-            font-size: 1.5rem;
-            text-align: center;
-            font-weight: 600;
-            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
-        }
-        
-        .smile-acronym p {
-            font-size: 1.1rem;
-            line-height: 1.5;
-            text-align: center;
-            margin-bottom: 15px;
-            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
-        }
-        
-        .acronym-container {
-            display: flex;
-            justify-content: center;
+        .social-icons a {
+            display: inline-flex;
             align-items: center;
-            flex-wrap: nowrap;
-            margin: 15px 0;
-            gap: 8px;
-        }
-        
-        .acronym-item {
-            text-align: center;
-            padding: 12px 8px;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
             background: rgba(255, 255, 255, 0.1);
-            border-radius: 12px;
-            flex: 1;
-            min-width: 0;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            transition: all 0.3s ease;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 50%;
+            margin-right: 10px;
+            transition: all 0.3s;
+            color: white;
+            text-decoration: none;
         }
         
-        .acronym-item:hover {
+        .social-icons a:hover {
+            background: var(--primary);
             transform: translateY(-5px);
-            background: rgba(255, 255, 255, 0.15);
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
         }
         
-        .acronym-letter {
-            font-size: 1.8rem;
-            font-weight: bold;
-            color: #FFD700;
-            margin-bottom: 5px;
-            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+        .copyright {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+            color: rgba(255, 255, 255, 0.6);
         }
         
-        .acronym-text {
-            font-size: 0.9rem;
-            line-height: 1.2;
-            font-weight: 500;
+        /* Responsive adjustments */
+        @media (max-width: 992px) {
+            .hero-title {
+                font-size: 2.8rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.2rem;
+            }
         }
         
-        @media (max-width: 900px) {
-            .banner-content {
-                flex-direction: column;
-            }
-            
-            .banner-header {
-                flex-direction: column;
-                text-align: center;
-                gap: 15px;
-            }
-            
-            .logo-container {
-                justify-content: center;
-            }
-            
-            .principal-container {
-                margin-top: 10px;
-            }
-            
-            .banner-title {
+        @media (max-width: 768px) {
+            .hero-title {
                 font-size: 2.2rem;
             }
             
-            .banner-date {
-                font-size: 1.5rem;
-            }
-            
-            .current-time {
-                font-size: 1rem;
-            }
-            
-            .agenda-title {
-                font-size: 1.8rem;
-            }
-            
-            .agenda-detail p {
-                font-size: 1.1rem;
-            }
-            
-            .footer {
-                flex-direction: column;
-                gap: 15px;
-            }
-            
-            .contact-info, .website {
+            .principal-info {
                 text-align: center;
             }
             
-            .acronym-container {
-                flex-wrap: nowrap;
-                overflow-x: auto;
-                padding-bottom: 5px;
-                justify-content: space-between;
-            }
-            
-            .acronym-item {
-                min-width: 80px;
-                padding: 10px 5px;
-            }
-            
-            .acronym-letter {
-                font-size: 1.5rem;
-            }
-            
-            .acronym-text {
-                font-size: 0.8rem;
+            .principal-avatar {
+                margin-bottom: 20px;
             }
         }
         
-        @media (max-width: 480px) {
-            .banner-title {
-                font-size: 1.8rem;
-                letter-spacing: 2px;
-            }
-            
-            .banner-date {
-                font-size: 1.3rem;
-            }
-            
-            .current-time {
-                font-size: 0.9rem;
-            }
-            
-            .acronym-letter {
-                font-size: 1.3rem;
-            }
-            
-            .acronym-text {
-                font-size: 0.7rem;
-            }
-            
-            .acronym-item {
-                min-width: 70px;
-                padding: 8px 3px;
-            }
-            
-            .school-name {
-                font-size: 1.5rem;
-            }
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .animate {
+            animation: fadeIn 1s ease-out forwards;
+        }
+        
+        .delay-1 { animation-delay: 0.2s; }
+        .delay-2 { animation-delay: 0.4s; }
+        .delay-3 { animation-delay: 0.6s; }
+        
+        /* Coordination image styling */
+        .coordination-img {
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            transition: all 0.3s;
+        }
+        
+        .coordination-img:hover {
+            transform: scale(1.02);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
         }
     </style>
 </head>
 <body>
-    <div class="banner">
-        <div class="decoration decoration-1">📅</div>
-        <div class="decoration decoration-2">🎯</div>
-        
-        <div class="banner-content-inner">
-            <div class="banner-header">
-                <div class="logo-container">
-                    <img src="https://i.ibb.co.com/xKfZBy7w/SMAN1-Cluring-emblem.png" alt="Logo SMA Negeri 1 Cluring" class="logo">
-                    <div class="school-info">
-                        <h2 class="school-name">SMA NEGERI 1 CLURING</h2>
-                        <p class="school-address">Jl. H. Huzaini, Benculuk, Cluring, Banyuwangi, Jawa Timur</p>
-                    </div>
-                </div>
-                
-                <div class="principal-container">
-                    <img src="https://i.ibb.co.com/Fk8ZFSbw/Helmi-S-Pd-M-Si.jpg" alt="Kepala Satuan Pendidikan" class="principal-photo">
-                    <p class="principal-name">Helmi, S.Pd., M.Si<br>Kepala Satuan Pendidikan</p>
-                </div>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light sticky-top">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center" href="#">
+                <img src="https://i.ibb.co.com/xKfZBy7w/SMAN1-Cluring-emblem.png" alt="Logo SMILE" height="50" class="me-2">
+                <span class="fw-bold">SMILE</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">Beranda</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Materi</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Tugas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Galeri</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Link Penting</a>
+                    </li>
+                </ul>
             </div>
-            
-            <div class="banner-title-container">
-                <h1 class="banner-title">Komunitas Belajar SMILE</h1>
-                <div class="banner-date">Jumat, 19 September 2025</div>
-                <div class="current-time" id="current-time">Loading waktu...</div>
-            </div>
-            
-            <div class="banner-content">
-                <div class="agenda-container">
-                    <h2 class="agenda-title">Agenda Kegiatan</h2>
-                    
-                    <div class="agenda-detail">
-                        <h3>Sesi Utama</h3>
-                        <p>Implementasi SNP sebagai Acuan Peningkatan Mutu Satuan Pendidikan</p>
-                        <p>Jenjang SMA Tahun 2025</p>
-                    </div>
-                    
-                    <div class="agenda-detail">
-                        <h3>Tujuan</h3>
-                        <p>Meningkatkan pemahaman tentang Standar Nasional Pendidikan dan implementasinya untuk peningkatan mutu pendidikan jenjang SMA</p>
-                    </div>
-                    
-                    <div class="smile-acronym">
-                        <h4>Apa itu SMILE?</h4>
-                        <p><strong>S</strong>mart Interactive Learning Community</p>
-                        <p>Sebuah komunitas pembelajaran interaktif yang cerdas untuk meningkatkan kualitas pendidikan</p>
-                        
-                        <div class="acronym-container">
-                            <div class="acronym-item">
-                                <div class="acronym-letter">S</div>
-                                <div class="acronym-text">Smart</div>
-                            </div>
-                            <div class="acronym-item">
-                                <div class="acronym-letter">M</div>
-                                <div class="acronym-text">Mandiri</div>
-                            </div>
-                            <div class="acronym-item">
-                                <div class="acronym-letter">I</div>
-                                <div class="acronym-text">Inovatif</div>
-                            </div>
-                            <div class="acronym-item">
-                                <div class="acronym-letter">L</div>
-                                <div class="acronym-text">Loyal</div>
-                            </div>
-                            <div class="acronym-item">
-                                <div class="acronym-letter">E</div>
-                                <div class="acronym-text">Efektif</div>
-                            </div>
-                        </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section with YouTube Video -->
+    <section class="hero-section">
+        <div class="video-background">
+            <iframe src="https://www.youtube.com/embed/5ZgkVKZuFiM?autoplay=1&mute=1&loop=1&playlist=5ZgkVKZuFiM&controls=0&modestbranding=1&rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+        </div>
+        <div class="overlay"></div>
+        <div class="hero-content">
+            <h1 class="hero-title animate">Smaring Interactive Learning Community</h1>
+            <p class="hero-subtitle animate delay-1">Wadah kolaborasi dan inovasi untuk proses belajar mengajar yang interaktif dan menyenangkan</p>
+            <a href="#agenda" class="btn btn-hero animate delay-2">Jelajahi Kegiatan <i class="fas fa-arrow-down ms-2"></i></a>
+        </div>
+    </section>
+
+    <!-- Tentang Kami -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">Tentang SMILE</h2>
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <div class="about-content">
+                        <p class="lead">SMILE (Smaring Interactive Learning Community) adalah komunitas belajar yang bertujuan untuk menciptakan lingkungan pembelajaran yang interaktif, kolaboratif, dan menyenangkan bagi seluruh siswa.</p>
+                        <p>Kami percaya bahwa belajar haruslah menjadi pengalaman yang menginspirasi dan memotivasi, bukan sekadar kewajiban. Dengan pendekatan yang kreatif dan inovatif, kami berusaha membuat setiap sesi belajar menjadi lebih bermakna.</p>
+                        <p>Bergabunglah dengan kami dan rasakan pengalaman belajar yang berbeda dan menyenangkan!</p>
                     </div>
                 </div>
-                
-                <div class="principal-info">
-                    <h3>Kepala Satuan Pendidikan</h3>
-                    <img src="https://i.ibb.co.com/Fk8ZFSbw/Helmi-S-Pd-M-Si.jpg" alt="Kepala Satuan Pendidikan" class="principal-large">
-                    <p><strong>Helmi, S.Pd., M.Si</strong></p>
-                    <p>Kepala SMA Negeri 1 Cluring</p>
-                    <p class="principal-quote">"Pendidikan adalah investasi terbaik untuk masa depan generasi bangsa."</p>
-                </div>
-            </div>
-            
-            <div class="footer">
-                <div class="contact-info">
-                    <p><i class="fas fa-phone"></i> 0852-3071-7917</p>
-                    <p><i class="fas fa-envelope"></i> sman1cluring@school.ac.id</p>
-                </div>
-                
-                <div class="motto">
-                    "Mewujudkan Pendidikan Bermutu untuk Generasi Emas Indonesia"
-                </div>
-                
-                <div class="website">
-                    <p><i class="fas fa-globe"></i> www.sman1cluring.sch.id</p>
+                <div class="col-lg-6">
+                    <img src="https://i.ibb.co.com/4Z4XWPyY/kordinasi.jpg" alt="Kegiatan Koordinasi SMILE" class="img-fluid coordination-img">
                 </div>
             </div>
         </div>
-    </div>
+    </section>
 
+    <!-- Kepala Sekolah -->
+    <section class="section">
+        <div class="container">
+            <div class="principal-section">
+                <div class="row align-items-center">
+                    <div class="col-md-4 text-center">
+                        <img src="https://i.ibb.co.com/Fk8ZFSbw/Helmi-S-Pd-M-Si.jpg" alt="Helmi, S.Pd., M.Si" class="principal-avatar">
+                    </div>
+                    <div class="col-md-8 principal-info">
+                        <h3 class="principal-name">Helmi, S.Pd., M.Si</h3>
+                        <p class="principal-position">Kepala SMAN 1 Cluring</p>
+                        <p class="principal-contact"><i class="fas fa-phone-alt me-2"></i> 0852-3071-7917</p>
+                        <p class="principal-address"><i class="fas fa-map-marker-alt me-2"></i> Jl. H. Huzaini, Benculuk, Cluring, Banyuwangi, Jawa Timur</p>
+                        <blockquote class="principal-quote">
+                            "Pendidikan adalah proses memfasilitasi pembelajaran, pengetahuan, keterampilan, nilai, keyakinan, dan kebiasaan. Metode pembelajaran yang interaktif dan menyenangkan akan menciptakan generasi yang cerdas dan berkarakter."
+                        </blockquote>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Agenda Kegiatan -->
+    <section id="agenda" class="section bg-light">
+        <div class="container">
+            <h2 class="section-title">Agenda Kegiatan</h2>
+            <div class="row">
+                <div class="col-md-6 col-lg-3 mb-4">
+                    <div class="card agenda-card h-100">
+                        <img src="https://images.unsplash.com/photo-1523580494863-6f3031224c94?auto=format&fit=crop&q=80" class="card-img-top agenda-img" alt="Kegiatan 1">
+                        <div class="card-body">
+                            <h5 class="card-title">Diskusi Kelompok Interaktif</h5>
+                            <p class="card-text">Sesi diskusi kelompok dengan metode pembelajaran kolaboratif untuk meningkatkan pemahaman materi.</p>
+                            <a href="#" class="btn btn-sm btn-primary">Detail</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3 mb-4">
+                    <div class="card agenda-card h-100">
+                        <img src="https://images.unsplash.com/photo-1543269865-cbf427effbad?auto=format&fit=crop&q=80" class="card-img-top agenda-img" alt="Kegiatan 2">
+                        <div class="card-body">
+                            <h5 class="card-title">Workshop Kreativitas</h5>
+                            <p class="card-text">Pelatihan pengembangan kreativitas dan inovasi dalam menyelesaikan masalah pembelajaran.</p>
+                            <a href="#" class="btn btn-sm btn-primary">Detail</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3 mb-4">
+                    <div class="card agenda-card h-100">
+                        <img src="https://images.unsplash.com/photo-1546410531-bb4caa6b424d?auto=format&fit=crop&q=80" class="card-img-top agenda-img" alt="Kegiatan 3">
+                        <div class="card-body">
+                            <h5 class="card-title">Presentasi Projek Siswa</h5>
+                            <p class="card-text">Ajang presentasi hasil karya dan projek siswa sebagai implementasi dari materi yang telah dipelajari.</p>
+                            <a href="#" class="btn btn-sm btn-primary">Detail</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3 mb-4">
+                    <div class="card agenda-card h-100">
+                        <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&q=80" class="card-img-top agenda-img" alt="Kegiatan 4">
+                        <div class="card-body">
+                            <h5 class="card-title">Seminar Pendidikan</h5>
+                            <p class="card-text">Seminar dengan pembicara ahli di bidang pendidikan untuk pengembangan wawasan guru dan siswa.</p>
+                            <a href="#" class="btn btn-sm btn-primary">Detail</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <h5 class="footer-title">Tentang SMILE</h5>
+                    <p>Smaring Interactive Learning Community adalah wadah kolaborasi dan inovasi untuk proses belajar mengajar yang interaktif dan menyenangkan.</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-tiktok"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fab fa-discord"></i></a>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <h5 class="footer-title">Menu Navigasi</h5>
+                    <ul class="footer-links">
+                        <li><a href="#"><i class="fas fa-home"></i> Beranda</a></li>
+                        <li><a href="#"><i class="fas fa-book"></i> Materi</a></li>
+                        <li><a href="#"><i class="fas fa-tasks"></i> Tugas</a></li>
+                        <li><a href="#"><i class="fas fa-images"></i> Galeri</a></li>
+                        <li><a href="#"><i class="fas fa-link"></i> Link Penting</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <h5 class="footer-title">Link Penting</h5>
+                    <ul class="footer-links">
+                        <li><a href="https://quran.nu.or.id/" target="_blank"><i class="fas fa-book-quran"></i> Al-Qur'an NU Online</a></li>
+                        <li><a href="https://sma.kemendikdasmen.go.id/" target="_blank"><i class="fas fa-school"></i> SMA Kemendikdasmen</a></li>
+                        <li><a href="https://dindik.jatimprov.go.id/" target="_blank"><i class="fas fa-graduation-cap"></i> Dindik Jatim</a></li>
+                        <li><a href="https://banyuwangicab.dindikjatim.id/" target="_blank"><i class="fas fa-university"></i> Dindik Banyuwangi</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p class="mb-0">&copy; 2023 SMILE - Smaring Interactive Learning Community. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-        // Fungsi untuk memperbarui waktu secara real-time
-        function updateCurrentTime() {
-            const now = new Date();
+        // Simple animation on scroll
+        document.addEventListener('DOMContentLoaded', function() {
+            const animatedElements = document.querySelectorAll('.animate');
             
-            // Format tanggal Indonesia
-            const days = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu'];
-            const months = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
+            animatedElements.forEach(element => {
+                element.style.opacity = 0;
+            });
             
-            const day = days[now.getDay()];
-            const date = now.getDate();
-            const month = months[now.getMonth()];
-            const year = now.getFullYear();
-            
-            // Format waktu
-            let hours = now.getHours();
-            let minutes = now.getMinutes();
-            let seconds = now.getSeconds();
-            
-            // Tambahkan nol di depan angka jika kurang dari 10
-            hours = hours < 10 ? '0' + hours : hours;
-            minutes = minutes < 10 ? '0' + minutes : minutes;
-            seconds = seconds < 10 ? '0' + seconds : seconds;
-            
-            // Tampilkan waktu
-            const timeString = `${hours}:${minutes}:${seconds}`;
-            const dateString = `${day}, ${date} ${month} ${year}`;
-            
-            document.getElementById('current-time').innerHTML = `<i class="fas fa-clock"></i> ${timeString} - ${dateString}`;
-        }
-        
-        // Perbarui waktu setiap detik
-        setInterval(updateCurrentTime, 1000);
-        
-        // Panggil fungsi pertama kali saat halaman dimuat
-        window.onload = updateCurrentTime;
+            setTimeout(() => {
+                animatedElements.forEach(element => {
+                    element.style.opacity = 1;
+                });
+            }, 100);
+        });
     </script>
 </body>
 </html>
