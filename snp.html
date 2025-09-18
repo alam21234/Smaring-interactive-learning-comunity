@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Komunitas Belajar SMILE - SMA Negeri 1 Cluring</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            padding: 20px;
+        }
+        
+        .banner {
+            width: 100%;
+            max-width: 1100px;
+            background: linear-gradient(120deg, #1a2a6c, #b21f1f, #fdbb2d);
+            color: white;
+            border-radius: 15px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .banner-header {
+            padding: 20px 30px;
+            background: rgba(0, 0, 0, 0.2);
+            border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        
+        .logo {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid white;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .school-info {
+            flex-grow: 1;
+        }
+        
+        .school-name {
+            font-size: 1.8rem;
+            margin-bottom: 5px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        
+        .school-address {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+        
+        .principal-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .principal-photo {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+        
+        .principal-name {
+            font-size: 0.9rem;
+            text-align: center;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+        
+        .banner-title-container {
+            text-align: center;
+            padding: 20px 0;
+            background: rgba(255, 255, 255, 0.1);
+        }
+        
+        .banner-title {
+            font-size: 2.8rem;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            color: #FFD700;
+        }
+        
+        .banner-date {
+            font-size: 1.8rem;
+            font-weight: 500;
+            letter-spacing: 1px;
+        }
+        
+        .banner-content {
+            padding: 30px;
+            display: flex;
+            gap: 30px;
+        }
+        
+        .agenda-container {
+            flex: 3;
+        }
+        
+        .agenda-title {
+            font-size: 2.2rem;
+            margin-bottom: 25px;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+            color: #FFD700;
+            text-align: center;
+        }
+        
+        .agenda-detail {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            padding: 25px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .agenda-detail h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: #FFD700;
+        }
+        
+        .agenda-detail p {
+            font-size: 1.3rem;
+            line-height: 1.6;
+            margin-bottom: 10px;
+        }
+        
+        .principal-info {
+            flex: 1;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            padding: 20px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+        
+        .principal-info h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: #FFD700;
+        }
+        
+        .principal-large {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid white;
+            margin-bottom: 15px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .principal-quote {
+            font-style: italic;
+            margin-top: 15px;
+            font-size: 1.1rem;
+        }
+        
+        .decoration {
+            position: absolute;
+            opacity: 0.1;
+        }
+        
+        .decoration-1 {
+            top: -50px;
+            right: -50px;
+            font-size: 250px;
+            transform: rotate(15deg);
+        }
+        
+        .decoration-2 {
+            bottom: -60px;
+            left: -50px;
+            font-size: 200px;
+            transform: rotate(-10deg);
+        }
+        
+        .footer {
+            padding: 20px;
+            text-align: center;
+            background: rgba(0, 0, 0, 0.25);
+            font-size: 1.1rem;
+            letter-spacing: 1px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .contact-info {
+            text-align: left;
+            font-size: 0.9rem;
+        }
+        
+        .website {
+            text-align: right;
+            font-size: 0.9rem;
+        }
+        
+        .smile-acronym {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+        
+        .smile-acronym h4 {
+            color: #FFD700;
+            margin-bottom: 10px;
+            font-size: 1.3rem;
+        }
+        
+        .smile-acronym p {
+            font-size: 1.1rem;
+            line-height: 1.5;
+        }
+        
+        @media (max-width: 900px) {
+            .banner-content {
+                flex-direction: column;
+            }
+            
+            .banner-header {
+                flex-direction: column;
+                text-align: center;
+                gap: 15px;
+            }
+            
+            .logo-container {
+                justify-content: center;
+            }
+            
+            .principal-container {
+                margin-top: 10px;
+            }
+            
+            .banner-title {
+                font-size: 2.2rem;
+            }
+            
+            .banner-date {
+                font-size: 1.5rem;
+            }
+            
+            .agenda-title {
+                font-size: 1.8rem;
+            }
+            
+            .agenda-detail p {
+                font-size: 1.1rem;
+            }
+            
+            .footer {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .contact-info, .website {
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="banner">
+        <div class="decoration decoration-1">📅</div>
+        <div class="decoration decoration-2">🎯</div>
+        
+        <div class="banner-header">
+            <div class="logo-container">
+                <img src="https://i.ibb.co.com/xKfZBy7w/SMAN1-Cluring-emblem.png" alt="Logo SMA Negeri 1 Cluring" class="logo">
+                <div class="school-info">
+                    <h2 class="school-name">SMA NEGERI 1 CLURING</h2>
+                    <p class="school-address">Jl. H. Huzaini, Benculuk, Cluring, Banyuwangi, Jawa Timur</p>
+                </div>
+            </div>
+            
+            <div class="principal-container">
+                <img src="https://i.ibb.co.com/Fk8ZFSbw/Helmi-S-Pd-M-Si.jpg" alt="Kepala Sekolah" class="principal-photo">
+                <p class="principal-name">Helmi, S.Pd., M.Si<br>Kepala Sekolah</p>
+            </div>
+        </div>
+        
+        <div class="banner-title-container">
+            <h1 class="banner-title">Komunitas Belajar SMILE</h1>
+            <div class="banner-date">Jumat, 19 September 2025</div>
+        </div>
+        
+        <div class="banner-content">
+            <div class="agenda-container">
+                <h2 class="agenda-title">Agenda Kegiatan</h2>
+                
+                <div class="agenda-detail">
+                    <h3>Sesi Utama</h3>
+                    <p>Implementasi SNP sebagai Acuan Peningkatan Mutu Satuan Pendidikan</p>
+                    <p>Jenjang SMA Tahun 2025</p>
+                </div>
+                
+                <div class="agenda-detail">
+                    <h3>Tujuan</h3>
+                    <p>Meningkatkan pemahaman tentang Standar Nasional Pendidikan dan implementasinya untuk peningkatan mutu pendidikan jenjang SMA</p>
+                </div>
+                
+                <div class="smile-acronym">
+                    <h4>Apa itu SMILE?</h4>
+                    <p><strong>S</strong>mart - <strong>M</strong>andiri - <strong>I</strong>novatif - <strong>L</strong>oyal - <strong>E</strong>fektif</p>
+                    <p>Sebuah pendekatan pembelajaran yang mengedepankan kreativitas dan kemandirian dalam belajar</p>
+                </div>
+            </div>
+            
+            <div class="principal-info">
+                <h3>Kepala Satuan Pendidikan</h3>
+                <img src="https://i.ibb.co.com/Fk8ZFSbw/Helmi-S-Pd-M-Si.jpg" alt="Kepala Sekolah" class="principal-large">
+                <p><strong>Helmi, S.Pd., M.Si</strong></p>
+                <p>Kepala SMA Negeri 1 Cluring</p>
+                <p class="principal-quote">"Pendidikan adalah investasi terbaik untuk masa depan generasi bangsa."</p>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <div class="contact-info">
+                <p><i class="fas fa-phone"></i> (0333) 123456</p>
+                <p><i class="fas fa-envelope"></i> sman1cluring@school.ac.id</p>
+            </div>
+            
+            <div class="motto">
+                "Mewujudkan Pendidikan Bermutu untuk Generasi Emas Indonesia"
+            </div>
+            
+            <div class="website">
+                <p><i class="fas fa-globe"></i> www.sman1cluring.sch.id</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
