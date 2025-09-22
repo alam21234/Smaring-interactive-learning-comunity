@@ -229,19 +229,18 @@
             line-height: 1.6;
         }
 
-        /* SLIDER GALLERY */
+        /* PHOTO GALLERY */
         .gallery-section {
             padding: 40px;
             background: #f0f4f8;
-            text-align: center;
         }
 
         .gallery-title {
+            text-align: center;
             font-size: 2.2rem;
             color: #1a2a6c;
-            margin-bottom: 30px;
+            margin-bottom: 35px;
             position: relative;
-            display: inline-block;
         }
 
         .gallery-title::after {
@@ -250,96 +249,47 @@
             width: 80px;
             height: 4px;
             background: #fdbb2d;
-            margin: 10px auto 0;
+            margin: 10px auto;
             border-radius: 2px;
         }
 
-        .slider-container {
-            position: relative;
-            max-width: 900px;
-            margin: 0 auto;
-            overflow: hidden;
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .gallery-item {
             border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
-        .slider-wrapper {
-            display: flex;
-            transition: transform 0.5s ease-in-out;
+        .gallery-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
         }
 
-        .slide {
-            min-width: 100%;
-            position: relative;
-        }
-
-        .slide img {
+        .gallery-item img {
             width: 100%;
-            height: 400px;
+            height: 250px;
             object-fit: cover;
             display: block;
+            transition: transform 0.5s ease;
         }
 
-        .slide-caption {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: rgba(0, 0, 0, 0.7);
-            color: white;
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+
+        .gallery-caption {
             padding: 15px;
+            background: white;
             font-weight: 600;
-            font-size: 1.1rem;
-        }
-
-        /* NAVIGATION BUTTONS */
-        .slider-nav {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background: rgba(255, 255, 255, 0.3);
-            color: white;
-            border: none;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            font-size: 1.2rem;
-            cursor: pointer;
-            backdrop-filter: blur(5px);
-            transition: all 0.3s ease;
-        }
-
-        .slider-nav:hover {
-            background: rgba(255, 255, 255, 0.5);
-        }
-
-        .prev {
-            left: 15px;
-        }
-
-        .next {
-            right: 15px;
-        }
-
-        /* INDICATORS */
-        .slider-indicators {
-            display: flex;
-            justify-content: center;
-            margin-top: 20px;
-            gap: 10px;
-        }
-
-        .indicator {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background: #ccc;
-            cursor: pointer;
-            transition: background 0.3s ease;
-        }
-
-        .indicator.active {
-            background: #fdbb2d;
+            color: #1a2a6c;
+            text-align: center;
+            font-size: 1rem;
         }
 
         /* FOOTER */
@@ -409,14 +359,8 @@
                 height: 140px;
             }
 
-            .slide img {
-                height: 300px;
-            }
-
-            .slider-nav {
-                width: 40px;
-                height: 40px;
-                font-size: 1rem;
+            .gallery-grid {
+                grid-template-columns: 1fr;
             }
         }
 
@@ -427,10 +371,6 @@
 
             .event-title {
                 font-size: 1.8rem;
-            }
-
-            .slide img {
-                height: 250px;
             }
 
             .footer {
@@ -476,7 +416,7 @@
 
             <div class="photo-column">
                 <h3 class="section-title">Narasumber Utama</h3>
-                <img src="https://i.ibb.co.com/Fk8ZFSbw/Helmi-S-Pd-M-Si.jpg" alt="Helmi, S.Pd., M.Si - Kepala Satuan Pendidikan" class="principal-photo">
+                <img src="https://i.ibb.co.com/Fk8ZFSbw/Helmi-S-Pd-M-Si.jpg" alt="Helmi, S.Pd., M.Si - Kepala Sekolah" class="principal-photo">
                 <p class="principal-name">Helmi, S.Pd., M.Si</p>
                 <p class="principal-title">Kepala SMA Negeri 1 Cluring</p>
                 <div class="quote">
@@ -485,35 +425,22 @@
             </div>
         </div>
 
-        <!-- SLIDER GALLERY -->
+        <!-- PHOTO GALLERY — FOTO "SESI INTERAKTIF & DISKUSI" DIHAPUS -->
         <div class="gallery-section">
             <h2 class="gallery-title">Dokumentasi Kegiatan</h2>
-            <div class="slider-container">
-                <div class="slider-wrapper" id="sliderWrapper">
-                    <div class="slide">
-                        <img src="https://i.ibb.co.com/MD4Sg32j/Penyampaian-materi-SNP-oleh-kepala-satuan-pendidikan.jpg" alt="Penyampaian Materi SNP oleh Kepala Sekolah">
-                        <div class="slide-caption">Penyampaian Materi oleh Kepala Satuan Pendidikan</div>
-                    </div>
-                    <div class="slide">
-                        <img src="https://i.ibb.co.com/KcJw13hf/Peserta-SNP.jpg" alt="Peserta Kegiatan SNP">
-                        <div class="slide-caption">Antusiasme Peserta Kegiatan</div>
-                    </div>
-                    <div class="slide">
-                        <img src="https://i.ibb.co.com/Cswv1qv4/peserta-SNP-2.jpg" alt="Suasana Kelas Selama Kegiatan">
-                        <div class="slide-caption">Suasana Kelas yang Kondusif</div>
-                    </div>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="https://i.ibb.co.com/MD4Sg32j/Penyampaian-materi-SNP-oleh-kepala-satuan-pendidikan.jpg" alt="Penyampaian Materi SNP oleh Kepala Sekolah">
+                    <div class="gallery-caption">Penyampaian Materi oleh Kepala Sekolah</div>
                 </div>
-
-                <!-- NAVIGATION BUTTONS -->
-                <button class="slider-nav prev" onclick="moveSlide(-1)"><i class="fas fa-chevron-left"></i></button>
-                <button class="slider-nav next" onclick="moveSlide(1)"><i class="fas fa-chevron-right"></i></button>
-            </div>
-
-            <!-- INDICATORS -->
-            <div class="slider-indicators" id="indicators">
-                <span class="indicator active" onclick="currentSlide(0)"></span>
-                <span class="indicator" onclick="currentSlide(1)"></span>
-                <span class="indicator" onclick="currentSlide(2)"></span>
+                <div class="gallery-item">
+                    <img src="https://i.ibb.co.com/KcJw13hf/Peserta-SNP.jpg" alt="Peserta Kegiatan SNP">
+                    <div class="gallery-caption">Antusiasme Peserta Kegiatan</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://i.ibb.co.com/Cswv1qv4/peserta-SNP-2.jpg" alt="Suasana Kelas Selama Kegiatan">
+                    <div class="gallery-caption">Suasana Kelas yang Kondusif</div>
+                </div>
             </div>
         </div>
 
@@ -532,59 +459,5 @@
         </div>
 
     </div>
-
-    <!-- SLIDER JAVASCRIPT -->
-    <script>
-        let currentSlideIndex = 0;
-        const slides = document.querySelectorAll('.slide');
-        const totalSlides = slides.length;
-        const indicators = document.querySelectorAll('.indicator');
-        const sliderWrapper = document.getElementById('sliderWrapper');
-
-        // Auto slide every 5 seconds
-        let slideInterval = setInterval(() => {
-            nextSlide();
-        }, 5000);
-
-        function updateSlider() {
-            sliderWrapper.style.transform = `translateX(-${currentSlideIndex * 100}%)`;
-
-            // Update indicators
-            indicators.forEach((indicator, index) => {
-                indicator.classList.toggle('active', index === currentSlideIndex);
-            });
-        }
-
-        function nextSlide() {
-            currentSlideIndex = (currentSlideIndex + 1) % totalSlides;
-            updateSlider();
-        }
-
-        function prevSlide() {
-            currentSlideIndex = (currentSlideIndex - 1 + totalSlides) % totalSlides;
-            updateSlider();
-        }
-
-        function moveSlide(direction) {
-            clearInterval(slideInterval); // Stop auto when manual
-            currentSlideIndex = (currentSlideIndex + direction + totalSlides) % totalSlides;
-            updateSlider();
-
-            // Restart auto after 5s of inactivity
-            setTimeout(() => {
-                slideInterval = setInterval(nextSlide, 5000);
-            }, 5000);
-        }
-
-        function currentSlide(index) {
-            clearInterval(slideInterval);
-            currentSlideIndex = index;
-            updateSlider();
-
-            setTimeout(() => {
-                slideInterval = setInterval(nextSlide, 5000);
-            }, 5000);
-        }
-    </script>
 </body>
 </html>
