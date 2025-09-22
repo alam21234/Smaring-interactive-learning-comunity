@@ -255,7 +255,7 @@
 
         .gallery-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 25px;
         }
 
@@ -358,6 +358,10 @@
                 width: 140px;
                 height: 140px;
             }
+
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
         }
 
         @media (max-width: 480px) {
@@ -367,10 +371,6 @@
 
             .event-title {
                 font-size: 1.8rem;
-            }
-
-            .gallery-grid {
-                grid-template-columns: 1fr;
             }
 
             .footer {
@@ -425,17 +425,13 @@
             </div>
         </div>
 
-        <!-- PHOTO GALLERY -->
+        <!-- PHOTO GALLERY — FOTO "SESI INTERAKTIF & DISKUSI" DIHAPUS -->
         <div class="gallery-section">
             <h2 class="gallery-title">Dokumentasi Kegiatan</h2>
             <div class="gallery-grid">
                 <div class="gallery-item">
                     <img src="https://i.ibb.co.com/MD4Sg32j/Penyampaian-materi-SNP-oleh-kepala-satuan-pendidikan.jpg" alt="Penyampaian Materi SNP oleh Kepala Sekolah">
                     <div class="gallery-caption">Penyampaian Materi oleh Kepala Sekolah</div>
-                </div>
-                <div class="gallery-item">
-                    <img src="https://i.ibb.co.com/S4k0RZ3G/Penyampaian-materi-SNP-oleh-kepala-satuan-pendidikan2.jpg" alt="Sesi Interaktif Penyampaian Materi">
-                    <div class="gallery-caption">Sesi Interaktif & Diskusi</div>
                 </div>
                 <div class="gallery-item">
                     <img src="https://i.ibb.co.com/KcJw13hf/Peserta-SNP.jpg" alt="Peserta Kegiatan SNP">
