@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Dokumentasi Kegiatan Komunitas Belajar SMILE - Penguatan Kompetensi Guru dan Tenaga Kependidikan di Era Kecerdasan Artifisial">
+    <title>Penguatan AI | Komunitas Belajar SMILE - SMA Negeri 1 Cluring</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" href="https://i.ibb.co.com/xKfZBy7w/SMAN1-Cluring-emblem.png" type="image/x-icon">
+    <style>
+        /* RESET & GLOBAL */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #eef2f7 0%, #d0d8eb 100%);
+            min-height: 100vh;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            background: white;
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .container:hover {
+            transform: translateY(-5px);
+        }
+
+        /* HEADER BANNER */
+        .header-banner {
+            background: linear-gradient(120deg, #1a2a6c, #b21f1f, #fdbb2d);
+            color: white;
+            padding: 40px 30px;
+            position: relative;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .header-banner::before {
+            content: "🎯";
+            position: absolute;
+            top: -20px;
+            right: 20px;
+            font-size: 180px;
+            opacity: 0.08;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .header-banner::after {
+            content: "📅";
+            position: absolute;
+            bottom: -30px;
+            left: 20px;
+            font-size: 150px;
+            opacity: 0.08;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .logo-school {
+            width: 130px;
+            height: 130px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid rgba(255, 255, 255, 0.9);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+            margin: 0 auto 25px;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .logo-school:hover {
+            transform: scale(1.08) rotate(5deg);
+        }
+
+        .school-title {
+            font-size: 2.4rem;
+            font-weight: 800;
+            margin-bottom: 10px;
+            text-shadow: 2px 3px 6px rgba(0, 0, 0, 0.4);
+            letter-spacing: 1px;
+        }
+
+        .school-subtitle {
+            font-size: 1.15rem;
+            opacity: 0.95;
+            margin-bottom: 30px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.5;
+        }
+
+        .event-title {
+            font-size: 3.2rem;
+            margin: 25px 0;
+            color: #FFD700;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.5);
+            font-weight: 800;
+            background: rgba(0, 0, 0, 0.15);
+            display: inline-block;
+            padding: 15px 30px;
+            border-radius: 40px;
+        }
+
+        .event-date {
+            font-size: 1.7rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            background: rgba(0, 0, 0, 0.25);
+            display: inline-block;
+            padding: 12px 30px;
+            border-radius: 50px;
+            margin-top: 15px;
+            backdrop-filter: blur(5px);
+        }
+
+        /* CONTENT SECTION */
+        .content-section {
+            display: flex;
+            padding: 50px 40px;
+            gap: 50px;
+            background: #fafaff;
+            flex-wrap: wrap;
+            align-items: flex-start;
+        }
+
+        .info-column {
+            flex: 2;
+            min-width: 320px;
+        }
+
+        .photo-column {
+            flex: 1;
+            min-width: 280px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .section-title {
+            font-size: 2.1rem;
+            color: #1a2a6c;
+            margin-bottom: 30px;
+            padding-bottom: 12px;
+            border-bottom: 4px solid #fdbb2d;
+            text-align: center;
+            font-weight: 700;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: "";
+            position: absolute;
+            bottom: -4px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: #1a2a6c;
+            border-radius: 2px;
+        }
+
+        .agenda-card {
+            background: white;
+            border-radius: 18px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+            border-left: 6px solid #b21f1f;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .agenda-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 0;
+            background: linear-gradient(90deg, rgba(26,42,108,0.05), rgba(178,31,31,0.05));
+            transition: height 0.4s ease;
+            z-index: 0;
+        }
+
+        .agenda-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .agenda-card:hover::before {
+            height: 100%;
+        }
+
+        .agenda-card h3 {
+            color: #1a2a6c;
+            margin-bottom: 18px;
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 600;
+        }
+
+        .agenda-card p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #444;
+            position: relative;
+            z-index: 1;
+        }
+
+        .principal-photo {
+            width: 170px;
+            height: 170px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid #1a2a6c;
+            margin-bottom: 25px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            cursor: pointer;
+        }
+
+        .principal-photo:hover {
+            transform: scale(1.08) rotate(3deg);
+            box-shadow: 0 15px 40px rgba(26, 42, 108, 0.3);
+        }
+
+        .principal-name {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: #1a2a6c;
+        }
+
+        .principal-title {
+            font-size: 1.05rem;
+            color: #666;
+            margin-bottom: 25px;
+            font-weight: 500;
+        }
+
+        .quote {
+            font-style: italic;
+            background: linear-gradient(135deg, #f9f9ff, #eef2ff);
+            padding: 20px;
+            border-radius: 14px;
+            color: #555;
+            font-size: 1.1rem;
+            line-height: 1.7;
+            border-left: 5px solid #fdbb2d;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            position: relative;
+        }
+
+        .quote::before {
+            content: “”;
+            position: absolute;
+            top: -10px;
+            left: 20px;
+            font-size: 4rem;
+            color: rgba(253, 187, 45, 0.2);
+            font-family: Georgia, serif;
+            line-height: 1;
+        }
+
+        /* SMILE ACRONYM */
+        .smile-box {
+            background: linear-gradient(135deg, #1a2a6c, #2a4b9c);
+            color: white;
+            padding: 30px;
+            border-radius: 20px;
+            margin-top: 35px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .smile-box::before {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,215,0,0.1) 0%, transparent 70%);
+            animation: rotate 15s linear infinite;
+            z-index: 0;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .smile-box h4 {
+            font-size: 1.7rem;
+            margin-bottom: 20px;
+            color: #FFD700;
+            font-weight: 700;
+            position: relative;
+            z-index: 1;
+        }
+
+        .smile-acronym {
+            font-size: 1.6rem;
+            font-weight: 800;
+            letter-spacing: 3px;
+            margin: 20px 0;
+            background: rgba(255, 255, 255, 0.1);
+            display: inline-block;
+            padding: 10px 25px;
+            border-radius: 50px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .smile-desc {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* PHOTO GALLERY */
+        .gallery-section {
+            padding: 50px 40px;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4ebf5 100%);
+        }
+
+        .gallery-title {
+            text-align: center;
+            font-size: 2.4rem;
+            color: #1a2a6c;
+            margin-bottom: 40px;
+            font-weight: 700;
+            position: relative;
+        }
+
+        .gallery-title::after {
+            content: "";
+            display: block;
+            width: 100px;
+            height: 5px;
+            background: linear-gradient(90deg, #1a2a6c, #fdbb2d);
+            margin: 15px auto 0;
+            border-radius: 3px;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+        }
+
+        .gallery-item {
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            cursor: pointer;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 280px;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.6s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .gallery-caption {
+            padding: 20px;
+            background: white;
+            font-weight: 700;
+            color: #1a2a6c;
+            text-align: center;
+            font-size: 1.05rem;
+            box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.05);
+            transition: background 0.3s ease;
+        }
+
+        .gallery-item:hover .gallery-caption {
+            background: #f0f5ff;
+        }
+
+        /* FOOTER */
+        .footer {
+            background: linear-gradient(135deg, #1a2a6c, #0f1b4a);
+            color: white;
+            padding: 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 30px;
+            font-size: 1.05rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .footer::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23FFD700' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            opacity: 0.5;
+            z-index: 0;
+        }
+
+        .contact, .motto, .website {
+            flex: 1;
+            min-width: 220px;
+            position: relative;
+            z-index: 1;
+            text-align: center;
+        }
+
+        .contact i, .website i {
+            color: #FFD700;
+            margin-right: 10px;
+            width: 20px;
+            text-align: center;
+            font-size: 1.1rem;
+        }
+
+        .motto {
+            font-style: italic;
+            font-weight: 500;
+            font-size: 1.2rem;
+            color: #d0d8ff;
+            line-height: 1.6;
+            padding: 0 20px;
+        }
+
+        .website a {
+            color: #FFD700;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+        .website a:hover {
+            text-decoration: underline;
+            letter-spacing: 1px;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 1024px) {
+            .content-section {
+                padding: 40px 30px;
+                gap: 30px;
+            }
+            .gallery-grid {
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            }
+        }
+
+        @media (max-width: 768px) {
+            .content-section, .footer {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+
+            .event-title {
+                font-size: 2.5rem;
+                letter-spacing: 2px;
+            }
+
+            .event-date {
+                font-size: 1.4rem;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .principal-photo {
+                width: 150px;
+                height: 150px;
+            }
+
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer {
+                padding: 30px 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding: 10px;
+            }
+
+            .header-banner {
+                padding: 30px 20px;
+            }
+
+            .school-title {
+                font-size: 2rem;
+            }
+
+            .event-title {
+                font-size: 2rem;
+                padding: 10px 20px;
+                letter-spacing: 2px;
+            }
+
+            .event-date {
+                font-size: 1.2rem;
+                padding: 10px 20px;
+            }
+
+            .content-section {
+                padding: 30px 20px;
+                gap: 25px;
+            }
+
+            .section-title {
+                font-size: 1.6rem;
+            }
+
+            .smile-box {
+                padding: 25px 20px;
+            }
+
+            .smile-acronym {
+                font-size: 1.3rem;
+            }
+
+            .gallery-section {
+                padding: 30px 20px;
+            }
+
+            .gallery-title {
+                font-size: 1.8rem;
+            }
+
+            .footer {
+                padding: 25px 15px;
+                gap: 25px;
+            }
+
+            .motto {
+                font-size: 1.1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+
+        <!-- HEADER -->
+        <div class="header-banner">
+            <img src="https://i.ibb.co.com/xKfZBy7w/SMAN1-Cluring-emblem.png" alt="Logo SMA Negeri 1 Cluring" class="logo-school">
+            <h2 class="school-title">SMA NEGERI 1 CLURING</h2>
+            <p class="school-subtitle">Jl. H. Huzaini, Benculuk, Cluring, Banyuwangi, Jawa Timur</p>
+            <h1 class="event-title">Berinovasi Bersama<br>Penguatan Kompetensi Guru Dan Tenaga Kependidikan Di Era Kecerdasan Artificial</h1>
+            <div class="event-date">Jumat, 10 Oktober 2025</div>
+        </div>
+
+        <!-- MAIN CONTENT -->
+        <div class="content-section">
+            <div class="info-column">
+                <h2 class="section-title">Agenda & Informasi</h2>
+
+                <div class="agenda-card">
+                    <h3><i class="fas fa-chalkboard-teacher"></i> Sesi Utama</h3>
+                    <p>Berinovasi Bersama "Penguatan Kompetensi Guru Dan Tenaga Kependidikan Di Era Kecerdasan Artificial".</p>
+                </div>
+
+                <div class="agenda-card">
+                    <h3><i class="fas fa-bullseye"></i> Tujuan Kegiatan</h3>
+                    <p>Meningkatkan kapasitas profesional guru dan tenaga kependidikan dalam memanfaatkan kecerdasan buatan untuk menciptakan pembelajaran yang adaptif, inovatif, dan berorientasi masa depan.</p>
+                </div>
+
+                <div class="smile-box">
+                    <h4>🌟 Filosofi SMILE 🌟</h4>
+                    <div class="smile-acronym">S - M - I - L - E</div>
+                    <p class="smile-desc"><strong>S</strong>mart • <strong>M</strong>andiri • <strong>I</strong>novatif • <strong>L</strong>oyal • <strong>E</strong>fektif</p>
+                    <p class="smile-desc">Pendekatan pembelajaran yang membangun karakter mandiri, kreatif, dan berdaya saing tinggi.</p>
+                </div>
+            </div>
+
+            <div class="photo-column">
+                <h3 class="section-title">Narasumber Utama</h3>
+                <img src="https://i.ibb.co.com/Fk8ZFSbw/Helmi-S-Pd-M-Si.jpg" alt="Helmi, S.Pd., M.Si - Kepala Satuan Pendidikan" class="principal-photo">
+                <p class="principal-name">Helmi, S.Pd., M.Si</p>
+                <p class="principal-title">Kepala SMA Negeri 1 Cluring</p>
+                <div class="quote">
+                    “Pendidikan adalah investasi terbaik untuk masa depan generasi bangsa. Mari wujudkan bersama.”
+                </div>
+            </div>
+        </div>
+
+        <!-- PHOTO GALLERY -->
+        <div class="gallery-section">
+            <h2 class="gallery-title">Dokumentasi Kegiatan</h2>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <a href="https://ibb.co.com/xq1Ms64b" target="_blank">
+                        <img src="https://i.ibb.co.com/jkyL5DpY/coding4.jpg" alt="Sesi Penguatan AI - Coding Workshop">
+                    </a>
+                    <div class="gallery-caption">Sesi Penguatan AI - Coding Workshop</div>
+                </div>
+                <div class="gallery-item">
+                    <a href="https://ibb.co.com/hRdQdqM8" target="_blank">
+                        <img src="https://i.ibb.co.com/1fXyXSn2/coding3.jpg" alt="Diskusi Kolaboratif Era AI">
+                    </a>
+                    <div class="gallery-caption">Diskusi Kolaboratif Era AI</div>
+                </div>
+                <div class="gallery-item">
+                    <a href="https://ibb.co.com/hRdQdqM8" target="_blank">
+                        <img src="https://i.ibb.co.com/1fXyXSn2/coding3.jpg" alt="Praktik Langsung dengan AI Tools">
+                    </a>
+                    <div class="gallery-caption">Praktik Langsung dengan AI Tools</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- FOOTER -->
+        <div class="footer">
+            <div class="contact">
+                <p><i class="fas fa-phone"></i> 0852-3071-7917</p>
+                <p><i class="fas fa-envelope"></i> sman1cluring@school.ac.id</p>
+            </div>
+            <div class="motto">
+                “Mewujudkan Pendidikan Bermutu untuk Generasi Emas Indonesia”
+            </div>
+            <div class="website">
+                <p><i class="fas fa-globe"></i> <a href="http://www.sman1cluring.sch.id" target="_blank">www.sman1cluring.sch.id</a></p>
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>
