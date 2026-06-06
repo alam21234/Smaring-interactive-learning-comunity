@@ -250,7 +250,7 @@
         }
 
         .hero-content {
-            max-width: 900px;
+            max-width: 1000px;
             padding: 3rem 2rem;
             z-index: 10;
             position: relative;
@@ -272,17 +272,27 @@
             position: relative;
         }
 
+        /* ✨ UBAHAN SUBTITLE - FONT LEBIH BESAR & WARNA MENARIK */
         .hero-subtitle {
-            font-size: 1.3rem;
-            font-weight: 300;
-            margin-bottom: 2.8rem;
-            max-width: 700px;
+            font-size: 1.75rem; /* Diperbesar dari 1.3rem */
+            font-weight: 500; /* Diperbold dari 300 */
+            margin-bottom: 3rem;
+            max-width: 850px; /* Diperlebar */
             margin-left: auto;
             margin-right: auto;
-            letter-spacing: 0.8px;
-            opacity: 0.92;
+            letter-spacing: 0.5px;
             font-family: 'Inter', sans-serif;
-            line-height: 1.8;
+            line-height: 1.9;
+            
+            /* Gradient color yang lebih vibrant */
+            background: linear-gradient(135deg, #60a5fa 0%, #c084fc 50%, #f472b6 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            
+            /* Efek tambahan */
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+            animation: fadeInUp 1s ease-out 0.3s both;
         }
 
         .btn-hero {
@@ -602,12 +612,14 @@
         /* Responsive */
         @media (max-width: 992px) {
             .hero-title { font-size: 3.8rem; }
+            .hero-subtitle { font-size: 1.5rem; }
             .section-title { font-size: 2.5rem; }
             .principal-name { font-size: 1.8rem; }
         }
 
         @media (max-width: 768px) {
             .hero-title { font-size: 3rem; }
+            .hero-subtitle { font-size: 1.3rem; }
             .principal-content { padding: 3rem 2rem; }
             .principal-avatar { width: 160px; height: 160px; margin-top: -30px; }
             .section { padding: 80px 0; }
@@ -615,6 +627,7 @@
 
         @media (max-width: 576px) {
             .hero-title { font-size: 2.4rem; }
+            .hero-subtitle { font-size: 1.15rem; }
             .navbar-brand { font-size: 1.6rem; }
             .countdown { gap: 0.5rem; }
             .countdown-box { min-width: 60px; padding: 0.8rem; }
@@ -675,7 +688,7 @@
                     <p class="principal-contact"><i class="fas fa-phone-alt"></i> 0852-3071-7917</p>
                     <p class="principal-address"><i class="fas fa-map-marker-alt"></i> Jl. H. Huzaini, Benculuk, Cluring, Banyuwangi</p>
                     <blockquote class="principal-quote">
-                        “Pendidikan adalah proses memfasilitasi pembelajaran, pengetahuan, keterampilan, nilai, keyakinan, dan kebiasaan. Metode pembelajaran yang interaktif dan menyenangkan akan menciptakan generasi yang cerdas dan berkarakter.”
+                        "Pendidikan adalah proses memfasilitasi pembelajaran, pengetahuan, keterampilan, nilai, keyakinan, dan kebiasaan. Metode pembelajaran yang interaktif dan menyenangkan akan menciptakan generasi yang cerdas dan berkarakter."
                     </blockquote>
                 </div>
             </div>
