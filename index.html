@@ -9,7 +9,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            /* Light Mode */
             --primary: #4f46e5;
             --primary-dark: #4338ca;
             --secondary: #ec4899;
@@ -21,31 +20,21 @@
             --text-color: var(--dark);
             --card-bg: #ffffff;
             --section-bg: #f1f5f9;
-
-            /* Gradient & Shadow */
             --gradient-text: linear-gradient(120deg, var(--primary), var(--secondary));
-            --gradient-bg: linear-gradient(135deg, rgba(79, 70, 229, 0.1), rgba(236, 72, 153, 0.1));
             --shadow-sm: 0 2px 8px rgba(0,0,0,0.04);
             --shadow: 0 10px 30px rgba(0,0,0,0.06);
             --shadow-lg: 0 20px 50px rgba(0,0,0,0.08);
-
-            /* Transition & Radius */
-            --transition-fast: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
             --transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
             --border-radius: 24px;
             --border-radius-lg: 32px;
         }
 
-        /* Dark Mode */
         .dark-mode {
             --body-bg: #0f172a;
             --text-color: #e2e8f0;
             --card-bg: #1e293b;
             --section-bg: #1e293b;
             --gray: #94a3b8;
-            --shadow-sm: 0 2px 8px rgba(0,0,0,0.2);
-            --shadow: 0 10px 30px rgba(0,0,0,0.3);
-            --shadow-lg: 0 20px 50px rgba(0,0,0,0.4);
         }
 
         * {
@@ -61,148 +50,53 @@
             overflow-x: hidden;
             line-height: 1.7;
             scroll-behavior: smooth;
-            transition: background-color 0.5s ease;
-        }
-
-        h1, h2, h3, h4, h5, h6 {
-            color: var(--text-color);
-            transition: color 0.3s ease;
-        }
-
-        p, a, li, span {
-            color: var(--text-color);
-            transition: color 0.3s ease;
-        }
-
-        a {
-            text-decoration: none;
-        }
-
-        img {
-            max-width: 100%;
-            height: auto;
-        }
-
-        /* Floating Particles */
-        .particles-container {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: -1;
-            opacity: 0.7;
-        }
-
-        .particle {
-            position: absolute;
-            width: 3px;
-            height: 3px;
-            border-radius: 50%;
-            background: var(--primary);
-            opacity: 0.4;
-            animation: float 8s infinite ease-in-out;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0) translateX(0); opacity: 0.3; }
-            50% { transform: translateY(-20px) translateX(10px); opacity: 0.7; }
         }
 
         /* Navbar */
         .navbar {
-            background: rgba(255, 255, 255, 0.08);
+            background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border-bottom: 1px solid rgba(255,255,255,0.1);
             box-shadow: var(--shadow-sm);
-            padding: 1.2rem 0;
+            padding: 1rem 0;
             position: fixed;
             width: 100%;
             z-index: 1000;
-            transition: var(--transition-fast);
-            border-radius: 0 0 var(--border-radius) var(--border-radius);
-            border: 1px solid rgba(255,255,255,0.1);
+            transition: var(--transition);
         }
 
         .dark-mode .navbar {
-            background: rgba(15, 23, 42, 0.8);
-            border-bottom: 1px solid rgba(255,255,255,0.05);
+            background: rgba(15, 23, 42, 0.95);
         }
 
         .navbar-brand {
             font-family: 'Playfair Display', serif;
             font-weight: 800;
-            font-size: 1.9rem;
+            font-size: 1.6rem;
             background: var(--gradient-text);
             -webkit-background-clip: text;
             background-clip: text;
             -webkit-text-fill-color: transparent;
-            letter-spacing: -0.8px;
-            position: relative;
         }
 
         .navbar-brand img {
-            height: 48px;
-            margin-right: 10px;
-            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
-            transition: var(--transition-fast);
-        }
-
-        .dark-mode .navbar-brand img {
-            filter: brightness(1.2);
+            height: 42px;
+            margin-right: 8px;
         }
 
         .nav-link {
             font-weight: 600;
             color: var(--text-color);
-            margin: 0 0.8rem;
-            position: relative;
-            transition: var(--transition-fast);
-            font-size: 0.95rem;
+            margin: 0 0.6rem;
+            font-size: 0.9rem;
         }
 
         .nav-link:hover {
             color: var(--primary);
         }
 
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--gradient-text);
-            transition: var(--transition);
-            border-radius: 2px;
-        }
-
-        .nav-link:hover::after {
-            width: 100%;
-        }
-
-        /* Dark Mode Toggle */
-        .dark-mode-toggle {
-            background: none;
-            border: none;
-            font-size: 1.3rem;
-            color: var(--text-color);
-            cursor: pointer;
-            margin-left: 1.5rem;
-            transition: var(--transition);
-            padding: 0.5rem;
-            border-radius: 50%;
-        }
-
-        .dark-mode-toggle:hover {
-            background: rgba(255,255,255,0.1);
-        }
-
-        /* Hero Section */
+        /* Hero Section - RESPONSIF */
         .hero-section {
-            height: 100vh;
+            min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -210,7 +104,7 @@
             overflow: hidden;
             color: white;
             text-align: center;
-            padding: 0 2rem;
+            padding: 100px 20px 60px;
         }
 
         .video-background {
@@ -220,7 +114,6 @@
             width: 100%;
             height: 100%;
             z-index: -2;
-            overflow: hidden;
         }
 
         .video-background::before {
@@ -230,421 +123,393 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(15, 23, 42, 0.6);
+            background: rgba(15, 23, 42, 0.7);
             z-index: -1;
         }
 
-        .dark-mode .video-background::before {
-            background: rgba(15, 23, 42, 0.8);
-        }
-
         .video-background iframe {
-            min-width: 100%;
-            min-height: 100%;
-            width: auto;
-            height: auto;
             position: absolute;
             top: 50%;
             left: 50%;
+            min-width: 100%;
+            min-height: 100%;
             transform: translate(-50%, -50%);
         }
 
         .hero-content {
-            max-width: 1000px;
-            padding: 3rem 2rem;
+            max-width: 900px;
+            width: 100%;
             z-index: 10;
-            position: relative;
+            padding: 2rem;
         }
 
+        /* FONT RESPONSIF - Tidak terlalu besar */
         .hero-title {
             font-family: 'Playfair Display', serif;
-            font-size: 4.8rem;
-            font-weight: 900;
-            margin-bottom: 1.5rem;
-            background: linear-gradient(120deg, #ffffff, #e2e8f0);
+            font-size: clamp(2rem, 5vw, 3.5rem); /* Responsif */
+            font-weight: 800;
+            margin-bottom: 1.2rem;
+            line-height: 1.2;
+            background: linear-gradient(120deg, #ffffff, #e0e7ff);
             -webkit-background-clip: text;
             background-clip: text;
             -webkit-text-fill-color: transparent;
-            letter-spacing: -1.5px;
-            line-height: 1.1;
-            text-shadow: 0 4px 20px rgba(0,0,0,0.2);
-            animation: floatTitle 4s ease-in-out infinite;
-            position: relative;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
         }
 
-        /* ✨ UBAHAN SUBTITLE - FONT LEBIH BESAR & WARNA MENARIK */
         .hero-subtitle {
-            font-size: 1.75rem; /* Diperbesar dari 1.3rem */
-            font-weight: 500; /* Diperbold dari 300 */
-            margin-bottom: 3rem;
-            max-width: 850px; /* Diperlebar */
-            margin-left: auto;
-            margin-right: auto;
-            letter-spacing: 0.5px;
-            font-family: 'Inter', sans-serif;
-            line-height: 1.9;
-            
-            /* Gradient color yang lebih vibrant */
-            background: linear-gradient(135deg, #60a5fa 0%, #c084fc 50%, #f472b6 100%);
+            font-size: clamp(1rem, 2.5vw, 1.35rem); /* Responsif */
+            font-weight: 400;
+            margin-bottom: 2.5rem;
+            line-height: 1.7;
+            opacity: 0.95;
+            background: linear-gradient(135deg, #93c5fd 0%, #c4b5fd 50%, #f9a8d4 100%);
             -webkit-background-clip: text;
             background-clip: text;
             -webkit-text-fill-color: transparent;
-            
-            /* Efek tambahan */
-            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
-            animation: fadeInUp 1s ease-out 0.3s both;
         }
 
         .btn-hero {
-            background: var(--gradient-text);
-            border: none;
-            padding: 1.1rem 3rem;
-            border-radius: 50px;
-            color: white;
-            font-weight: 700;
-            font-size: 1.15rem;
-            letter-spacing: 1.2px;
-            box-shadow: 0 10px 30px rgba(79, 70, 229, 0.3);
-            transition: var(--transition);
-            position: relative;
-            overflow: hidden;
-            z-index: 1;
-            text-transform: uppercase;
-            font-family: 'Inter', sans-serif;
-        }
-
-        /* Section Styling */
-        .section {
-            padding: 120px 0;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .section-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 3rem;
-            font-weight: 900;
-            text-align: center;
-            margin-bottom: 4rem;
-            position: relative;
-            display: inline-block;
-            background: var(--gradient-text);
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-            letter-spacing: -1.2px;
-        }
-
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: -18px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 100px;
-            height: 4px;
-            background: var(--gradient-text);
-            border-radius: 2px;
-        }
-
-        /* ✨ REDESAIN PROFIL KEPALA SEKOLAH — GRADIENT INTERAKTIF & RESPONSIF */
-        .principal-section {
-            background: var(--card-bg);
-            border-radius: var(--border-radius-lg);
-            overflow: hidden;
-            box-shadow: var(--shadow-lg);
-            margin: 60px 0;
-            transition: var(--transition);
-            transform: translateY(0);
-            position: relative;
-            overflow: visible;
-            border: 1px solid rgba(255,255,255,0.1);
-        }
-
-        /* Gradient responsif & interaktif */
-        .principal-gradient {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            opacity: 0.05;
-            z-index: 0;
-            transition: opacity 0.5s ease, transform 0.5s ease;
-            pointer-events: none;
-        }
-
-        .principal-section:hover .principal-gradient {
-            opacity: 0.12;
-            transform: scale(1.05);
-        }
-
-        .principal-content {
-            position: relative;
-            z-index: 2;
-            padding: 4rem 3rem 3rem;
-            text-align: center;
-        }
-
-        .principal-avatar {
-            width: 200px;
-            height: 200px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 6px solid var(--card-bg);
-            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
-            transition: var(--transition);
-            position: relative;
-            margin: -40px auto 0;
-            z-index: 3;
-        }
-
-        .principal-name {
-            font-family: 'Playfair Display', serif;
-            font-size: 2.2rem;
-            font-weight: 800;
-            margin-bottom: 0.5rem;
-            background: var(--gradient-text);
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-            letter-spacing: -0.5px;
-        }
-
-        .principal-position {
-            font-weight: 600;
-            color: var(--secondary);
-            font-size: 1.2rem;
-            margin-bottom: 1.8rem;
-        }
-
-        .principal-contact, .principal-address {
-            margin-bottom: 1rem;
-            font-size: 1rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-        }
-
-        .principal-quote {
-            font-family: 'Playfair Display', serif;
-            font-style: italic;
-            font-size: 1.3rem;
-            margin-top: 2.5rem;
-            padding: 2.5rem;
-            background: rgba(255,255,255,0.05);
-            border-radius: 20px;
-            position: relative;
-            border-left: 4px solid var(--accent);
-            box-shadow: var(--shadow-sm);
-            line-height: 1.8;
-        }
-
-        /* About Section */
-        .about-section {
-            background: var(--section-bg);
-            border-radius: var(--border-radius-lg);
-            padding: 3rem;
-            box-shadow: var(--shadow);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .coordination-img {
-            border-radius: var(--border-radius);
-            box-shadow: var(--shadow-lg);
-            transition: var(--transition);
-            width: 100%;
-            height: auto;
-            max-height: 550px;
-            object-fit: cover;
-            border: 3px solid rgba(255,255,255,0.1);
-        }
-
-        /* Agenda Cards */
-        .agenda-card {
-            background: var(--card-bg);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(255,255,255,0.1);
-            border-radius: 28px;
-            overflow: hidden;
-            transition: var(--transition);
-            height: 100%;
-            position: relative;
-            cursor: pointer;
-            box-shadow: var(--shadow);
-        }
-
-        .agenda-card:hover {
-            transform: translateY(-16px) scale(1.03);
-            box-shadow: var(--shadow-lg);
-            border-color: rgba(79,70,229,0.4);
-        }
-
-        .card-body {
-            padding: 2rem;
-            position: relative;
-            z-index: 1;
-        }
-
-        /* Countdown Timer */
-        .countdown-container {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            border-radius: 20px;
-            padding: 2rem;
-            text-align: center;
-            margin: 3rem 0;
-            box-shadow: var(--shadow-lg);
-            color: white;
-        }
-
-        .countdown-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.8rem;
-            font-weight: 700;
-            margin-bottom: 1.5rem;
-        }
-
-        .countdown {
-            display: flex;
-            justify-content: center;
-            gap: 1.5rem;
-            flex-wrap: wrap;
-        }
-
-        .countdown-box {
-            background: rgba(255,255,255,0.2);
-            padding: 1.2rem;
-            border-radius: 15px;
-            min-width: 80px;
-        }
-
-        .countdown-number {
-            font-size: 2.5rem;
-            font-weight: 800;
-            font-family: 'Playfair Display', serif;
-        }
-
-        .countdown-label {
-            font-size: 0.9rem;
-            opacity: 0.9;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        /* Contact Form */
-        .contact-section {
-            background: var(--section-bg);
-            border-radius: var(--border-radius-lg);
-            padding: 4rem 3rem;
-            box-shadow: var(--shadow);
-        }
-
-        .form-control {
-            background: rgba(255,255,255,0.08);
-            border: 1px solid rgba(255,255,255,0.2);
-            color: var(--text-color);
-            border-radius: 12px;
-            padding: 1rem;
-            font-family: 'Inter', sans-serif;
-            transition: var(--transition);
-        }
-
-        .form-control:focus {
-            background: rgba(255,255,255,0.12);
-            border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(79,70,229,0.2);
-        }
-
-        .btn-submit {
             background: var(--gradient-text);
             border: none;
             padding: 1rem 2.5rem;
             border-radius: 50px;
             color: white;
             font-weight: 600;
-            font-size: 1.1rem;
+            font-size: 1rem;
+            box-shadow: 0 8px 25px rgba(79, 70, 229, 0.4);
             transition: var(--transition);
-            text-transform: uppercase;
-            letter-spacing: 1px;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
         }
 
-        .btn-submit:hover {
+        .btn-hero:hover {
             transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(79,70,229,0.4);
+            box-shadow: 0 12px 35px rgba(79, 70, 229, 0.5);
+            color: white;
+        }
+
+        /* Section Styling */
+        .section {
+            padding: 80px 0;
+            position: relative;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            font-weight: 800;
+            text-align: center;
+            margin-bottom: 3rem;
+            background: var(--gradient-text);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Principal Section */
+        .principal-section {
+            background: var(--card-bg);
+            border-radius: var(--border-radius-lg);
+            padding: 3rem 2rem;
+            box-shadow: var(--shadow-lg);
+            margin: 40px auto;
+            max-width: 900px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .principal-avatar {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid var(--card-bg);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            margin-bottom: 1.5rem;
+        }
+
+        .principal-name {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.5rem, 3vw, 2rem);
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            background: var(--gradient-text);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .principal-position {
+            color: var(--secondary);
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+        }
+
+        .principal-quote {
+            font-style: italic;
+            padding: 1.5rem;
+            background: var(--section-bg);
+            border-radius: 15px;
+            margin-top: 2rem;
+            font-size: 0.95rem;
+            line-height: 1.8;
+        }
+
+        /* About Section */
+        .about-section {
+            background: var(--section-bg);
+            border-radius: var(--border-radius);
+            padding: 2.5rem;
+            box-shadow: var(--shadow);
+        }
+
+        .coordination-img {
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-lg);
+            width: 100%;
+            height: auto;
+        }
+
+        /* Agenda Cards */
+        .agenda-card {
+            background: var(--card-bg);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: var(--transition);
+            height: 100%;
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .agenda-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .agenda-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .card-body {
+            padding: 1.5rem;
+        }
+
+        .card-title {
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        /* Countdown */
+        .countdown-container {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 20px;
+            padding: 2.5rem 2rem;
+            text-align: center;
+            color: white;
+            margin: 3rem 0;
+        }
+
+        .countdown-title {
+            font-size: clamp(1.2rem, 3vw, 1.6rem);
+            margin-bottom: 2rem;
+            font-weight: 700;
+        }
+
+        .countdown {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .countdown-box {
+            background: rgba(255,255,255,0.2);
+            padding: 1rem;
+            border-radius: 12px;
+            min-width: 70px;
+        }
+
+        .countdown-number {
+            font-size: 2rem;
+            font-weight: 800;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .countdown-label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+        }
+
+        /* Contact Form */
+        .contact-section {
+            background: var(--section-bg);
+            border-radius: var(--border-radius-lg);
+            padding: 3rem 2rem;
+            box-shadow: var(--shadow);
+        }
+
+        .form-control {
+            background: rgba(255,255,255,0.9);
+            border: 1px solid rgba(0,0,0,0.1);
+            padding: 0.9rem;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+        }
+
+        .btn-submit {
+            background: var(--gradient-text);
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            color: white;
+            font-weight: 600;
+            width: 100%;
         }
 
         /* Footer */
         .footer {
             background: var(--dark);
             color: #cbd5e1;
-            padding: 100px 0 50px;
-            position: relative;
-            overflow: hidden;
+            padding: 60px 0 30px;
         }
 
-        .dark-mode .footer {
-            background: #020617;
+        .footer-title {
+            color: white;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
         }
 
-        /* Animations */
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(50px); }
-            to { opacity: 1; transform: translateY(0); }
+        .footer a {
+            color: #cbd5e1;
+            text-decoration: none;
+            transition: color 0.3s;
         }
 
-        .animate-in {
-            opacity: 0;
-            transition: opacity 0.6s ease-out, transform 0.8s ease-out;
+        .footer a:hover {
+            color: var(--primary);
         }
 
-        .animate-in.visible {
-            animation: fadeInUp 1s ease-out forwards;
-        }
-
-        @keyframes floatTitle {
-            0%, 100% { transform: translateY(0) rotate(0deg); }
-            50% { transform: translateY(-15px) rotate(0.5deg); }
-        }
-
-        /* Responsive */
-        @media (max-width: 992px) {
-            .hero-title { font-size: 3.8rem; }
-            .hero-subtitle { font-size: 1.5rem; }
-            .section-title { font-size: 2.5rem; }
-            .principal-name { font-size: 1.8rem; }
-        }
-
+        /* Responsive Breakpoints */
         @media (max-width: 768px) {
-            .hero-title { font-size: 3rem; }
-            .hero-subtitle { font-size: 1.3rem; }
-            .principal-content { padding: 3rem 2rem; }
-            .principal-avatar { width: 160px; height: 160px; margin-top: -30px; }
-            .section { padding: 80px 0; }
+            .hero-section {
+                padding: 120px 15px 60px;
+            }
+
+            .hero-content {
+                padding: 1.5rem 1rem;
+            }
+
+            .section {
+                padding: 60px 0;
+            }
+
+            .principal-section {
+                padding: 2rem 1.5rem;
+                margin: 30px 15px;
+            }
+
+            .about-section {
+                padding: 2rem 1.5rem;
+            }
+
+            .countdown-box {
+                min-width: 60px;
+                padding: 0.8rem 0.5rem;
+            }
+
+            .countdown-number {
+                font-size: 1.5rem;
+            }
+
+            .navbar-brand {
+                font-size: 1.4rem;
+            }
+
+            .navbar-brand img {
+                height: 36px;
+            }
         }
 
         @media (max-width: 576px) {
-            .hero-title { font-size: 2.4rem; }
-            .hero-subtitle { font-size: 1.15rem; }
-            .navbar-brand { font-size: 1.6rem; }
-            .countdown { gap: 0.5rem; }
-            .countdown-box { min-width: 60px; padding: 0.8rem; }
-            .countdown-number { font-size: 1.8rem; }
+            .hero-title {
+                font-size: 1.8rem;
+                line-height: 1.3;
+            }
+
+            .hero-subtitle {
+                font-size: 1rem;
+                line-height: 1.6;
+            }
+
+            .btn-hero {
+                padding: 0.9rem 2rem;
+                font-size: 0.95rem;
+            }
+
+            .section-title {
+                font-size: 1.6rem;
+            }
+
+            .principal-avatar {
+                width: 120px;
+                height: 120px;
+            }
+
+            .countdown {
+                gap: 0.5rem;
+            }
+
+            .countdown-box {
+                min-width: 55px;
+                padding: 0.7rem 0.4rem;
+            }
+
+            .countdown-number {
+                font-size: 1.3rem;
+            }
+
+            .countdown-label {
+                font-size: 0.65rem;
+            }
+        }
+
+        @media (max-width: 375px) {
+            .hero-title {
+                font-size: 1.6rem;
+            }
+
+            .hero-subtitle {
+                font-size: 0.95rem;
+            }
+        }
+
+        /* Animations */
+        .animate-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        .animate-in.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
     </style>
 </head>
 <body id="smile-body">
 
-    <!-- Particles -->
-    <div class="particles-container" id="particles"></div>
-
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg">
         <div class="container">
             <a class="navbar-brand d-flex align-items-center" href="#">
-                <img src="https://i.ibb.co.com/xKfZBy7w/SMAN1-Cluring-emblem.png" alt="Logo SMILE">
+                <img src="https://i.ibb.co.com/xKfZBy7w/SMAN1-Cluring-emblem.png" alt="Logo">
                 SMILE
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
@@ -657,68 +522,64 @@
                     <li class="nav-item"><a class="nav-link" href="#agenda">Agenda</a></li>
                     <li class="nav-item"><a class="nav-link" href="#contact">Kontak</a></li>
                 </ul>
-                <button class="dark-mode-toggle" id="darkModeToggle">
+                <button class="btn btn-link nav-link" id="darkModeToggle">
                     <i class="fas fa-moon"></i>
                 </button>
             </div>
         </div>
     </nav>
 
-    <!-- Hero -->
+    <!-- Hero Section -->
     <section class="hero-section">
         <div class="video-background">
-            <iframe src="https://www.youtube.com/embed/5ZgkVKZuFiM?autoplay=1&mute=1&loop=1&playlist=5ZgkVKZuFiM&controls=0&modestbranding=1&rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+            <iframe src="https://www.youtube.com/embed/5ZgkVKZuFiM?autoplay=1&mute=1&loop=1&playlist=5ZgkVKZuFiM&controls=0&modestbranding=1&rel=0" frameborder="0" allowfullscreen></iframe>
         </div>
         <div class="hero-content">
             <h1 class="hero-title">Smaring Interactive Learning Community</h1>
             <p class="hero-subtitle">Wadah kolaborasi dan inovasi untuk proses belajar mengajar yang interaktif, imersif, dan menyenangkan — dirancang untuk generasi masa depan.</p>
-            <a href="#agenda" class="btn btn-hero">Jelajahi Kegiatan <i class="fas fa-arrow-down ms-2"></i></a>
+            <a href="#agenda" class="btn btn-hero">Jelajahi Kegiatan <i class="fas fa-arrow-down"></i></a>
         </div>
     </section>
 
-    <!-- Kepala Sekolah — Gradient Interaktif & Responsif -->
+    <!-- Kepala Sekolah -->
     <section class="section">
         <div class="container">
             <div class="principal-section animate-in">
-                <div class="principal-gradient"></div>
-                <div class="principal-content">
-                    <img src="https://i.ibb.co.com/Fk8ZFSbw/Helmi-S-Pd-M-Si.jpg" alt="Helmi, S.Pd., M.Si" class="principal-avatar">
-                    <h3 class="principal-name">Helmi, S.Pd., M.Si</h3>
-                    <p class="principal-position">Kepala SMAN 1 Cluring</p>
-                    <p class="principal-contact"><i class="fas fa-phone-alt"></i> 0852-3071-7917</p>
-                    <p class="principal-address"><i class="fas fa-map-marker-alt"></i> Jl. H. Huzaini, Benculuk, Cluring, Banyuwangi</p>
-                    <blockquote class="principal-quote">
-                        "Pendidikan adalah proses memfasilitasi pembelajaran, pengetahuan, keterampilan, nilai, keyakinan, dan kebiasaan. Metode pembelajaran yang interaktif dan menyenangkan akan menciptakan generasi yang cerdas dan berkarakter."
-                    </blockquote>
-                </div>
+                <img src="https://i.ibb.co.com/Fk8ZFSbw/Helmi-S-Pd-M-Si.jpg" alt="Helmi" class="principal-avatar">
+                <h3 class="principal-name">Helmi, S.Pd., M.Si</h3>
+                <p class="principal-position">Kepala SMAN 1 Cluring</p>
+                <p><i class="fas fa-phone-alt"></i> 0852-3071-7917</p>
+                <p><i class="fas fa-map-marker-alt"></i> Jl. H. Huzaini, Benculuk, Cluring, Banyuwangi</p>
+                <blockquote class="principal-quote">
+                    "Pendidikan adalah proses memfasilitasi pembelajaran yang interaktif dan menyenangkan untuk menciptakan generasi cerdas dan berkarakter."
+                </blockquote>
             </div>
         </div>
     </section>
 
-    <!-- Tentang SMILE -->
+    <!-- Tentang -->
     <section class="section" id="about">
         <div class="container">
             <h2 class="section-title">Tentang SMILE</h2>
-            <div class="row align-items-center g-5">
+            <div class="row align-items-center g-4">
                 <div class="col-lg-5">
-                    <img src="https://i.ibb.co.com/8DPfM63d/kordinasi.jpg" alt="Kegiatan Koordinasi SMILE" class="img-fluid coordination-img animate-in">
+                    <img src="https://i.ibb.co.com/8DPfM63d/kordinasi.jpg" alt="Koordinasi" class="img-fluid coordination-img animate-in">
                 </div>
                 <div class="col-lg-7">
                     <div class="about-section animate-in">
-                        <p class="lead">SMILE (Smaring Interactive Learning Community) adalah komunitas belajar inovatif yang dirancang untuk menciptakan ekosistem pembelajaran kolaboratif, interaktif, dan menyenangkan bagi seluruh siswa.</p>
-                        <p>Kami percaya bahwa pendidikan masa depan harus membebaskan kreativitas, mendorong eksplorasi, dan membangun karakter melalui pengalaman belajar yang bermakna — bukan hanya transfer informasi.</p>
-                        <p>Bergabunglah dengan kami, dan jadilah bagian dari gerakan pendidikan yang menginspirasi, membebaskan, dan mentransformasi.</p>
+                        <p class="lead">SMILE adalah komunitas belajar inovatif untuk menciptakan ekosistem pembelajaran kolaboratif dan menyenangkan.</p>
+                        <p>Kami percaya pendidikan masa depan harus membebaskan kreativitas dan membangun karakter melalui pengalaman belajar yang bermakna.</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Countdown Timer -->
-    <section class="section bg-transparent">
+    <!-- Countdown -->
+    <section class="section">
         <div class="container">
             <div class="countdown-container animate-in">
-                <h3 class="countdown-title">Segera Hadir: Penguatan Kompetensi GTK Di Era Kecerdasan Artificial</h3>
+                <h3 class="countdown-title">Segera Hadir: Penguatan Kompetensi GTK Di Era AI</h3>
                 <div class="countdown" id="countdown-timer">
                     <div class="countdown-box">
                         <div class="countdown-number" id="days">00</div>
@@ -748,50 +609,41 @@
             <div class="row g-4">
                 <div class="col-md-6 col-lg-3">
                     <div class="card agenda-card animate-in">
-                        <a href="https://ibb.co.com/S4k0RZ3G" target="_blank">
-                            <img src="https://i.ibb.co.com/S4k0RZ3G/Penyampaian-materi-SNP-oleh-kepala-satuan-pendidikan2.jpg" class="card-img-top" alt="Penyampaian materi SNP oleh kepala satuan pendidikan" style="height: 240px; object-fit: cover;">
-                        </a>
+                        <img src="https://i.ibb.co.com/S4k0RZ3G/Penyampaian-materi-SNP-oleh-kepala-satuan-pendidikan2.jpg" class="card-img-top" alt="SNP">
                         <div class="card-body">
                             <h5 class="card-title">Implementasi SNP 2025</h5>
-                            <span class="text-secondary">Jumat, 19 September 2025</span>
-                            <p class="mt-2">Acuan strategis peningkatan mutu satuan pendidikan jenjang SMA Tahun 2025.</p>
-                            <a href="snp.html" class="btn btn-primary mt-3">Detail</a>
+                            <p class="text-muted small">19 September 2025</p>
+                            <p class="small">Peningkatan mutu satuan pendidikan SMA.</p>
                         </div>
                     </div>
                 </div>
-                <!-- ✅ FOTO WORKSHOP DIGANTI SESUAI PERMINTAAN -->
                 <div class="col-md-6 col-lg-3">
                     <div class="card agenda-card animate-in">
-                        <a href="https://ibb.co.com/BHzSZ1PX" target="_blank">
-                            <img src="https://i.ibb.co.com/j961Mp5c/coding1.jpg" class="card-img-top" alt="Workshop Kreativitas" style="height: 240px; object-fit: cover;">
-                        </a>
+                        <img src="https://i.ibb.co.com/j961Mp5c/coding1.jpg" class="card-img-top" alt="AI">
                         <div class="card-body">
-                            <h5 class="card-title">Berinovasi Bersama</h5>
-                            <span class="text-secondary">Jumat, 10 Oktober 2025</span>
-                            <p class="mt-2">Penguatan Kompetensi Guru Dan Tenaga Kependidikan Di Era Kecerdasan Artificial.</p>
-                            <a href="penguatan-ai.html" class="btn btn-primary mt-3">Detail</a>
+                            <h5 class="card-title">Berinovasi Bersama AI</h5>
+                            <p class="text-muted small">10 Oktober 2025</p>
+                            <p class="small">Kompetensi GTK di era kecerdasan artificial.</p>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-6 col-lg-3">
                     <div class="card agenda-card animate-in">
-                        <img src="https://images.unsplash.com/photo-1546410531-bb4caa6b424d?auto=format&fit=crop&q=80" class="card-img-top" alt="Presentasi Projek" style="height: 240px; object-fit: cover;">
+                        <img src="https://images.unsplash.com/photo-1546410531-bb4caa6b424d?w=400" class="card-img-top" alt="Projek">
                         <div class="card-body">
-                            <h5 class="card-title">Presentasi Projek Siswa</h5>
-                            <span class="text-secondary">Senin, 30 September 2025</span>
-                            <p class="mt-2">Pentas karya inovatif siswa sebagai wujud implementasi pembelajaran.</p>
-                            <a href="#" class="btn btn-primary mt-3">Detail</a>
+                            <h5 class="card-title">Presentasi Projek</h5>
+                            <p class="text-muted small">30 September 2025</p>
+                            <p class="small">Pentas karya inovatif siswa.</p>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-6 col-lg-3">
                     <div class="card agenda-card animate-in">
-                        <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&q=80" class="card-img-top" alt="Seminar Pendidikan" style="height: 240px; object-fit: cover;">
+                        <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=400" class="card-img-top" alt="Seminar">
                         <div class="card-body">
                             <h5 class="card-title">Seminar Pendidikan</h5>
-                            <span class="text-secondary">Jumat, 10 Oktober 2025</span>
-                            <p class="mt-2">Dialog inspiratif bersama pakar pendidikan nasional.</p>
-                            <a href="#" class="btn btn-primary mt-3">Detail</a>
+                            <p class="text-muted small">10 Oktober 2025</p>
+                            <p class="small">Dialog dengan pakar pendidikan.</p>
                         </div>
                     </div>
                 </div>
@@ -799,27 +651,19 @@
         </div>
     </section>
 
-    <!-- Form Kontak -->
+    <!-- Kontak -->
     <section id="contact" class="section">
         <div class="container">
-            <h2 class="section-title text-center mb-5">Hubungi Kami</h2>
+            <h2 class="section-title">Hubungi Kami</h2>
             <div class="row justify-content-center">
                 <div class="col-lg-8">
                     <div class="contact-section animate-in">
                         <form id="contactForm">
-                            <div class="mb-4">
-                                <input type="text" class="form-control" placeholder="Nama Lengkap" required>
-                            </div>
-                            <div class="mb-4">
-                                <input type="email" class="form-control" placeholder="Email" required>
-                            </div>
-                            <div class="mb-4">
-                                <input type="tel" class="form-control" placeholder="Nomor Telepon (Opsional)">
-                            </div>
-                            <div class="mb-4">
-                                <textarea class="form-control" rows="5" placeholder="Pesan Anda" required></textarea>
-                            </div>
-                            <button type="submit" class="btn btn-submit w-100">Kirim Pesan</button>
+                            <input type="text" class="form-control" placeholder="Nama Lengkap" required>
+                            <input type="email" class="form-control" placeholder="Email" required>
+                            <input type="tel" class="form-control" placeholder="Telepon (Opsional)">
+                            <textarea class="form-control" rows="4" placeholder="Pesan Anda" required></textarea>
+                            <button type="submit" class="btn btn-submit">Kirim Pesan</button>
                         </form>
                     </div>
                 </div>
@@ -831,132 +675,71 @@
     <footer class="footer">
         <div class="container">
             <div class="row">
-                <div class="col-md-4 mb-5">
+                <div class="col-md-4 mb-4">
                     <h5 class="footer-title">Tentang SMILE</h5>
-                    <p>Smaring Interactive Learning Community adalah wadah kolaborasi dan inovasi untuk proses belajar mengajar yang interaktif, imersif, dan manusiawi.</p>
-                    <div class="social-icons d-flex gap-3 mt-3">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-tiktok"></i></a>
-                        <a href="#"><i class="fab fa-youtube"></i></a>
-                        <a href="#"><i class="fab fa-discord"></i></a>
-                    </div>
+                    <p class="small">Wadah kolaborasi untuk pembelajaran yang interaktif dan menyenangkan.</p>
                 </div>
-                <div class="col-md-4 mb-5">
+                <div class="col-md-4 mb-4">
                     <h5 class="footer-title">Navigasi</h5>
-                    <ul class="list-unstyled">
-                        <li class="mb-2"><a href="#"><i class="fas fa-home me-2"></i> Beranda</a></li>
-                        <li class="mb-2"><a href="#about"><i class="fas fa-book me-2"></i> Tentang</a></li>
-                        <li class="mb-2"><a href="#agenda"><i class="fas fa-calendar me-2"></i> Agenda</a></li>
-                        <li class="mb-2"><a href="#contact"><i class="fas fa-envelope me-2"></i> Kontak</a></li>
+                    <ul class="list-unstyled small">
+                        <li><a href="#">Beranda</a></li>
+                        <li><a href="#about">Tentang</a></li>
+                        <li><a href="#agenda">Agenda</a></li>
                     </ul>
                 </div>
-                <div class="col-md-4 mb-5">
-                    <h5 class="footer-title">Link Penting</h5>
-                    <ul class="list-unstyled">
-                        <li class="mb-2"><a href="https://quran.nu.or.id/" target="_blank"><i class="fas fa-book-quran me-2"></i> Al-Qur'an NU</a></li>
-                        <li class="mb-2"><a href="https://sma.kemendikdasmen.go.id/" target="_blank"><i class="fas fa-school me-2"></i> Kemendikbud</a></li>
-                        <li class="mb-2"><a href="https://dindik.jatimprov.go.id/" target="_blank"><i class="fas fa-graduation-cap me-2"></i> Dindik Jatim</a></li>
-                    </ul>
+                <div class="col-md-4 mb-4">
+                    <h5 class="footer-title">Kontak</h5>
+                    <p class="small"><i class="fas fa-phone"></i> 0852-3071-7917</p>
+                    <p class="small"><i class="fas fa-map-marker-alt"></i> Banyuwangi, Jatim</p>
                 </div>
             </div>
-            <div class="text-center mt-5 pt-4 border-top border-secondary">
-                <p class="text-muted mb-0">© 2025 SMILE — Smaring Interactive Learning Community. All rights reserved.</p>
+            <div class="text-center mt-4 pt-3 border-top border-secondary">
+                <p class="small mb-0">© 2025 SMILE. All rights reserved.</p>
             </div>
         </div>
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-        // Dark Mode Toggle
+        // Dark Mode
         const darkModeToggle = document.getElementById('darkModeToggle');
-        const body = document.getElementById('smile-body');
-        const html = document.getElementById('smile-html');
-
-        // Cek preferensi pengguna
-        if (localStorage.getItem('darkMode') === 'enabled') {
-            body.classList.add('dark-mode');
-            html.setAttribute('data-bs-theme', 'dark');
-            darkModeToggle.innerHTML = '<i class="fas fa-sun"></i>';
-        }
-
+        const body = document.body;
+        
         darkModeToggle.addEventListener('click', () => {
             body.classList.toggle('dark-mode');
-            if (body.classList.contains('dark-mode')) {
-                html.setAttribute('data-bs-theme', 'dark');
-                darkModeToggle.innerHTML = '<i class="fas fa-sun"></i>';
-                localStorage.setItem('darkMode', 'enabled');
-            } else {
-                html.removeAttribute('data-bs-theme');
-                darkModeToggle.innerHTML = '<i class="fas fa-moon"></i>';
-                localStorage.setItem('darkMode', 'disabled');
-            }
+            const icon = body.classList.contains('dark-mode') ? 'fa-sun' : 'fa-moon';
+            darkModeToggle.innerHTML = `<i class="fas ${icon}"></i>`;
         });
 
-        // Particles
-        document.addEventListener('DOMContentLoaded', function() {
-            const particlesContainer = document.getElementById('particles');
-            for (let i = 0; i < 30; i++) {
-                const particle = document.createElement('div');
-                particle.classList.add('particle');
-                particle.style.top = Math.random() * 100 + '%';
-                particle.style.left = Math.random() * 100 + '%';
-                particle.style.animationDelay = Math.random() * 5 + 's';
-                particlesContainer.appendChild(particle);
-            }
-
-            // Navbar scroll
-            window.addEventListener('scroll', function() {
-                const navbar = document.querySelector('.navbar');
-                if (window.scrollY > 50) {
-                    navbar.classList.add('scrolled');
-                } else {
-                    navbar.classList.remove('scrolled');
+        // Scroll Animation
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
                 }
             });
+        });
 
-            // Intersection Observer
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('visible');
-                    }
-                });
-            }, { threshold: 0.15 });
+        document.querySelectorAll('.animate-in').forEach(el => observer.observe(el));
 
-            document.querySelectorAll('.animate-in').forEach(el => observer.observe(el));
+        // Countdown
+        const countdownDate = new Date("Sep 19, 2025 00:00:00").getTime();
+        
+        setInterval(() => {
+            const now = new Date().getTime();
+            const distance = countdownDate - now;
+            
+            document.getElementById("days").innerHTML = Math.floor(distance / (1000 * 60 * 60 * 24));
+            document.getElementById("hours").innerHTML = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            document.getElementById("minutes").innerHTML = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            document.getElementById("seconds").innerHTML = Math.floor((distance % (1000 * 60)) / 1000);
+        }, 1000);
 
-            // Countdown Timer (Menuju 19 September 2025)
-            const countdownDate = new Date("Sep 19, 2025 00:00:00").getTime();
-
-            const countdownTimer = setInterval(() => {
-                const now = new Date().getTime();
-                const distance = countdownDate - now;
-
-                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-                document.getElementById("days").innerHTML = days.toString().padStart(2, '0');
-                document.getElementById("hours").innerHTML = hours.toString().padStart(2, '0');
-                document.getElementById("minutes").innerHTML = minutes.toString().padStart(2, '0');
-                document.getElementById("seconds").innerHTML = seconds.toString().padStart(2, '0');
-
-                if (distance < 0) {
-                    clearInterval(countdownTimer);
-                    document.getElementById("countdown-timer").innerHTML = "<h4>Acara Sedang Berlangsung!</h4>";
-                }
-            }, 1000);
-
-            // Form Submission (prevent default for demo)
-            const contactForm = document.getElementById('contactForm');
-            if (contactForm) {
-                contactForm.addEventListener('submit', function(e) {
-                    e.preventDefault();
-                    alert('Terima kasih! Pesan Anda telah terkirim. Kami akan segera merespons.');
-                    this.reset();
-                });
-            }
+        // Form
+        document.getElementById('contactForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('Pesan terkirim!');
+            e.target.reset();
         });
     </script>
 </body>
